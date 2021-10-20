@@ -1,0 +1,13 @@
+# Mac OS X
+*.DS_Store
+
+#Xcode
+*.pbxuser
+*.xcuserstate
+project.xcworkspace/
+Xcuserdata/
+
+#*.o
+
+# Backup files
+*~.nib
