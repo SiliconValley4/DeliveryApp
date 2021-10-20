@@ -4,6 +4,7 @@ This is the README file for the test branch. This branch is not up to date with 
 
 Merge request will not be sent as this is just a test branch.
 
+- [X] Checkbox 3
 - [X] Checkbox 1
 - [ ] Checkbox 2
 
