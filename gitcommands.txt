@@ -1,0 +1,20 @@
+git branch -a : shows all branches
+git remote : shows all remotes from this repo
+git remote -v : verbose
+git branch -d name : delete branch
+git branch -D name : DELETE branch
+git checkout branchname: switch from current branch to  "branchname"
+git checkout -b some : switch to NEW branch "some"
+git remote remove "origin" - remove origin
+git remote add "name" "LINK": add new origin
+
+adding a remote origin means to give the long link an alias, that is a remote
+
+How to work within a group:
+
+- git clone link
+- Because we clone the repository from an exisiting one on github, there's already an alias "remote" called "whatever it was named, probably origin"
+
+
+rm -f -r folder : remove forcefully folder "name"
+
