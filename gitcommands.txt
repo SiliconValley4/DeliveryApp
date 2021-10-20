@@ -12,6 +12,8 @@ git remote remove "origin" - remove origin
 git remote add "name" "LINK": add new origin labeled "name" to the link "LINK"
 git remote show "name" - shows information about remote labeled "name"
 
+git remote set-head "remotename" "branchname" - sets the branch name of the remote to be the head.
+
 adding a remote origin means to give the long link an alias
 
 a remote is just an alias
