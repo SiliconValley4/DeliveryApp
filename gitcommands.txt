@@ -6,15 +6,33 @@ git branch -D name : DELETE branch
 git checkout branchname: switch from current branch to  "branchname"
 git checkout -b some : switch to NEW branch "some"
 git remote remove "origin" - remove origin
-git remote add "name" "LINK": add new origin
+git remote add "name" "LINK": add new origin labeled "name" to the link "LINK"
 
-adding a remote origin means to give the long link an alias, that is a remote
+adding a remote origin means to give the long link an alias
+
+a remote is just an alias
 
 How to work within a group:
+---------------------------
 
 - git clone link
 - Because we clone the repository from an exisiting one on github, there's already an alias "remote" called "whatever it was named, probably origin"
 
-
+OpenSource:
+-----------
+How to individually work from an existing repo: 
+----------------------------------------------
+- Fork public repo from github
+on git bash:
+- git clone "repolink"
+- add commit changes
+- git push "remote" "branch" - 
+after having cloned the repo post fork, you have to specify the name of the remote and the current branch you want to push to the repo
 rm -f -r folder : remove forcefully folder "name"
+
+To contribute some change from a forked/clone repo:
+---------------------------------------------------
+On github -> "New Pull Request"
+-> Create Pull Rerquest
+-> Accept from Original Repo Creator
 
