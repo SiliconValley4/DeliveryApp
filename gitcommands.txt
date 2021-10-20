@@ -7,6 +7,7 @@ git checkout branchname: switch from current branch to  "branchname"
 git checkout -b some : switch to NEW branch "some"
 git remote remove "origin" - remove origin
 git remote add "name" "LINK": add new origin labeled "name" to the link "LINK"
+git remote show "name" - shows information about remote labeled "name"
 
 adding a remote origin means to give the long link an alias
 
