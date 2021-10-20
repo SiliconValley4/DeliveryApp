@@ -1,3 +1,6 @@
+Git Commands!
+------------
+
 git branch -a : shows all branches
 git remote : shows all remotes from this repo
 git remote -v : verbose
