@@ -1,6 +1,7 @@
 Git Commands!
 ------------
 
+git config --list
 git branch -a : shows all branches
 git remote : shows all remotes from this repo
 git remote -v : verbose
@@ -9,10 +10,12 @@ git branch -D name : DELETE branch
 git checkout branchname: switch from current branch to  "branchname"
 git checkout -b some : switch to NEW branch "some"
 git remote remove "origin" - remove origin
-git remote add "name" "LINK": add new origin labeled "name" to the link "LINK"
-git remote show "name" - shows information about remote labeled "name"
+git remote add "name" "LINK" : add new origin labeled "name" to the link "LINK"
+git remote show "name" : shows information about remote labeled "name"
 
-git remote set-head "remotename" "branchname" - sets the branch name of the remote to be the head.
+git remote set-head "remotename" "branchname" : sets the branch name of the remote to be the head.
+
+git branch -u "remote"/"branch" : sets upstream branch??
 
 adding a remote origin means to give the long link an alias
 
