@@ -2,16 +2,21 @@ Git Commands!!
 ------------
 
 git config --list
+
 git branch -a : shows all branches
-git remote : shows all remotes from this repo
-git remote -v : verbose
+git branch "name" : create branch labeled "name"
 git branch -d name : delete branch
 git branch -D name : DELETE branch
-git checkout branchname: switch from current branch to  "branchname"
+
+git checkout branchname: switch from current branch to  "branchname" if it exists
 git checkout -b some : switch to NEW branch "some"
+
+git remote : shows all remotes from this repo
+git remote -v : verbose
 git remote remove "origin" - remove origin
 git remote add "name" "LINK" : add new origin labeled "name" to the link "LINK"
 git remote show "name" : shows information about remote labeled "name"
+git remote set-url --push origin no_push : remove push setting for particular remote
 
 git remote set-head "remotename" "branchname" : sets the branch name of the remote to be the head.
 
@@ -44,4 +49,9 @@ To contribute some change from a forked/clone repo:
 On github -> "New Pull Request"
 -> Create Pull Rerquest
 -> Accept from Original Repo Creator
+
+
+To Host Website on GitHub Pages:
+--------------------------------
+change the name of the default branch to "gh-pages"
 
