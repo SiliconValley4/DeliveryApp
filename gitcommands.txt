@@ -22,6 +22,8 @@ git remote set-head "remotename" "branchname" : sets the branch name of the remo
 
 git branch -u "remote"/"branch" : sets upstream branch??
 
+git push --set-upstream "remote" "branch" : allows to simply use "git push" command and use those settings
+
 adding a remote origin means to give the long link an alias
 
 a remote is just an alias
