@@ -69,9 +69,9 @@
 		559C8974271FA22300993BDD /* DeliveryApp */ = {
 			isa = PBXGroup;
 			children = (
-				5584086027222A0E00739FBA /* Utilities */,
 				559C898B2722221C00993BDD /* Screens */,
 				559C898C2722222800993BDD /* CustomViews */,
+				5584086027222A0E00739FBA /* Utilities */,
 				559C8975271FA22300993BDD /* AppDelegate.swift */,
 				559C8977271FA22300993BDD /* SceneDelegate.swift */,
 				559C8980271FA22600993BDD /* LaunchScreen.storyboard */,
