@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         
         //MARK: login screen will change depending if the user is signin alreayd or not. 
-        window?.rootViewController = LoginViewController()
+        window?.rootViewController = LoginVC()
         window?.makeKeyAndVisible()
     }
 
