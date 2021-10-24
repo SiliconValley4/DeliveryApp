@@ -12,12 +12,17 @@ class CustomerLoginVC: UIViewController {
     let appTitle = SVTitleLabel(textAlignment: .center, fontSize: 42)
     let welcomeTitle = SVBodyLabel(textAlignment: .center)
     let mainLogo = UIImageView(image: .init(named: Constants.Strings.Image.customer_login))
-    
+    let emailTextField = SVTextField(placeholder: Constants.Strings.Misc.email)
+    let passwordTextField = SVTextField(placeholder: Constants.Strings.Misc.password)
+    let signInButton = SVButton(backgroundColor: Constants.Colors.main, title: Constants.Strings.Button.signIn)
+    let cancelButton = SVButton(backgroundColor: .gray, title: Constants.Strings.Button.cancel)
+    let createAccountButton = SVButton(backgroundColor: .clear, title: Constants.Strings.Misc.needAccount)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addViewsToUI()
         configureView()
+        setUpButtons()
     }
     
     func addViewsToUI() {
@@ -26,6 +31,25 @@ class CustomerLoginVC: UIViewController {
         view.addSubview(appTitle)
         view.addSubview(welcomeTitle)
         view.addSubview(mainLogo)
+        view.addSubview(emailTextField)
+        view.addSubview(passwordTextField)
+        view.addSubview(signInButton)
+        view.addSubview(cancelButton)
+    }
+    
+    func setUpButtons() {
+        signInButton.addTarget(self, action: #selector(onSubmit), for: .touchUpInside)
+        cancelButton.addTarget(self, action: #selector(onCancel), for: .touchUpInside)
+    }
+    
+    @objc func onSubmit() {
+        //MARK: Check for username field and password field before signing in.
+        // Or it can be done on the network side.
+        NetworkManager.shared.signIn()
+    }
+    
+    @objc func onCancel() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func configureView() {
@@ -43,7 +67,19 @@ class CustomerLoginVC: UIViewController {
             mainLogo.topAnchor.constraint(equalTo: welcomeTitle.bottomAnchor),
             mainLogo.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mainLogo.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mainLogo.heightAnchor.constraint(equalTo: view.widthAnchor)
+            mainLogo.heightAnchor.constraint(equalTo: view.widthAnchor),
+            emailTextField.topAnchor.constraint(equalTo: mainLogo.bottomAnchor),
+            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            emailTextField.heightAnchor.constraint(equalToConstant: 44),
+            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 16),
+            passwordTextField.leadingAnchor.constraint(equalTo: emailTextField.leadingAnchor),
+            passwordTextField.trailingAnchor.constraint(equalTo: emailTextField.trailingAnchor),
+            passwordTextField.heightAnchor.constraint(equalTo: emailTextField.heightAnchor),
+            signInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
+            signInButton.leadingAnchor.constraint(equalTo: emailTextField.leadingAnchor),
+            signInButton.trailingAnchor.constraint(equalTo: emailTextField.trailingAnchor),
+            signInButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
 }
