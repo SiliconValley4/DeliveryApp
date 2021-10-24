@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		552FEAD92725E9C900A82CFF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552FEAD82725E9C900A82CFF /* NetworkManager.swift */; };
 		5584086227237B6300739FBA /* SVConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5584086127237B6300739FBA /* SVConstants.swift */; };
 		558408642723852400739FBA /* CustomerLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558408632723852300739FBA /* CustomerLoginVC.swift */; };
 		5584086627247BCB00739FBA /* RestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5584086527247BCB00739FBA /* RestaurantVC.swift */; };
@@ -18,13 +19,14 @@
 		559C897F271FA22600993BDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 559C897E271FA22600993BDD /* Assets.xcassets */; };
 		559C8982271FA22600993BDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 559C8980271FA22600993BDD /* LaunchScreen.storyboard */; };
 		559C898A271FA84300993BDD /* SVButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C8989271FA84300993BDD /* SVButton.swift */; };
-		559C898F2722228000993BDD /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C898E2722228000993BDD /* LoginVC.swift */; };
+		559C898F2722228000993BDD /* SelectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C898E2722228000993BDD /* SelectorVC.swift */; };
 		559C89952722248F00993BDD /* SVBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C89942722248F00993BDD /* SVBodyLabel.swift */; };
 		559C8997272224A200993BDD /* SVTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C8996272224A200993BDD /* SVTitleLabel.swift */; };
 		559C89992722252100993BDD /* SVTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C89982722252100993BDD /* SVTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		552FEAD82725E9C900A82CFF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		5584086127237B6300739FBA /* SVConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVConstants.swift; sourceTree = "<group>"; };
 		558408632723852300739FBA /* CustomerLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerLoginVC.swift; sourceTree = "<group>"; };
 		5584086527247BCB00739FBA /* RestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantVC.swift; sourceTree = "<group>"; };
@@ -38,7 +40,7 @@
 		559C8981271FA22600993BDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		559C8983271FA22600993BDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		559C8989271FA84300993BDD /* SVButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVButton.swift; sourceTree = "<group>"; };
-		559C898E2722228000993BDD /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		559C898E2722228000993BDD /* SelectorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorVC.swift; sourceTree = "<group>"; };
 		559C89942722248F00993BDD /* SVBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVBodyLabel.swift; sourceTree = "<group>"; };
 		559C8996272224A200993BDD /* SVTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVTitleLabel.swift; sourceTree = "<group>"; };
 		559C89982722252100993BDD /* SVTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVTextField.swift; sourceTree = "<group>"; };
@@ -55,6 +57,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		552FEAD627247F5400A82CFF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		552FEAD72725E97000A82CFF /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				552FEAD82725E9C900A82CFF /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		5584086027222A0E00739FBA /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +101,8 @@
 			children = (
 				559C898B2722221C00993BDD /* Screens */,
 				559C898C2722222800993BDD /* CustomViews */,
+				552FEAD72725E97000A82CFF /* Managers */,
+				552FEAD627247F5400A82CFF /* Models */,
 				5584086027222A0E00739FBA /* Utilities */,
 				559C8975271FA22300993BDD /* AppDelegate.swift */,
 				559C8977271FA22300993BDD /* SceneDelegate.swift */,
@@ -97,7 +116,7 @@
 		559C898B2722221C00993BDD /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				559C898E2722228000993BDD /* LoginVC.swift */,
+				559C898E2722228000993BDD /* SelectorVC.swift */,
 				558408632723852300739FBA /* CustomerLoginVC.swift */,
 				5584086527247BCB00739FBA /* RestaurantVC.swift */,
 				5584086727247C0100739FBA /* MealsVC.swift */,
@@ -222,7 +241,8 @@
 				559C898A271FA84300993BDD /* SVButton.swift in Sources */,
 				5584086C27247C4700739FBA /* ProfileVC.swift in Sources */,
 				559C89952722248F00993BDD /* SVBodyLabel.swift in Sources */,
-				559C898F2722228000993BDD /* LoginVC.swift in Sources */,
+				552FEAD92725E9C900A82CFF /* NetworkManager.swift in Sources */,
+				559C898F2722228000993BDD /* SelectorVC.swift in Sources */,
 				559C89992722252100993BDD /* SVTextField.swift in Sources */,
 				559C8978271FA22300993BDD /* SceneDelegate.swift in Sources */,
 			);
