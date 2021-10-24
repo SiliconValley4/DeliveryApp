@@ -17,6 +17,12 @@ struct Constants {
             static var create_account: String = "Create Customer Account"
         }
         
+        struct Misc {
+            static var needAccount: String = "Need an account?"
+            static var password: String = "Password"
+            static var email: String = "Email"
+        }
+        
         struct Image {
             static var entry_scooter: String = "main_delivery"
             static var customer_login: String = "customer_login"
@@ -25,6 +31,10 @@ struct Constants {
         struct Button {
             static var customer: String = "Customer"
             static var driver: String = "Driver"
+            static var signIn: String = "Sign In"
+            static var cancel: String = "Cancel"
+            
+            static var createAccount: String = "Create one"
         }
     }
     
