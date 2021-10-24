@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginVC: UIViewController {
+class SelectorVC: UIViewController {
     
     let mainLogo = UIImageView(image: .init(named: Constants.Strings.Image.entry_scooter))
     let appTitle = SVTitleLabel(textAlignment: .center, fontSize: 42)
