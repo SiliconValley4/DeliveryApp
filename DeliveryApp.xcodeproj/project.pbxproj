@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		552FEAD92725E9C900A82CFF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552FEAD82725E9C900A82CFF /* NetworkManager.swift */; };
+		552FEADB27262C5300A82CFF /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552FEADA27262C5300A82CFF /* RegisterVC.swift */; };
 		5584086227237B6300739FBA /* SVConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5584086127237B6300739FBA /* SVConstants.swift */; };
 		558408642723852400739FBA /* CustomerLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558408632723852300739FBA /* CustomerLoginVC.swift */; };
 		5584086627247BCB00739FBA /* RestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5584086527247BCB00739FBA /* RestaurantVC.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		552FEAD82725E9C900A82CFF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		552FEADA27262C5300A82CFF /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		5584086127237B6300739FBA /* SVConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVConstants.swift; sourceTree = "<group>"; };
 		558408632723852300739FBA /* CustomerLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerLoginVC.swift; sourceTree = "<group>"; };
 		5584086527247BCB00739FBA /* RestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantVC.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			children = (
 				559C898E2722228000993BDD /* SelectorVC.swift */,
 				558408632723852300739FBA /* CustomerLoginVC.swift */,
+				552FEADA27262C5300A82CFF /* RegisterVC.swift */,
 				5584086527247BCB00739FBA /* RestaurantVC.swift */,
 				5584086727247C0100739FBA /* MealsVC.swift */,
 				5584086927247C3A00739FBA /* CartVC.swift */,
@@ -240,6 +243,7 @@
 				5584086227237B6300739FBA /* SVConstants.swift in Sources */,
 				559C898A271FA84300993BDD /* SVButton.swift in Sources */,
 				5584086C27247C4700739FBA /* ProfileVC.swift in Sources */,
+				552FEADB27262C5300A82CFF /* RegisterVC.swift in Sources */,
 				559C89952722248F00993BDD /* SVBodyLabel.swift in Sources */,
 				552FEAD92725E9C900A82CFF /* NetworkManager.swift in Sources */,
 				559C898F2722228000993BDD /* SelectorVC.swift in Sources */,
