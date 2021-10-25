@@ -15,12 +15,14 @@ struct Constants {
             static var welcome_back: String = "Welcome Back!"
             static var customer_login: String = "Customer Login"
             static var create_account: String = "Create Customer Account"
+            static var create_button: String = "Create Account"
         }
         
         struct Misc {
             static var needAccount: String = "Need an account?"
             static var password: String = "Password"
             static var email: String = "Email"
+            static var name: String = "Name"
         }
         
         struct Image {

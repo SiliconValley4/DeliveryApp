@@ -8,10 +8,10 @@
 import UIKit
 
 class RestaurantVC: UIViewController {
+    
+    var table: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-
 }

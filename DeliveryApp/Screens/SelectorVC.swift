@@ -13,7 +13,7 @@ class SelectorVC: UIViewController {
     let appTitle = SVTitleLabel(textAlignment: .center, fontSize: 42)
     let loginButton = SVButton(backgroundColor: Constants.Colors.main, title: Constants.Strings.Button.customer)
     let driverButton = SVButton(backgroundColor: .systemGray, title: Constants.Strings.Button.driver)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addViewsToUI()
@@ -25,7 +25,6 @@ class SelectorVC: UIViewController {
     @objc func onCustomerButton() {
         let viewToBePresented = CustomerLoginVC()
         viewToBePresented.modalPresentationStyle = .fullScreen
-        
         present(viewToBePresented, animated: true, completion: nil)
     }
     
