@@ -19,7 +19,6 @@ class CustomerLoginVC: UIViewController {
     let signInDescription = SVBodyLabel(textAlignment: .center)
     let createAccountButton = SVButton(backgroundColor: .systemRed, title: Constants.Strings.Misc.needAccount)
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         addViewsToUI()

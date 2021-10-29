@@ -24,6 +24,8 @@
 		559C89952722248F00993BDD /* SVBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C89942722248F00993BDD /* SVBodyLabel.swift */; };
 		559C8997272224A200993BDD /* SVTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C8996272224A200993BDD /* SVTitleLabel.swift */; };
 		559C89992722252100993BDD /* SVTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C89982722252100993BDD /* SVTextField.swift */; };
+		55DEAF09272CA93E0065D586 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEAF08272CA93E0065D586 /* Restaurant.swift */; };
+		55DEAF0B272CAAC30065D586 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEAF0A272CAAC30065D586 /* Meal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		559C89942722248F00993BDD /* SVBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVBodyLabel.swift; sourceTree = "<group>"; };
 		559C8996272224A200993BDD /* SVTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVTitleLabel.swift; sourceTree = "<group>"; };
 		559C89982722252100993BDD /* SVTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVTextField.swift; sourceTree = "<group>"; };
+		55DEAF08272CA93E0065D586 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		55DEAF0A272CAAC30065D586 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 		552FEAD627247F5400A82CFF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				55DEAF08272CA93E0065D586 /* Restaurant.swift */,
+				55DEAF0A272CAAC30065D586 /* Meal.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -238,6 +244,7 @@
 				5584086827247C0100739FBA /* MealsVC.swift in Sources */,
 				5584086A27247C3A00739FBA /* CartVC.swift in Sources */,
 				5584086627247BCB00739FBA /* RestaurantVC.swift in Sources */,
+				55DEAF09272CA93E0065D586 /* Restaurant.swift in Sources */,
 				559C8997272224A200993BDD /* SVTitleLabel.swift in Sources */,
 				558408642723852400739FBA /* CustomerLoginVC.swift in Sources */,
 				5584086227237B6300739FBA /* SVConstants.swift in Sources */,
@@ -247,6 +254,7 @@
 				559C89952722248F00993BDD /* SVBodyLabel.swift in Sources */,
 				552FEAD92725E9C900A82CFF /* NetworkManager.swift in Sources */,
 				559C898F2722228000993BDD /* SelectorVC.swift in Sources */,
+				55DEAF0B272CAAC30065D586 /* Meal.swift in Sources */,
 				559C89992722252100993BDD /* SVTextField.swift in Sources */,
 				559C8978271FA22300993BDD /* SceneDelegate.swift in Sources */,
 			);
