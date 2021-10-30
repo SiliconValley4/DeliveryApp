@@ -52,6 +52,10 @@ class CustomerLoginVC: UIViewController {
         //MARK: Check for username field and password field before signing in.
         // Or it can be done on the network side.
         NetworkManager.shared.signIn()
+        let myView = RestaurantVC()
+        myView.modalPresentationStyle = .fullScreen
+        
+        present(myView, animated: true, completion: nil)
     }
     
     @objc func onCancel() {

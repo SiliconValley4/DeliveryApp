@@ -17,7 +17,6 @@ class RegisterVC: UIViewController {
     //
     var createButton = SVButton(backgroundColor: Constants.Colors.main, title: Constants.Strings.Title.create_button)
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         addViewsToUI()
