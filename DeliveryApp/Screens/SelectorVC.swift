@@ -23,7 +23,8 @@ class SelectorVC: UIViewController {
     
     //
     @objc func onCustomerButton() {
-        let viewToBePresented = CustomerLoginVC()
+        //let viewToBePresented = CustomerLoginVC()
+        let viewToBePresented = CustomerFBLoginVC()
         viewToBePresented.modalPresentationStyle = .fullScreen
         present(viewToBePresented, animated: true, completion: nil)
     }
