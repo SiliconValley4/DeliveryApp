@@ -8,18 +8,18 @@
 
 ## Overview
 ### Description
-Delivery App's purpose is to allow customers to order food from any restaurant, providing them with the options to pick-up or get their order delivered.
+Delivery App's purpose is to allow customers to order food from any restaurant, providing them with the option to pick-up or get their order delivered.
 
 <img src="https://github.com/SiliconValley4/DeliveryApp/blob/main/Submission/gif.gif">
 
 ### App Evaluation
-[Evaluation of your app across the following attributes]
+
 - **Category:** Food Delivery Application
-- **Mobile:** Mobile is essential for customers to log in and track their current/past orders. Drivers must use mobile app as well to select deliveries available. Restaurant owners will use the webpage.
-- **Story:** We want to allow local restaurants to share their cuisine with future customers, creating jobs and facilitating the growth of communities by creating a connection between restaurant owners, their customers, and the delivery drivers.
-- **Market:** Only restaurant owners can register their restaurant upon submission of required credentials. No current custome restrictions.
+- **Mobile:** Mobile is essential for customers to log in and track their current/past orders. Drivers must use the mobile app as well to select from list of deliveries available. Restaurant owners will use the Project website.
+- **Story:** We want to facilitate local restaurants sharing their cuisine with future customers, creating jobs and growth of their communities by emphasizing the connection between restaurant owners, their customers, and delivery drivers.
+- **Market:** Restaurant owners looking to expand their customer base. Customers looking to order a food delivery without the steep fees and drivers looking to make some extra cash
 - **Habit:** The usage of this app would be daily, peak hours during lunch and dinner time for both drivers and customers
-- **Scope:** Small to medium sized restaurants in the metropolitan area that would like to expand their customer base 
+- **Scope:** Small to medium sized restaurants in the metropolitan area that would like to expand their customer base, outdoorsy teenagers and adults alike that like to do paid customer service, and hungry customers.
 
 ## Product Spec
 
@@ -33,7 +33,7 @@ Delivery App's purpose is to allow customers to order food from any restaurant, 
 * Customers can select a restaurant to order from, browse their selection and make orders on demand. Pick-up is optional, Delivery is the default
 * Customer will be allowed to see details of their order prior to checkout, during and upon order completion
 * Drivers can select orders to deliver from their dashboard, each available delivery order includes distance information and possible earnings
-* Drivers can see their net earnings data with easy to read and understand graphs
+* Drivers can see their net earnings data with easy to understand graphs
 
 **Optional Nice-to-have Stories**
 
@@ -62,20 +62,20 @@ Delivery App's purpose is to allow customers to order food from any restaurant, 
    * [Part Orders]
 
 
-** iOS App Flow Navigation** (Screen to Screen)
+**iOS App Flow Navigation** (Screen to Screen)
 
 * Welcome Page
-   * Customer Login -> Create Account
-   * Driver Login -> Create Account
-* Customer Dashboard
-   * Restaurant List
+   * Customer Login -> Create Account -> Customer Dashboard
+   * Driver Login -> Create Account -> Customer Dashboard
+* Customer Dashboard -> 
+   * Restaurant List -> Meals Available -> Cart -> Checkout
    * List of meals available by selected restaurant -> Details Page
    * From Navigation Bar
-      * Order Status
+      * Order Status 
       * Cart
       * Customer Profile
       * Part orders
-* Driver Dashboard
+* Driver Dashboard -> Deliveries Available -> Current Order
    * Driver Profile
    * Deliveries available
    * Previous orders
@@ -89,13 +89,19 @@ Delivery App's purpose is to allow customers to order food from any restaurant, 
 
 <img src="https://github.com/SiliconValley4/DeliveryApp/blob/main/Submission/gif2.gif">
 
+<!--
+
 ### [BONUS] Interactive Prototype
+
 
 ## Schema 
 [This section will be completed in Unit 9]
+
 ### Models
 [Add table of models]
 ### Networking
-- [Add list of network requests by screen ]
+
 - [Create basic snippets for each Parse network request]
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
+
+-->
