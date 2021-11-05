@@ -22,6 +22,11 @@
 		10286C0327347C3F00E3FBE5 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10286C0227347C3F00E3FBE5 /* Meal.swift */; };
 		10286C0527347C5600E3FBE5 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10286C0427347C5600E3FBE5 /* Cart.swift */; };
 		10286C0727347C6900E3FBE5 /* DriverOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10286C0627347C6900E3FBE5 /* DriverOrder.swift */; };
+		10286C092734896B00E3FBE5 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10286C082734896B00E3FBE5 /* RestaurantViewController.swift */; };
+		10286C0B27348AC200E3FBE5 /* CustomerMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10286C0A27348AC200E3FBE5 /* CustomerMenuViewController.swift */; };
+		10286C0D27348AD700E3FBE5 /* MealDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10286C0C27348AD700E3FBE5 /* MealDetailViewController.swift */; };
+		10286C0F27348D3300E3FBE5 /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10286C0E27348D3300E3FBE5 /* RestaurantCell.swift */; };
+		10286C112734A45300E3FBE5 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10286C102734A45300E3FBE5 /* MenuCell.swift */; };
 		C2116E734781032A49192C09 /* Pods_FoodDeliveryApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 268BBD65A1901ECCA5D419B6 /* Pods_FoodDeliveryApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +48,11 @@
 		10286C0227347C3F00E3FBE5 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		10286C0427347C5600E3FBE5 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		10286C0627347C6900E3FBE5 /* DriverOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverOrder.swift; sourceTree = "<group>"; };
+		10286C082734896B00E3FBE5 /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
+		10286C0A27348AC200E3FBE5 /* CustomerMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerMenuViewController.swift; sourceTree = "<group>"; };
+		10286C0C27348AD700E3FBE5 /* MealDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailViewController.swift; sourceTree = "<group>"; };
+		10286C0E27348D3300E3FBE5 /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
+		10286C102734A45300E3FBE5 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		268BBD65A1901ECCA5D419B6 /* Pods_FoodDeliveryApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodDeliveryApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DFD694B146E42E00FC0BD61 /* Pods-FoodDeliveryApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDeliveryApp.debug.xcconfig"; path = "Target Support Files/Pods-FoodDeliveryApp/Pods-FoodDeliveryApp.debug.xcconfig"; sourceTree = "<group>"; };
 		A6DFB2104F478F0B606D548E /* Pods-FoodDeliveryApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDeliveryApp.release.xcconfig"; path = "Target Support Files/Pods-FoodDeliveryApp/Pods-FoodDeliveryApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +147,9 @@
 		10286BF827347B7800E3FBE5 /* Customer */ = {
 			isa = PBXGroup;
 			children = (
+				10286C082734896B00E3FBE5 /* RestaurantViewController.swift */,
+				10286C0A27348AC200E3FBE5 /* CustomerMenuViewController.swift */,
+				10286C0C27348AD700E3FBE5 /* MealDetailViewController.swift */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -158,6 +171,8 @@
 		10286BFB27347BBF00E3FBE5 /* Customer */ = {
 			isa = PBXGroup;
 			children = (
+				10286C0E27348D3300E3FBE5 /* RestaurantCell.swift */,
+				10286C102734A45300E3FBE5 /* MenuCell.swift */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -319,12 +334,17 @@
 				10286BF027347ACA00E3FBE5 /* FBManager.swift in Sources */,
 				10286C0527347C5600E3FBE5 /* Cart.swift in Sources */,
 				10286BF227347AD700E3FBE5 /* APIManager.swift in Sources */,
+				10286C0B27348AC200E3FBE5 /* CustomerMenuViewController.swift in Sources */,
 				10286BFF27347C2300E3FBE5 /* User.swift in Sources */,
+				10286C0F27348D3300E3FBE5 /* RestaurantCell.swift in Sources */,
+				10286C0D27348AD700E3FBE5 /* MealDetailViewController.swift in Sources */,
 				10286BD82734772E00E3FBE5 /* AppDelegate.swift in Sources */,
 				10286C0727347C6900E3FBE5 /* DriverOrder.swift in Sources */,
 				10286BDA2734772E00E3FBE5 /* SceneDelegate.swift in Sources */,
 				10286BF527347AF200E3FBE5 /* Constants.swift in Sources */,
 				10286C0127347C3200E3FBE5 /* Restaurant.swift in Sources */,
+				10286C112734A45300E3FBE5 /* MenuCell.swift in Sources */,
+				10286C092734896B00E3FBE5 /* RestaurantViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
