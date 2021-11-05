@@ -27,7 +27,6 @@
 		10286C0D27348AD700E3FBE5 /* MealDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10286C0C27348AD700E3FBE5 /* MealDetailViewController.swift */; };
 		10286C0F27348D3300E3FBE5 /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10286C0E27348D3300E3FBE5 /* RestaurantCell.swift */; };
 		10286C112734A45300E3FBE5 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10286C102734A45300E3FBE5 /* MenuCell.swift */; };
-		1028FAA92735715B0038D72D /* TestFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028FAA82735715B0038D72D /* TestFile.swift */; };
 		C2116E734781032A49192C09 /* Pods_FoodDeliveryApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 268BBD65A1901ECCA5D419B6 /* Pods_FoodDeliveryApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,7 +53,6 @@
 		10286C0C27348AD700E3FBE5 /* MealDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailViewController.swift; sourceTree = "<group>"; };
 		10286C0E27348D3300E3FBE5 /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
 		10286C102734A45300E3FBE5 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
-		1028FAA82735715B0038D72D /* TestFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFile.swift; sourceTree = "<group>"; };
 		268BBD65A1901ECCA5D419B6 /* Pods_FoodDeliveryApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodDeliveryApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DFD694B146E42E00FC0BD61 /* Pods-FoodDeliveryApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDeliveryApp.debug.xcconfig"; path = "Target Support Files/Pods-FoodDeliveryApp/Pods-FoodDeliveryApp.debug.xcconfig"; sourceTree = "<group>"; };
 		A6DFB2104F478F0B606D548E /* Pods-FoodDeliveryApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDeliveryApp.release.xcconfig"; path = "Target Support Files/Pods-FoodDeliveryApp/Pods-FoodDeliveryApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -93,7 +91,6 @@
 		10286BD62734772E00E3FBE5 /* FoodDeliveryApp */ = {
 			isa = PBXGroup;
 			children = (
-				1028FAA7273570870038D72D /* TestFolder */,
 				10286BEB273477FA00E3FBE5 /* Manager */,
 				10286BEE2734783600E3FBE5 /* Model */,
 				10286BED2734781B00E3FBE5 /* View */,
@@ -197,14 +194,6 @@
 				10286C0427347C5600E3FBE5 /* Cart.swift */,
 			);
 			path = Customer;
-			sourceTree = "<group>";
-		};
-		1028FAA7273570870038D72D /* TestFolder */ = {
-			isa = PBXGroup;
-			children = (
-				1028FAA82735715B0038D72D /* TestFile.swift */,
-			);
-			path = TestFolder;
 			sourceTree = "<group>";
 		};
 		C5CDD41D47FD5EFC6EE5AD50 /* Pods */ = {
@@ -348,7 +337,6 @@
 				10286C0B27348AC200E3FBE5 /* CustomerMenuViewController.swift in Sources */,
 				10286BFF27347C2300E3FBE5 /* User.swift in Sources */,
 				10286C0F27348D3300E3FBE5 /* RestaurantCell.swift in Sources */,
-				1028FAA92735715B0038D72D /* TestFile.swift in Sources */,
 				10286C0D27348AD700E3FBE5 /* MealDetailViewController.swift in Sources */,
 				10286BD82734772E00E3FBE5 /* AppDelegate.swift in Sources */,
 				10286C0727347C6900E3FBE5 /* DriverOrder.swift in Sources */,
