@@ -5,8 +5,22 @@ git config --list
 
 git branch -a : shows all branches
 git branch "name" : create branch labeled "name"
-git branch -d name : delete branch
-git branch -D name : DELETE branch
+git branch "currentName" --move "newName" - move rename a branch
+git branch "currentName" --M "newName" - force pomove rename a branch
+
+Remove local branch
+-------------------
+git branch -d "remote/branch" : delete branch 
+git branch -D "branchName" : DELETE branch - force delete branch
+git branch --delete "remote"/"branchName" - specify which branch from which remote
+
+
+Remove remote branch
+--------------------
+git push "remote" --delete "branch" - this will delete the branch from github, on the repo that is being aliased by remote
+
+
+
 
 git checkout branchname: switch from current branch to  "branchname" if it exists
 git checkout -b some : switch to NEW branch "some"
@@ -18,7 +32,7 @@ git remote add "name" "LINK" : add new origin labeled "name" to the link "LINK"
 git remote show "name" : shows information about remote labeled "name"
 git remote set-url --push origin no_push : remove push setting for particular remote
 
-git remote set-head "remotename" "branchname" : sets the branch name of the remote to be the head.
+git remote set-head "remotename" "branchname" : sets branchname of the remote to be the head pointer of the repo
 
 git branch -u "remote"/"branch" : sets upstream branch??
 
