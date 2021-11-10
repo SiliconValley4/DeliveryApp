@@ -31,6 +31,7 @@ git remote remove "origin" - remove origin
 git remote add "name" "LINK" : add new origin labeled "name" to the link "LINK"
 git remote show "name" : shows information about remote labeled "name"
 git remote set-url --push origin no_push : remove push setting for particular remote
+git remote rename "origin" "newLocalName" : changes the name of your remote name locally
 
 git remote set-head "remotename" "branchname" : sets branchname of the remote to be the head pointer of the repo
 
