@@ -17,20 +17,26 @@ git branch --delete "remote"/"branchName" - specify which branch from which remo
 
 # Remove remote branch
 --------------------
+
+```
 git push "remote" --delete "branch" - this will delete the branch from github, on the repo that is being aliased by remote
 
-
-
-
 git checkout branchname: switch from current branch to  "branchname" if it exists
+
 git checkout -b some : switch to NEW branch "some"
 
 git remote : shows all remotes from this repo
+
 git remote -v : verbose
+
 git remote remove "origin" - remove origin
+
 git remote add "name" "LINK" : add new origin labeled "name" to the link "LINK"
+
 git remote show "name" : shows information about remote labeled "name"
+
 git remote set-url --push origin no_push : remove push setting for particular remote
+
 git remote rename "origin" "newLocalName" : changes the name of your remote name locally
 
 git remote set-head "remotename" "branchname" : sets branchname of the remote to be the head pointer of the repo
@@ -42,6 +48,8 @@ git push --set-upstream "remote" "branch" : allows to simply use "git push" comm
 adding a remote origin means to give the long link an alias
 
 a remote is just an alias
+
+```
 
 # How to work within a group:
 ---------------------------
