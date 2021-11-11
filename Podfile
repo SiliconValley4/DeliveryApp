@@ -14,5 +14,6 @@ target 'FoodDeliveryApp' do
 	pod 'FBSDKLoginKit'
 	pod 'FBSDKShareKit'
 	pod 'SwiftyJSON'
+	pod 'Charts'
 
 end

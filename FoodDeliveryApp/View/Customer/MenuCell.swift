@@ -11,11 +11,8 @@ class MenuCell: UITableViewCell {
     
     
     @IBOutlet weak var mealImg: UIImageView!
-    
     @IBOutlet weak var mealName: UILabel!
-    
     @IBOutlet weak var mealDescription: UILabel!
-    
     @IBOutlet weak var mealPrice: UILabel!
     
     override func awakeFromNib() {
