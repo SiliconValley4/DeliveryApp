@@ -9,8 +9,9 @@ import Foundation
 
 
 let BASE_URL: String = "https://fooddeliverynowapp.herokuapp.com/"
-let CLIENT_ID = "9f1WCfAnSKtS8emLfVydlGicGHal5gNbQY21NgbD"
-let CLIENT_SECRET = "evMeguSrXxZddARxWM4wuatDEcH3ufxnnTU6rlX0SiyXQCWgVLrD5PpMIgfA8ObqNFiXVWJxWCEaYniMbHNZdBXE2fg31ZwVYMHlGMDw8xwSDj0OihSGhuxSf37ghgUG"
+// this code comes from the admin website
+let CLIENT_ID = "Ij7nN3zWD1VEAtD3Zpv0dyIFzuF4eesM6xHzRHMK"
+let CLIENT_SECRET = "M6FL8MLOMwcNrHnRA1iE0zGeA0lj2tc0xEtw7p5xzmjvbyY3pY2hrDAsBuXHi7LG5fxCRRXr8pVjxpfeiQhJYgLKY8HAZfIwADKD7uvqGq7QnEvKlik9iuWcGKhqZ7zF"
 
 let USER_TYPE_CUSTOMER = "customer"
 let USER_TYPE_DRIVER = "driver"
