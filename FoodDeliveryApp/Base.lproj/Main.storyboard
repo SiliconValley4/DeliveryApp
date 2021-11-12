@@ -17,9 +17,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFB-eJ-4Sp">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="448"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DeliveryApp" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGF-8O-P8A">
+                                        <rect key="frame" x="36" y="362" width="342" height="42"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="SIr-0J-3kw">
+                                        <rect key="frame" x="64" y="412" width="286" height="32"/>
+                                        <segments>
+                                            <segment title="Customer"/>
+                                            <segment title="Driver"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="switchAccount:" destination="BYZ-38-t0r" eventType="valueChanged" id="98p-Zd-aP8"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Take_Away" translatesAutoresizingMaskIntoConstraints="NO" id="REA-ue-H69">
+                                        <rect key="frame" x="64" y="96" width="286" height="250"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="250" id="qP3-RX-txk"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="xGF-8O-P8A" secondAttribute="trailing" constant="36" id="6JA-o2-jL1"/>
+                                    <constraint firstItem="xGF-8O-P8A" firstAttribute="leading" secondItem="ZFB-eJ-4Sp" secondAttribute="leading" constant="36" id="7Ef-ew-xHf"/>
+                                    <constraint firstAttribute="trailing" secondItem="REA-ue-H69" secondAttribute="trailing" constant="64" id="Hll-R4-cvW"/>
+                                    <constraint firstAttribute="height" constant="448" id="JGz-vY-J2w"/>
+                                    <constraint firstAttribute="trailing" secondItem="SIr-0J-3kw" secondAttribute="trailing" constant="64" id="KdD-Qm-TMK"/>
+                                    <constraint firstItem="xGF-8O-P8A" firstAttribute="top" secondItem="REA-ue-H69" secondAttribute="bottom" constant="16" id="YiH-WI-xMH"/>
+                                    <constraint firstItem="SIr-0J-3kw" firstAttribute="leading" secondItem="ZFB-eJ-4Sp" secondAttribute="leading" constant="64" id="mDC-UX-WfE"/>
+                                    <constraint firstItem="SIr-0J-3kw" firstAttribute="top" secondItem="xGF-8O-P8A" secondAttribute="bottom" constant="8" id="s0A-pj-hJS"/>
+                                    <constraint firstItem="REA-ue-H69" firstAttribute="top" secondItem="ZFB-eJ-4Sp" secondAttribute="top" constant="96" id="xcb-Za-anx"/>
+                                    <constraint firstItem="REA-ue-H69" firstAttribute="leading" secondItem="ZFB-eJ-4Sp" secondAttribute="leading" constant="64" id="xiI-gn-gkM"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XfP-VM-Ksj">
-                                <rect key="frame" x="10" y="653" width="394" height="37"/>
-                                <color key="backgroundColor" name="AccentColor"/>
+                                <rect key="frame" x="32" y="695" width="350" height="64"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="n8G-bJ-ZXe"/>
+                                </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Login with Facebook">
@@ -29,26 +72,10 @@
                                     <action selector="loginFacebookButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bey-XG-v29"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="SIr-0J-3kw">
-                                <rect key="frame" x="93" y="491" width="214" height="32"/>
-                                <segments>
-                                    <segment title="Customer"/>
-                                    <segment title="Driver"/>
-                                </segments>
-                                <connections>
-                                    <action selector="switchAccount:" destination="BYZ-38-t0r" eventType="valueChanged" id="98p-Zd-aP8"/>
-                                </connections>
-                            </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DeliveryApp" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGF-8O-P8A">
-                                <rect key="frame" x="109" y="166" width="182" height="42"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eg-JS-0Kn">
-                                <rect key="frame" x="10" y="692" width="394" height="37"/>
-                                <color key="backgroundColor" systemColor="systemPinkColor"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="32" y="761" width="350" height="37"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Use Different Account">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="19"/>
@@ -59,25 +86,23 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5eg-JS-0Kn" secondAttribute="bottom" constant="133" id="1T6-gB-sHK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5eg-JS-0Kn" secondAttribute="bottom" constant="64" id="1T6-gB-sHK"/>
+                            <constraint firstItem="ZFB-eJ-4Sp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="6Xu-7E-RUb"/>
                             <constraint firstItem="XfP-VM-Ksj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BR5-Gc-IKq"/>
                             <constraint firstItem="5eg-JS-0Kn" firstAttribute="top" secondItem="XfP-VM-Ksj" secondAttribute="bottom" constant="2" id="GOV-ta-I5b"/>
+                            <constraint firstItem="ZFB-eJ-4Sp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="NW7-E2-fg2"/>
                             <constraint firstItem="XfP-VM-Ksj" firstAttribute="leading" secondItem="5eg-JS-0Kn" secondAttribute="leading" id="Php-73-7Wu"/>
-                            <constraint firstItem="xGF-8O-P8A" firstAttribute="centerX" secondItem="SIr-0J-3kw" secondAttribute="centerX" id="TIq-uS-oZQ"/>
                             <constraint firstItem="XfP-VM-Ksj" firstAttribute="trailing" secondItem="5eg-JS-0Kn" secondAttribute="trailing" id="UUj-Uc-SyK"/>
-                            <constraint firstItem="xGF-8O-P8A" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="109" id="VBn-E4-nTv"/>
-                            <constraint firstAttribute="bottom" secondItem="SIr-0J-3kw" secondAttribute="bottom" constant="374" id="WW2-wK-Doe"/>
-                            <constraint firstItem="SIr-0J-3kw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="93" id="Wsi-3W-cAu"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SIr-0J-3kw" secondAttribute="trailing" constant="107" id="dpY-9s-Pl8"/>
-                            <constraint firstItem="XfP-VM-Ksj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="i5G-me-aY1"/>
-                            <constraint firstItem="xGF-8O-P8A" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="122" id="t49-W8-6Pr"/>
+                            <constraint firstItem="XfP-VM-Ksj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="i5G-me-aY1"/>
+                            <constraint firstItem="ZFB-eJ-4Sp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="mS4-0I-Sfe"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="bLogin" destination="XfP-VM-Ksj" id="ySS-Qb-jgZ"/>
                         <outlet property="bLogout" destination="5eg-JS-0Kn" id="r7K-Mf-S4T"/>
+                        <outlet property="backSplashUI" destination="ZFB-eJ-4Sp" id="16h-zH-sIc"/>
                         <outlet property="switchUser" destination="SIr-0J-3kw" id="wlU-RO-jQH"/>
                         <segue destination="HHd-f4-6Wm" kind="showDetail" identifier="CustomerView" id="We6-bz-cnD"/>
                         <segue destination="bQk-ef-zcq" kind="show" identifier="DriverView" id="zky-Z1-CeX"/>
@@ -85,7 +110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-170" y="129"/>
+            <point key="canvasLocation" x="-171.01449275362319" y="128.57142857142856"/>
         </scene>
         <!--Delivery View Controller-->
         <scene sceneID="KOh-W3-uZY">
@@ -1191,6 +1216,7 @@
         <segue reference="CGc-Mu-YFZ"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="Take_Away" width="2000" height="2000"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -1205,9 +1231,6 @@
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

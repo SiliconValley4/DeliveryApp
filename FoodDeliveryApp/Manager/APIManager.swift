@@ -37,8 +37,8 @@ class APIManager {
         let url = baseURL!.appendingPathComponent(path)
         let params: [String: Any] = [
             "grant_type": "convert_token",
-            "client_id" : CLIENT_ID,
-            "client_secret" : CLIENT_SECRET,
+            "client_id" : APIConstants.Client.ID,
+            "client_secret" : APIConstants.Client.SKEY,
             "backend" : "facebook",
             "token" : AccessToken.current!.tokenString,
             "user_type" : userType,
@@ -110,8 +110,8 @@ class APIManager {
         let path = "api/social/revoke-token/"
         let url = baseURL!.appendingPathComponent(path)
         let params: [String: Any] = [
-            "client_id" : CLIENT_ID,
-            "client_secret" : CLIENT_SECRET,
+            "client_id" : APIConstants.Client.ID,
+            "client_secret" : APIConstants.Client.SKEY,
             "token" : self.accessToken,
             
         ]

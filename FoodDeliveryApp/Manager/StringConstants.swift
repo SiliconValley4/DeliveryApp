@@ -9,7 +9,7 @@ import Foundation
 
 struct StringConstants {
     struct Title {
-        
+        static let APP_TITLE = "Delivery App"
     }
     
     struct Headers {
