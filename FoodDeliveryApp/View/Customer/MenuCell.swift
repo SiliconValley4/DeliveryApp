@@ -24,6 +24,12 @@ class MenuCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        configure()
+    }
+    
+    func configure() {
+        mealPrice.layer.cornerRadius = mealPrice.bounds.height/2
+        mealImg.layer.cornerRadius = 36
     }
 
 }
