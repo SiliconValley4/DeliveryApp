@@ -48,7 +48,7 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
             }
         })
         
-        print(restaurants)
+        //print(restaurants)
     }
     
     

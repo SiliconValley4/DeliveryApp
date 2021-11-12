@@ -46,7 +46,7 @@ class APIManager {
         
         
 //        print(JSON(params["user_type"]))
-        print("________________User Type: \(params["user_type"])__________________________")
+        print("________________User Type: \(params["user_type"]!)__________________________")
         //Using alamofire for the request
         AF.request(url!, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON {
             (response) in
@@ -56,11 +56,28 @@ class APIManager {
                 print("__________________________________________")
                 print(jsonData)
                 
-                print(jsonData["expires_in"])
+                print("Access and Refresh Tokens expire in \(jsonData["expires_in"].int! / 60) minutes")
+
                 
                 self.accessToken = jsonData["access_token"].string!
                 self.refreshToken = jsonData["refresh_token"].string!
                 self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
+                print("Self.expired = \(self.expired)")
+                print("Date Now = \(Date.now)")
+                print("json expires in = \(jsonData["expires_in"])")
+                
+                //let expiresIn = Int(self.expired.timeIntervalSinceNow - Date.now.timeIntervalSinceNow) / 3600
+                let expiresIn = Int(self.expired.timeIntervalSinceNow) / 60
+                print("User access/refresh token expires in \(expiresIn) minutes")
+                
+                if (expiresIn > 60){
+                    self.userDefaults.set(expiresIn, forKey: "timeLeft")
+                    print(self.userDefaults.integer(forKey: "timeLeft"))
+                    self.userDefaults.set(self.accessToken, forKey: "accessToken")
+                    self.userDefaults.set(self.refreshToken, forKey: "refreshToken")
+                    self.userDefaults.set(self.expired, forKey: "expirationDate")
+                                          
+                }
                 
                 print(self.expired)
 
@@ -85,6 +102,10 @@ class APIManager {
     
     //Aoi to logout the user
     func logout(completionHandler: @escaping (NSError?) -> Void) {
+        let defaults = UserDefaults.standard
+        defaults.set(0, forKey: "timeLeft")
+        defaults.set(nil, forKey: "accessToken")
+        defaults.set(nil, forKey: "refreshToken")
         
         let path = "api/social/revoke-token/"
         let url = baseURL!.appendingPathComponent(path)
@@ -112,7 +133,7 @@ class APIManager {
     
     
     
-    
+    // shold update user defualts too when refreshing token
     
     // API to refresh the token when it's expired
     func refreshTokenIfNeed(completionHandler: @escaping () -> Void) {

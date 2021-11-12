@@ -20,17 +20,21 @@ class LoginViewController: UIViewController {
     
     func checkTokenStatus(){
         print("checking TokenStatus")
-        print(AccessToken.current?.tokenString)
-        let expDate = AccessToken.current?.expirationDate
-//        let formatter = DateComponentsFormatter()
-//        formatter.allowedUnits = [.hour]
-//        let timeLeftString = formatter.string(from: Date.now, to: expDate!)
-        let timeLeftInteger = Int(expDate!.timeIntervalSinceNow - Date.now.timeIntervalSinceNow) / 3600
-        print(timeLeftInteger)
-        
-        if(timeLeftInteger > 2){
+        //print(AccessToken.current?.tokenString)
+        if(AccessToken.isCurrentAccessTokenActive){
+            let expDate = AccessToken.current?.expirationDate
+    //        let formatter = DateComponentsFormatter()
+    //        formatter.allowedUnits = [.hour]
+    //        let timeLeftString = formatter.string(from: Date.now, to: expDate!)
+            let timeLeftInteger = Int(expDate!.timeIntervalSinceNow - Date.now.timeIntervalSinceNow) / 3600
+            print("Facebook access token expires in \(timeLeftInteger) hours")
+            
+            if(timeLeftInteger < 2){
+                
+            }
             
         }
+
     }
     
     
@@ -61,13 +65,14 @@ class LoginViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print("LoginVC didAppear")
         
         checkTokenStatus()
         
         if (AccessToken.current != nil && fbLoginSuccess == true) {
             userType = userType.capitalized
             performSegue(withIdentifier: "\(userType)View", sender: self)
-            print("LoginVC didAppear")
+
         }
         
     }
@@ -83,19 +88,45 @@ class LoginViewController: UIViewController {
         
         if (AccessToken.current != nil ) {
             print("loginButton from LoginVC access token != nil")
-            APIManager.shared.login(userType: userType, completitionHandler: {
-                (error) in
-                if error == nil {
-                    self.fbLoginSuccess = true
-                    self.viewDidAppear(true)
-                }
+            
+            let mine = defaults.value(forKey: "expirationDate")
+            
+            let expiresIn = Int((mine! as AnyObject).timeIntervalSinceNow) / 60
+            print(expiresIn)
+            
+            let expInt = Int((mine as! Date).timeIntervalSinceNow) / 60
+            print("Minutes left = \(expInt)")
+            
+            if( expInt > 60) { // Token is active for an hour or longer
+                print("Access and Refresh Tokens have \(expInt) minutes left to expire")
+                defaults.set(expInt, forKey: "timeLeft")
+                self.fbLoginSuccess = true
+                self.viewDidAppear(true)
+                
+            } else {
+                APIManager.shared.login(userType: userType, completitionHandler: {
+                    (error) in
+                    if error == nil {
+                        self.fbLoginSuccess = true
+                        self.viewDidAppear(true)
+                    }
 
-            })
+                })
+                
+            }
+//            APIManager.shared.login(userType: userType, completitionHandler: {
+//                (error) in
+//                if error == nil {
+//                    self.fbLoginSuccess = true
+//                    self.viewDidAppear(true)
+//                }
+//
+//            })
 
 //            fbLoginSuccess = true
 //            self.viewDidAppear(true)
-        }else {
-            print("loginButton from LoginVC access token == nil")
+        } else {
+            print("loginButton from LoginVC access token is NULL")
             FBManager.shared.logIn(
                 permissions: ["public_profile", "email"],
                 from: self,
