@@ -20,4 +20,9 @@ struct StringConstants {
         static let CUSTOMER = "customer"
         static let DRIVER = "driver"
     }
+    
+    struct ErrorMessages {
+        static let NO_ADDRESS = "Not listed"
+        static let NO_PHONE = "Not listed"
+    }
 }

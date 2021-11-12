@@ -96,6 +96,10 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
         return restaurants.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 350
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell = UITableViewCell()
         
@@ -111,7 +115,7 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
     
         cell.lbRestaurantName.text = restaurant.name
         cell.lbRestaurantAddress.text = restaurant.address
-        cell.lbRestaurantPhone.text = restaurant.phone
+        cell.lbRestaurantPhone.text = "Phone: \(restaurant.phone ?? "\(StringConstants.ErrorMessages.NO_PHONE)")"
         
         
         if let logoName = restaurant.logo {
