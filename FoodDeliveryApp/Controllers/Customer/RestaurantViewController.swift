@@ -114,8 +114,8 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
         }
     
         cell.lbRestaurantName.text = restaurant.name
-        cell.lbRestaurantAddress.text = restaurant.address
-        cell.lbRestaurantPhone.text = "Phone: \(restaurant.phone ?? "\(StringConstants.ErrorMessages.NO_PHONE)")"
+        cell.lbRestaurantAddress.text = "Address: \(restaurant.address ?? StringConstants.ErrorMessages.NO_ADDRESS)"
+        cell.lbRestaurantPhone.text = "Phone: \(restaurant.phone ?? StringConstants.ErrorMessages.NO_PHONE)"
         
         
         if let logoName = restaurant.logo {
