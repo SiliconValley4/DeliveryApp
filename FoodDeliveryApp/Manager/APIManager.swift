@@ -56,7 +56,7 @@ class APIManager {
                 print("__________________________________________")
                 print(jsonData)
                 
-                print("Access and Refresh Tokens expire in \(jsonData["expires_in"].int! / 60) minutes")
+//                print("Access and Refresh Tokens expire in \(jsonData["expires_in"].int! / 60) minutes")
 
                 
                 self.accessToken = jsonData["access_token"].string!
@@ -67,17 +67,17 @@ class APIManager {
                 print("json expires in = \(jsonData["expires_in"])")
                 
                 //let expiresIn = Int(self.expired.timeIntervalSinceNow - Date.now.timeIntervalSinceNow) / 3600
-                let expiresIn = Int(self.expired.timeIntervalSinceNow) / 60
-                print("User access/refresh token expires in \(expiresIn) minutes")
-                
-                if (expiresIn > 60){
-                    self.userDefaults.set(expiresIn, forKey: "timeLeft")
-                    print(self.userDefaults.integer(forKey: "timeLeft"))
-                    self.userDefaults.set(self.accessToken, forKey: "accessToken")
-                    self.userDefaults.set(self.refreshToken, forKey: "refreshToken")
-                    self.userDefaults.set(self.expired, forKey: "expirationDate")
-                                          
-                }
+//                let expiresIn = Int(self.expired.timeIntervalSinceNow) / 60
+//                print("User access/refresh token expires in \(expiresIn) minutes")
+//
+//                if (expiresIn > 60){
+//                    self.userDefaults.set(expiresIn, forKey: "timeLeft")
+//                    print(self.userDefaults.integer(forKey: "timeLeft"))
+//                    self.userDefaults.set(self.accessToken, forKey: "accessToken")
+//                    self.userDefaults.set(self.refreshToken, forKey: "refreshToken")
+//                    self.userDefaults.set(self.expired, forKey: "expirationDate")
+//
+//                }
                 
                 print(self.expired)
 
@@ -102,10 +102,10 @@ class APIManager {
     
     //Aoi to logout the user
     func logout(completionHandler: @escaping (NSError?) -> Void) {
-        let defaults = UserDefaults.standard
-        defaults.set(0, forKey: "timeLeft")
-        defaults.set(nil, forKey: "accessToken")
-        defaults.set(nil, forKey: "refreshToken")
+//        let defaults = UserDefaults.standard
+//        defaults.set(0, forKey: "timeLeft")
+//        defaults.set(nil, forKey: "accessToken")
+//        defaults.set(nil, forKey: "refreshToken")
         
         let path = "api/social/revoke-token/"
         let url = baseURL!.appendingPathComponent(path)
@@ -115,9 +115,8 @@ class APIManager {
             "token" : self.accessToken,
             
         ]
-        
         // Alamofire for the requests
-        AF.request(url!, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON{(response) in
+        AF.request(url!, method: .post, parameters: params, encoding: URLEncoding(), headers: nil).responseString{(response) in
             
             switch response.result {
             case .success:
