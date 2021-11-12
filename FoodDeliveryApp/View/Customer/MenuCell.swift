@@ -32,6 +32,7 @@ class MenuCell: UITableViewCell {
         mealImg.layer.cornerRadius = 36
         
         self.backgroundColor = .systemGray5
+        self.layer.cornerRadius = 36
     }
 
 }

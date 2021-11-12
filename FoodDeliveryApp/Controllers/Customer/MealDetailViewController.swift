@@ -26,6 +26,7 @@ class MealDetailViewController: UIViewController {
         
         loadMeal()
         // Do any additional setup after loading the view.
+        configure()
     }
     
     
@@ -47,7 +48,11 @@ class MealDetailViewController: UIViewController {
         
     }
     
-    
+    private func configure() {
+        imgMeal.layer.cornerRadius = 32
+        imgMeal.clipsToBounds = true
+        
+    }
     
     
     //
