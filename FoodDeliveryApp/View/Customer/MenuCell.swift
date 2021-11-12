@@ -30,6 +30,8 @@ class MenuCell: UITableViewCell {
     func configure() {
         mealPrice.layer.cornerRadius = mealPrice.bounds.height/2
         mealImg.layer.cornerRadius = 36
+        
+        self.backgroundColor = .systemGray5
     }
 
 }
