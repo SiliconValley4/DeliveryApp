@@ -39,60 +39,52 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        getLatestOrder()
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        getLatestOrder()
+//    }
     
 
     func getLatestOrder() {
-        APIManager.shared.getLatestOrder{(json) in
-            print("_______________Lastest ORDER")
+        
+        APIManager.shared.getLatestOrder { (json) in
+            
             print(json)
             
-            //
             let order = json["order"]
             
-            if(order["total"] != nil) {
-                if order["status"] != nil {
-                    if let orderDetails = order["order_details"].array {
-                        
-                        self.lbStatus.text = order["status"].string!
-
-                        self.cart = orderDetails
-                        self.tbvOrder.reloadData()
-                        
-                    }
-                    //
-                    let from = order["restaurant"]["address"].string!
-                    print(from)
-                    let to = order["address"].string!
-                    print(to)
+            if order["status"] != nil {
+            
+                if let orderDetails = order["order_details"].array {
                     
-                    self.getLocation(from, "RES", { (sou) in
-                        self.source = sou
-                        
-                        self.getLocation(to, "CUS", { (des) in
-                            self.destination = des
-                            self.getDirections()
-                        })
-                    })
-                    if order["status"] != "Delivered" {
-                        self.setTimer()
-                    }
-                    
+                    self.lbStatus.text = order["status"].string!.uppercased()
+                    self.cart = orderDetails
+                    self.tbvOrder.reloadData()
                 }
+                    
+                
+                let from = order["restaurant"]["address"].string!
+                let to = order["address"].string!
+                
+                self.getLocation(from, "RES", { (sou) in
+                    self.source = sou
+                    
+                    self.getLocation(to, "CUS", { (des) in
+                        self.destination = des
+                        self.getDirections()
+                    })
+                })
+                
+                if order["status"] != "Delivered" {
+                    self.setTimer()
+                }
+            }else{
+                print("Empty")
             }
-            else {
-                self.lbStatus.text = "no prev order"
-            }
-            
-
-            
-            
             
         }
     }
-    
+        
+
     
     // change to repeats: true to update driver location
     func setTimer() {

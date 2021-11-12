@@ -33,15 +33,10 @@ class APIManager {
             "client_id" : CLIENT_ID,
             "client_secret" : CLIENT_SECRET,
             "backend" : "facebook",
-            //"token" : "EABAlDuctbpMBAMZAXxa9WIgsEB3k6s54r3bbHvpE4CuU8FM4WAZAZAHLFoaZC2yOeKsZCXhZCStyeGQSfxFCvVAzIZCLVzOp72Je2jb4ow3sZBCArh3fAgYsVu69Jf6xWsyffQQoQImpcLIXzTSyZAd2fI7KVdcY00XvWqgBZAEQgSb9rGahq1GrpLgmxYvdRMztl6XSQDPJJKlyawzcq6DHk4dsyknhntGNw0VGwnZBHRbpgoGLE2ithJWMd2wjzxTz7YZD",
             "token" : AccessToken.current!.tokenString,
-            //"token" : AccessToken.current!,
             "user_type" : userType,
         ]
         print("__________________________________________")
-//        print(url)
-//        print(params)
-        
         //Using alamofire for the request
         AF.request(url!, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON {
             (response) in
