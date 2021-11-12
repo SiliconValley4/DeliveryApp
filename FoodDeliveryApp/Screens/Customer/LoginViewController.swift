@@ -51,6 +51,9 @@ class LoginViewController: UIViewController {
         bLogin.backgroundColor = ThemeConstants.mainColor.mainColor
         bLogin.layer.cornerRadius = bLogin.bounds.height/2
         //bLogin.textLabel?
+        
+        bLogout.titleLabel?.textColor = ThemeConstants.mainColor.mainColor
+        bLogout.backgroundColor = .clear
     }
 
    
