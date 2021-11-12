@@ -23,13 +23,14 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tbvRestaurant.dataSource = self
         tbvRestaurant.delegate = self
-        //
-        loadRestaurants()
+        //loadRestaurants()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        loadRestaurants()
+    }
 
     func loadRestaurants() {
         APIManager.shared.getRestaurants(completionHandler: {
@@ -40,7 +41,7 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
                     for item in listRest {
                         let restaurant = Restaurant(json: item)
                         self.restaurants.append(restaurant)
-                        print(restaurant)
+                        print("Restaurant \(item["name"])")
                     }
                     self.tbvRestaurant.reloadData()
                 }

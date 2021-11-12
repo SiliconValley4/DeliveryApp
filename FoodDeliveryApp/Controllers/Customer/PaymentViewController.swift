@@ -42,7 +42,10 @@ class PaymentViewController: UIViewController {
             print("_________________________pressed APIMANager_______")
             
             print(json)
-            if json["order"]["status"] == nil || json["order"]["status"] == "Delivered" {
+            
+            print(json["order"]["status"])
+            
+            if json["order"]["status"] as? String == nil || json["order"]["status"] as? String == "Delivered" {
 //            if  json["order"]["status"] == "Delivered" || json["order"]["total"] == nil{
                 // Processing the payment and create an Order
                 print("_________________________1_______")
@@ -64,14 +67,14 @@ class PaymentViewController: UIViewController {
     
                 //STPAPIClient.shared.createToken(withCard: card, completion: { (token, error) in
                     print("____________Card TOken__________")
-                    print(token)
+                    print(token as Any)
                     
                     if let myError = error {
                         print("My Error:", myError)
                     } else if let stripeToken = token {
                         
                         print("____________else if Card TOken__________")
-                        print(token)
+                        //print(token)
                         APIManager.shared.createOrder(stripeToken: stripeToken.tokenId) { (json) in
                             Cart.currentCart.reset()
                             self.performSegue(withIdentifier: "ViewOrder", sender: self)

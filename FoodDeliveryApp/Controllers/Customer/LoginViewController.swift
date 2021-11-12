@@ -16,6 +16,24 @@ class LoginViewController: UIViewController {
     //Switching User
     @IBOutlet weak var switchUser: UISegmentedControl!
     
+    let defaults = UserDefaults.standard
+    
+    func checkTokenStatus(){
+        print("checking TokenStatus")
+        print(AccessToken.current?.tokenString)
+        let expDate = AccessToken.current?.expirationDate
+//        let formatter = DateComponentsFormatter()
+//        formatter.allowedUnits = [.hour]
+//        let timeLeftString = formatter.string(from: Date.now, to: expDate!)
+        let timeLeftInteger = Int(expDate!.timeIntervalSinceNow - Date.now.timeIntervalSinceNow) / 3600
+        print(timeLeftInteger)
+        
+        if(timeLeftInteger > 2){
+            
+        }
+    }
+    
+    
     
     var fbLoginSuccess = false
     
@@ -25,11 +43,15 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("***********\n**********\n*********")
+        
         if AccessToken.current != nil {
             bLogout.isHidden = false
+            print("about to call getFBUserData from LoginVC")
             FBManager.getFBUserData(compleationHandler: {
                 self.bLogin.setTitle("Continue as \(User.currenUser.email!)", for: .normal)
                 //self.loginFBButton.sizeToFit()
+                print("in LoginVC")
             } )
             //self.bLogin.sendActions(for: .touchUpInside)
         } else {
@@ -39,9 +61,13 @@ class LoginViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        checkTokenStatus()
+        
         if (AccessToken.current != nil && fbLoginSuccess == true) {
             userType = userType.capitalized
             performSegue(withIdentifier: "\(userType)View", sender: self)
+            print("LoginVC didAppear")
         }
         
     }
@@ -52,8 +78,11 @@ class LoginViewController: UIViewController {
     //Login Action
     
     @IBAction func loginFacebookButton(_ sender: Any) {
+        
+        //print(AccessToken.current!)
+        
         if (AccessToken.current != nil ) {
-
+            print("loginButton from LoginVC access token != nil")
             APIManager.shared.login(userType: userType, completitionHandler: {
                 (error) in
                 if error == nil {
@@ -66,6 +95,7 @@ class LoginViewController: UIViewController {
 //            fbLoginSuccess = true
 //            self.viewDidAppear(true)
         }else {
+            print("loginButton from LoginVC access token == nil")
             FBManager.shared.logIn(
                 permissions: ["public_profile", "email"],
                 from: self,

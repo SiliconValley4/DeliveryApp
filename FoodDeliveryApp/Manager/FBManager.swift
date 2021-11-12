@@ -15,11 +15,13 @@ class FBManager {
     
     public class func getFBUserData(compleationHandler: @escaping () -> Void) {
         if (AccessToken.current != nil ) {
+            print("getFBUSERDATA")
+
             GraphRequest(graphPath: "me", parameters: ["fields" : "name, email, picture.type(normal)"]).start { (connection, result, error) in
                 //check if theres any errors
                 if (error == nil) {
                     let json = JSON(result!)
-                    print(json)
+                    //print(json)
                     
                     //User data info
                     User.currenUser.setInfo(json: json)

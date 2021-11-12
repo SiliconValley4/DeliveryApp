@@ -174,7 +174,8 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         geocoder.geocodeAddressString(address) { (placemarks, error) in
             
             if (error != nil) {
-                print("Error: ", error)
+                print("Error: ", error as Any)
+                print("error: \(error as Any)")
             }
             
             if let placemark = placemarks?.first {

@@ -20,11 +20,18 @@ class APIManager {
     var refreshToken = ""
     var expired = Date()
     
+    let userDefaults = UserDefaults.standard
+    
+    func checkTokens(){
+        
+    }
+    
     
     
     //APi to login the user
     func login(userType: String, completitionHandler: @escaping (NSError?) -> Void) {
-     
+        
+        print("Loging User: API Manager")
         
         let path = "api/social/convert-token/"
         let url = baseURL!.appendingPathComponent(path)
@@ -36,21 +43,26 @@ class APIManager {
             "token" : AccessToken.current!.tokenString,
             "user_type" : userType,
         ]
-        print("__________________________________________")
+        
+        
+//        print(JSON(params["user_type"]))
+        print("________________User Type: \(params["user_type"])__________________________")
         //Using alamofire for the request
         AF.request(url!, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON {
             (response) in
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)
-                
-
                 print("__________________________________________")
                 print(jsonData)
+                
+                print(jsonData["expires_in"])
                 
                 self.accessToken = jsonData["access_token"].string!
                 self.refreshToken = jsonData["refresh_token"].string!
                 self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
+                
+                print(self.expired)
 
                 completitionHandler(nil)
                 print("_______________Success___________________")
@@ -133,13 +145,7 @@ class APIManager {
         }
     }
     
-    
-    
-    
-    
-   
-    
-    
+
 //    Get restaurants List
     
     func getRestaurants(completionHandler: @escaping (JSON?) -> Void){
@@ -161,7 +167,6 @@ class APIManager {
         }
         
         print("___________________RESTAURANTS_______________________")
-        print("_______________________________________________________")
         
         
         
@@ -199,6 +204,7 @@ class APIManager {
     //
     // Request Server function
     func requestServer(_ method: Alamofire.HTTPMethod,_ path: String,_ params: [String: Any]?,_ encoding: ParameterEncoding,_ completionHandler: @escaping (JSON) -> Void ) {
+        print("Request Server from API Manager")
         
         let url = baseURL?.appendingPathComponent(path)
         
@@ -290,12 +296,14 @@ class APIManager {
     
     //Creating New Order Payment
     func createOrder(stripeToken: String, completionHandler: @escaping (JSON) -> Void){
+        
+        print("Create Order from API Manager")
 
         let path = "api/customer/order/add/"
         let url = baseURL?.appendingPathComponent(path)
         print("___________________Create Order URL_______________________")
-        print("_______________________________________________________")
-        print(url)
+        //print("_______________________________________________________")
+        //print(url!)
         let simpleArray = Cart.currentCart.items
         let jsonArray = simpleArray.map { item in
             return [
@@ -345,7 +353,7 @@ class APIManager {
                 // end of test request
 
                 print("___________________CREATE ORDER_______________________")
-                print("_______________________________________________________")
+                //print("_______________________________________________________")
 
             }
             catch {
@@ -362,9 +370,13 @@ class APIManager {
 
         let path = "api/customer/order/latest/"
         let url = baseURL?.appendingPathComponent(path)
-        print("___________________URL_______________________")
-        print("_______________________________________________________")
-        print("\(String(describing: url))")
+        print("__________________getLatestOrderStartAPIManager_____________")
+        //print("________________________URL_______________________")
+        //print("__________________________________________________")
+        
+        //print(url!)
+        //print(String(describing: "\(url!)"))
+        
         let params: [String: Any] = [
             "access_token": self.accessToken
         ]
@@ -377,24 +389,22 @@ class APIManager {
             case .success(let value):
                 let jsonData = JSON(value)
 
-                print("___________________LatestOrder_______________________")
-                print("_______________________________________________________")
-                print(jsonData)
+                print("____________________________________getLatestOrderSUCCESS____________________________")
+                //print(jsonData)
 //                        self.accessToken = jsonData["access_token"].string!
 //                        self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
                 completionHandler(jsonData)
 
                 break
 
-
-
             case .failure:
-                print("__________________FAILED")
+                print("*********getLatestOrderFAILED***********")
                 print(response)
                 break
             }
         })
-        // end of test request
+       
+    //print("__________________getLatestOrderEnd_______________")
     }
 
 

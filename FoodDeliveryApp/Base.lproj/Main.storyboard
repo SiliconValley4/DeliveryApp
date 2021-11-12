@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -18,11 +18,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XfP-VM-Ksj">
-                                <rect key="frame" x="10" y="653" width="394" height="31"/>
+                                <rect key="frame" x="10" y="653" width="394" height="37"/>
                                 <color key="backgroundColor" name="AccentColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="3Fv-JR-vEE"/>
-                                </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Login with Facebook">
@@ -42,13 +39,13 @@
                                     <action selector="switchAccount:" destination="BYZ-38-t0r" eventType="valueChanged" id="98p-Zd-aP8"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DeliveryApp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGF-8O-P8A">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DeliveryApp" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGF-8O-P8A">
                                 <rect key="frame" x="109" y="166" width="182" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eg-JS-0Kn">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eg-JS-0Kn">
                                 <rect key="frame" x="10" y="692" width="394" height="37"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -64,19 +61,18 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="SIr-0J-3kw" firstAttribute="top" secondItem="xGF-8O-P8A" secondAttribute="bottom" constant="283" id="20l-Lc-xC2"/>
-                            <constraint firstItem="XfP-VM-Ksj" firstAttribute="leading" secondItem="5eg-JS-0Kn" secondAttribute="leading" id="4TK-Kh-B3R"/>
-                            <constraint firstItem="SIr-0J-3kw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="93" id="500-EC-3WO"/>
-                            <constraint firstItem="xGF-8O-P8A" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="122" id="AhS-j7-FhC"/>
-                            <constraint firstItem="xGF-8O-P8A" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="109" id="Ci9-oM-DPP"/>
-                            <constraint firstItem="XfP-VM-Ksj" firstAttribute="trailing" secondItem="5eg-JS-0Kn" secondAttribute="trailing" id="Hb3-tS-cbH"/>
-                            <constraint firstItem="XfP-VM-Ksj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="K8e-LB-fxU"/>
-                            <constraint firstItem="5eg-JS-0Kn" firstAttribute="top" secondItem="XfP-VM-Ksj" secondAttribute="bottom" constant="10" id="S7n-FA-qAJ"/>
-                            <constraint firstItem="XfP-VM-Ksj" firstAttribute="top" secondItem="SIr-0J-3kw" secondAttribute="bottom" constant="131" id="SdE-th-KSV"/>
-                            <constraint firstItem="XfP-VM-Ksj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UkS-4F-EnW"/>
-                            <constraint firstItem="SIr-0J-3kw" firstAttribute="top" secondItem="xGF-8O-P8A" secondAttribute="bottom" constant="283" id="jeX-4O-0Yw"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xGF-8O-P8A" secondAttribute="trailing" constant="123" id="jli-At-HW5"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SIr-0J-3kw" secondAttribute="trailing" constant="107" id="nke-hB-zbf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5eg-JS-0Kn" secondAttribute="bottom" constant="133" id="1T6-gB-sHK"/>
+                            <constraint firstItem="XfP-VM-Ksj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BR5-Gc-IKq"/>
+                            <constraint firstItem="5eg-JS-0Kn" firstAttribute="top" secondItem="XfP-VM-Ksj" secondAttribute="bottom" constant="2" id="GOV-ta-I5b"/>
+                            <constraint firstItem="XfP-VM-Ksj" firstAttribute="leading" secondItem="5eg-JS-0Kn" secondAttribute="leading" id="Php-73-7Wu"/>
+                            <constraint firstItem="xGF-8O-P8A" firstAttribute="centerX" secondItem="SIr-0J-3kw" secondAttribute="centerX" id="TIq-uS-oZQ"/>
+                            <constraint firstItem="XfP-VM-Ksj" firstAttribute="trailing" secondItem="5eg-JS-0Kn" secondAttribute="trailing" id="UUj-Uc-SyK"/>
+                            <constraint firstItem="xGF-8O-P8A" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="109" id="VBn-E4-nTv"/>
+                            <constraint firstAttribute="bottom" secondItem="SIr-0J-3kw" secondAttribute="bottom" constant="374" id="WW2-wK-Doe"/>
+                            <constraint firstItem="SIr-0J-3kw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="93" id="Wsi-3W-cAu"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SIr-0J-3kw" secondAttribute="trailing" constant="107" id="dpY-9s-Pl8"/>
+                            <constraint firstItem="XfP-VM-Ksj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="i5G-me-aY1"/>
+                            <constraint firstItem="xGF-8O-P8A" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="122" id="t49-W8-6Pr"/>
                         </constraints>
                     </view>
                     <connections>

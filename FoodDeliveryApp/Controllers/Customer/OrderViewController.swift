@@ -35,33 +35,44 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tbvOrder.delegate = self
         
         
-        getLatestOrder()
+        //getLatestOrder()
         // Do any additional setup after loading the view.
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        getLatestOrder()
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        getLatestOrder()
+    }
     
 
     func getLatestOrder() {
         
+        print("\n\nGET LATEST ORDER GETS CALLED\n***************************")
+
         APIManager.shared.getLatestOrder { (json) in
-            
-            print(json)
-            
             let order = json["order"]
+            //print(json)
+//            print(order["status"])
+//            print(order["total"])
+//
+//            let status = json["order"]["status"].string
+//            print(status)
+//            if status == nil {
+//                print("yes")
+//            }
+//
+//            if "cook" == nil{
+//                print("nope")
+//            }
             
-            if order["status"] != nil {
-            
+
+//            if json["order"]["status"].stringValue != "" {
+            if json["order"]["status"].string != nil {
+                print("If order total != nil")
                 if let orderDetails = order["order_details"].array {
-                    
-                    self.lbStatus.text = order["status"].string!.uppercased()
+                    self.lbStatus.text = order["status"].string!
                     self.cart = orderDetails
                     self.tbvOrder.reloadData()
                 }
-                    
-                
                 let from = order["restaurant"]["address"].string!
                 let to = order["address"].string!
                 
@@ -73,14 +84,13 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         self.getDirections()
                     })
                 })
-                
                 if order["status"] != "Delivered" {
                     self.setTimer()
                 }
-            }else{
-                print("Empty")
+            } else {
+                print("No prev order")
+                self.lbStatus.text = "No previous orders"
             }
-            
         }
     }
         
@@ -89,12 +99,11 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // change to repeats: true to update driver location
     func setTimer() {
         timer = Timer.scheduledTimer(
-            timeInterval: 5,
+            timeInterval: 10,
             target: self,
             selector: #selector(getDriverLocation(_:)),
             userInfo: nil, repeats: true)
-        
-        print("Timer Called Start")
+        print("Timer Called: Start")
     }
     
     
@@ -155,6 +164,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
             } else {
                 self.timer.invalidate()
+                print("Timer Stopped")
             }
         }
     }
@@ -187,7 +197,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         geocoder.geocodeAddressString(address) { (placemarks, error) in
             
             if (error != nil) {
-                print("Error: ", error)
+                print("Error: ", error as Any)
             }
             
             if let placemark = placemarks?.first {
