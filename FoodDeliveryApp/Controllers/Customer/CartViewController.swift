@@ -57,8 +57,6 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func loadmeals() {
         // Empty cart / Items in cart logic
-
-
         if Cart.currentCart.items.count == 0 {
             //empty cart
             emptyCart.text = "Your tray is empty. Please select meal."
@@ -66,7 +64,6 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
             emptyCart.center = self.view.center
             emptyCart.textAlignment = NSTextAlignment.center
             self.view.addSubview(emptyCart)
-
         } else {
             emptyCart.isHidden = true
             self.tbvCart.isHidden = false
@@ -169,6 +166,9 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         return true
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 126
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Cart.currentCart.items.count
@@ -179,9 +179,9 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tbvCart.dequeueReusableCell(withIdentifier: "CartCell") as! CartCell
         
         let cart = Cart.currentCart.items[indexPath.row]
-        cell.qtyItemLabel.text = "\(cart.qty)"
+        cell.qtyItemLabel.text = "X\(cart.qty)"
         cell.mealNameLabel.text = cart.meal.name
-        cell.priceItemLabel.text = "\(cart.meal.price! * Float(cart.qty))"
+        cell.priceItemLabel.text = "$\(cart.meal.price! * Float(cart.qty))"
         
         return cell
     }

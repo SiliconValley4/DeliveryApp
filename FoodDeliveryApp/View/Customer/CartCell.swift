@@ -13,6 +13,7 @@ class CartCell: UITableViewCell {
     @IBOutlet weak var qtyItemLabel: UILabel!
     @IBOutlet weak var mealNameLabel: UILabel!
     @IBOutlet weak var priceItemLabel: UILabel!
+    @IBOutlet weak var mealImage: UIImageView!
     
     
     override func awakeFromNib() {
