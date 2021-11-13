@@ -92,14 +92,10 @@ class LoginViewController: UIViewController {
     //Login Action
     
     @IBAction func loginFacebookButton(_ sender: Any) {
-        
         //print(AccessToken.current!)
-        
         if (AccessToken.current != nil ) {
             print("loginButton from LoginVC access token != nil")
-            
 //            let mine = defaults.value(forKey: "expirationDate")
-//
 //            let expiresIn = Int((mine! as AnyObject).timeIntervalSinceNow) / 60
 //            print(expiresIn)
 //
@@ -166,6 +162,8 @@ class LoginViewController: UIViewController {
             if error == nil {
                 FBManager.shared.logOut()
                 User.currenUser.resetInfo()
+                print("loggin out")
+                
                 
                 self.bLogout.isHidden =  true
                 self.bLogin.setTitle("Login with Facebook", for: .normal)

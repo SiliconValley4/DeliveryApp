@@ -30,13 +30,54 @@ class ProfileViewController: UIViewController {
 
     
     
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "CustomerLogout" {
+//
+//            //
+//            FBManager.shared.logOut()
+//            User.currenUser.resetInfo()
+//
+//        }
+//    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CustomerLogout" {
+            APIManager.shared.logout(completionHandler:{ (error) in
+                if error == nil {
+                    FBManager.shared.logOut()
+                    User.currenUser.resetInfo()
+                    print("logggin out")
+                }
+                
+            })
             
-            //
-            FBManager.shared.logOut()
-            User.currenUser.resetInfo()
         }
+        
     }
+    
+    
+    
+    
+    
+    
+//    if segue.identifier == "CustomerLogout" {
+//        APIManager.shared.logout(completionHandler: {
+//            (error) in
+//            if error == nil {
+//                FBManager.shared.logOut()
+//                User.currenUser.resetInfo()
+//                print("logggin out")
+//
+//                  let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                    let appController = storyboard.instantiateViewController(withIdentifier: "MainController") as! LoginViewController
+//                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                    appDelegate.window?.rootViewController = appController
+//            }
+//
+//        })
+//    }
+    
+    
+    
 
 }
