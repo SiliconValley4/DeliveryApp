@@ -55,10 +55,7 @@ class APIManager {
                 let jsonData = JSON(value)
                 print("__________________________________________")
                 print(jsonData)
-                
 //                print("Access and Refresh Tokens expire in \(jsonData["expires_in"].int! / 60) minutes")
-
-                
                 self.accessToken = jsonData["access_token"].string!
                 self.refreshToken = jsonData["refresh_token"].string!
                 self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
@@ -106,25 +103,44 @@ class APIManager {
 //        defaults.set(0, forKey: "timeLeft")
 //        defaults.set(nil, forKey: "accessToken")
 //        defaults.set(nil, forKey: "refreshToken")
-        
         let path = "api/social/revoke-token/"
         let url = baseURL!.appendingPathComponent(path)
+        print(url )
+//        let headers : HTTPHeaders = [
+//            "Content-Type" : "application/x-www-form-urlencoded"
+//        ]
         let params: [String: Any] = [
             "client_id" : APIConstants.Client.ID,
             "client_secret" : APIConstants.Client.SKEY,
             "token" : self.accessToken,
-            
         ]
+        print(self.accessToken)
         // Alamofire for the requests
-        AF.request(url!, method: .post, parameters: params, encoding: URLEncoding(), headers: nil).responseString{(response) in
+        AF.request(url!, method: .post, parameters: params, encoding: URLEncoding(), headers: nil).responseJSON{(response) in
             
+//            switch response.result {
+//
+//            case .success:
+//                //print("__________success...__________")
+//                completionHandler(nil)
+//                print("__________LOGOUT SUCCESSFUL__________")
+//                break
+//
+//            case .failure(let error):
+//                completionHandler(error as NSError?)
+//                //print("__________LOGOUT EROR__________")
+//            }
             switch response.result {
-            case .success:
+            case .success(let value):
+                let jsonData = JSON(value)
                 completionHandler(nil)
-                break
-            
+                print("__________________________________________")
+                print(jsonData)
+//
+
             case .failure(let error):
                 completionHandler(error as NSError?)
+                print("Failed")
             }
         }
     }
