@@ -109,16 +109,4 @@ class CustomerMenuViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
