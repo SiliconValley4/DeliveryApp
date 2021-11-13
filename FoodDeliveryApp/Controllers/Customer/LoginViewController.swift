@@ -86,9 +86,6 @@ class LoginViewController: UIViewController {
         
     }
 
-   
-
-    
     //Login Action
     
     @IBAction func loginFacebookButton(_ sender: Any) {
@@ -179,14 +176,10 @@ class LoginViewController: UIViewController {
         
         if type == 0 {
             userType = USER_TYPE_CUSTOMER
-        }else {
+        } else {
             userType = USER_TYPE_DRIVER
         }
     }
-    
-    
-    
-  
     
 //END
     
