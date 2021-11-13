@@ -22,6 +22,8 @@ class ProfileViewController: UIViewController {
         userEmailLabel.text = User.currenUser.email
         
         imgAvatar.image = try! UIImage(data: Data (contentsOf: URL(string: User.currenUser.pictureURL!)!))
+        
+        imgAvatar.layer.cornerRadius = imgAvatar.bounds.height/2
 
         // Do any additional setup after loading the view.
     }
@@ -76,8 +78,5 @@ class ProfileViewController: UIViewController {
 //
 //        })
 //    }
-    
-    
-    
 
 }
