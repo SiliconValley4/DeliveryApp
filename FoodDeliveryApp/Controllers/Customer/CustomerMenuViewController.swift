@@ -93,6 +93,10 @@ class CustomerMenuViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 164
+    }
+    
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

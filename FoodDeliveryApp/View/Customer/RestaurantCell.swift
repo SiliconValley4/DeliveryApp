@@ -19,6 +19,8 @@ class RestaurantCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        imgRestaurantLogo.clipsToBounds = true
+        imgRestaurantLogo.layer.cornerRadius = 36
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
