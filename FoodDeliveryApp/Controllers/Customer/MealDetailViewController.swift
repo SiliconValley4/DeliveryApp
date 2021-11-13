@@ -23,10 +23,10 @@ class MealDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configure()
         loadMeal()
         // Do any additional setup after loading the view.
-        configure()
+        
     }
     
     
@@ -36,7 +36,6 @@ class MealDetailViewController: UIViewController {
             lbTotal.text = "Total:\n$\(price)"
             labelIndividualCost.text = "Each:\n$\(price)"
         }
-        
         
         mealName.text = meal?.name
         mealDescription.text = meal?.short_description
@@ -50,10 +49,8 @@ class MealDetailViewController: UIViewController {
     
     private func configure() {
         imgMeal.layer.cornerRadius = 32
-        imgMeal.clipsToBounds = true
-        
+        //imgMeal.clipsToBounds = true
     }
-    
     
     //
     

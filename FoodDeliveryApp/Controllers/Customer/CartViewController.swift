@@ -14,7 +14,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     //TableView as tbvCart
     @IBOutlet weak var tbvCart: UITableView!
         
-    //cart views
+    //Cart views
     @IBOutlet weak var viewTotal: UIView!
     @IBOutlet weak var viewAddress: UIView!
     @IBOutlet weak var viewMap: UIView!
