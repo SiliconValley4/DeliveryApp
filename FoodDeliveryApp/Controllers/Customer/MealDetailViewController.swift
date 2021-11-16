@@ -31,7 +31,7 @@ class MealDetailViewController: UIViewController {
     
     
     func loadMeal() {
-        //
+        
         if let price = meal?.price {
             lbTotal.text = "Total:\n$\(price)"
             labelIndividualCost.text = "Each:\n$\(price)"
@@ -40,11 +40,11 @@ class MealDetailViewController: UIViewController {
         
         mealName.text = meal?.name
         mealDescription.text = meal?.short_description
+        Helpers.loadImage(imgMeal, "http://cdn.sallysbakingaddiction.com/wp-content/uploads/2020/03/mini-quiches.jpg")
         
-        //if let imageUrl = meal?.image {
-            //Helpers.loadImage(imgMeal, "\(imageUrl)")
-            Helpers.loadImage(imgMeal, "https://media-cdn.tripadvisor.com/media/photo-s/0d/dd/93/0d/pizza-con-pollo-pepperoni.jpg")
-        //}
+//        if let imageUrl = meal?.image {
+//            Helpers.loadImage(imgMeal, "\(imageUrl)")
+//        }
         
     }
     

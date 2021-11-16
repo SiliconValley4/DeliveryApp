@@ -18,7 +18,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     @IBOutlet weak var bcomplete: UIButton!
     
     
-    //
+    
     var orderId: Int?
     
     //map destination

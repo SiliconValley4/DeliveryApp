@@ -86,11 +86,6 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             self.labelMap.showsUserLocation = true
         }
-        
-        
-        
-        
-        
 
     }
     
@@ -186,17 +181,4 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
 }
