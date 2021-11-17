@@ -26,8 +26,6 @@ class APIManager {
         
     }
     
-    
-    
     //APi to login the user
     func login(userType: String, completitionHandler: @escaping (NSError?) -> Void) {
         
