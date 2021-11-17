@@ -45,7 +45,7 @@ class APIManager {
         ]
         
         
-//        print(JSON(params["user_type"]))
+        print(JSON(params["user_type"]))
         print("________________User Type: \(params["user_type"]!)__________________________")
         //Using alamofire for the request
         AF.request(url!, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON {
@@ -55,7 +55,7 @@ class APIManager {
                 let jsonData = JSON(value)
                 print("__________________________________________")
                 print(jsonData)
-//                print("Access and Refresh Tokens expire in \(jsonData["expires_in"].int! / 60) minutes")
+                print("Access and Refresh Tokens expire in \(jsonData["expires_in"].int! / 60) minutes")
                 self.accessToken = jsonData["access_token"].string!
                 self.refreshToken = jsonData["refresh_token"].string!
                 self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
@@ -64,17 +64,17 @@ class APIManager {
                 print("json expires in = \(jsonData["expires_in"])")
                 
                 //let expiresIn = Int(self.expired.timeIntervalSinceNow - Date.now.timeIntervalSinceNow) / 3600
-//                let expiresIn = Int(self.expired.timeIntervalSinceNow) / 60
-//                print("User access/refresh token expires in \(expiresIn) minutes")
-//
-//                if (expiresIn > 60){
-//                    self.userDefaults.set(expiresIn, forKey: "timeLeft")
-//                    print(self.userDefaults.integer(forKey: "timeLeft"))
-//                    self.userDefaults.set(self.accessToken, forKey: "accessToken")
-//                    self.userDefaults.set(self.refreshToken, forKey: "refreshToken")
-//                    self.userDefaults.set(self.expired, forKey: "expirationDate")
-//
-//                }
+                let expiresIn = Int(self.expired.timeIntervalSinceNow) / 60
+                print("User access/refresh token expires in \(expiresIn) minutes")
+
+                if (expiresIn > 60){
+                    self.userDefaults.set(expiresIn, forKey: "timeLeft")
+                    print(self.userDefaults.integer(forKey: "timeLeft"))
+                    self.userDefaults.set(self.accessToken, forKey: "accessToken")
+                    self.userDefaults.set(self.refreshToken, forKey: "refreshToken")
+                    self.userDefaults.set(self.expired, forKey: "expirationDate")
+
+                }
                 
                 print(self.expired)
 
@@ -99,10 +99,10 @@ class APIManager {
     
     //Aoi to logout the user
     func logout(completionHandler: @escaping (NSError?) -> Void) {
-//        let defaults = UserDefaults.standard
-//        defaults.set(0, forKey: "timeLeft")
-//        defaults.set(nil, forKey: "accessToken")
-//        defaults.set(nil, forKey: "refreshToken")
+        //let defaults = UserDefaults.standard
+        userDefaults.set(0, forKey: "timeLeft")
+        userDefaults.set(nil, forKey: "accessToken")
+        userDefaults.set(nil, forKey: "refreshToken")
         let path = "api/social/revoke-token/"
         let url = baseURL!.appendingPathComponent(path)
         print(url )
@@ -413,10 +413,17 @@ class APIManager {
         //print(url!)
         //print(String(describing: "\(url!)"))
         
-        let params: [String: Any] = [
+        var params: [String: Any] = [
             "access_token": self.accessToken
         ]
         print(accessToken)
+        print(params)
+        print(self.userDefaults.value(forKey: "accessToken")!)
+        params["access_token"] = self.userDefaults.value(forKey: "accessToken")!
+        print(params)
+        
+        
+        
         //requestServer(.get, path, params, URLEncoding(), completionHandler)
         //testing request
         AF.request(url!, method: .get,  parameters: params, encoding: URLEncoding.default).responseJSON(completionHandler: { (response) in

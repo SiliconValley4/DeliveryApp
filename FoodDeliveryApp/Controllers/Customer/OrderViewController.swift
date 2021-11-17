@@ -46,7 +46,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     func getLatestOrder() {
         
-        print("\n\nGET LATEST ORDER GETS CALLED\n***************************")
+        print("******************GET LATEST ORDER GETS CALLED***************************")
 
         APIManager.shared.getLatestOrder { (json) in
             let order = json["order"]
@@ -67,7 +67,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
 //            if json["order"]["status"].stringValue != "" {
             if json["order"]["status"].string != nil {
-                print("If order total != nil")
+                print("There is a previous order")
                 if let orderDetails = order["order_details"].array {
                     self.lbStatus.text = order["status"].string!
                     self.cart = orderDetails
