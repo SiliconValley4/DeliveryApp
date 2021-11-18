@@ -20,18 +20,41 @@ class APIManager {
     var refreshToken = ""
     var expired = Date()
     
-    let userDefaults = UserDefaults.standard
+    let defaults = UserDefaults.standard
     
     func checkTokens(){
         
+        print("checking TokenStatus")
+        //print("Facebook Auth token: \((AccessToken.current?.tokenString)!)\nExpires in: \((AccessToken.current?.expirationDate)!)")
+        
+        let fbAuthTk = (AccessToken.current?.tokenString)!
+        let fbAuthTkTime = Int((AccessToken.current?.expirationDate as! Date).timeIntervalSinceNow) / (3600 * 24)
+        
+        print("Facebook Auth token: \(fbAuthTk)\nExpires in: \(fbAuthTkTime) days")
+        
+        
+        if(AccessToken.isCurrentAccessTokenActive){
+            let expDate = AccessToken.current?.expirationDate
+    //        let formatter = DateComponentsFormatter()
+    //        formatter.allowedUnits = [.hour]
+    //        let timeLeftString = formatter.string(from: Date.now, to: expDate!)
+            let timeLeftInteger = Int(expDate!.timeIntervalSinceNow - Date.now.timeIntervalSinceNow) / 3600
+            print("Facebook access token expires in \(timeLeftInteger) hours")
+            
+            if(timeLeftInteger < 2){
+                
+            }
+            
+        }
+        
     }
-    
-    
     
     //APi to login the user
     func login(userType: String, completitionHandler: @escaping (NSError?) -> Void) {
         
         print("Loging User: API Manager")
+        
+        checkTokens()
         
         let path = "api/social/convert-token/"
         let url = baseURL!.appendingPathComponent(path)
@@ -48,7 +71,7 @@ class APIManager {
         print(JSON(params["user_type"]))
         print("________________User Type: \(params["user_type"]!)__________________________")
         //Using alamofire for the request
-        AF.request(url!, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON {
+        AF.request(url!, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { [self]
             (response) in
             switch response.result {
             case .success(let value):
@@ -68,12 +91,11 @@ class APIManager {
                 print("User access/refresh token expires in \(expiresIn) minutes")
 
                 if (expiresIn > 60){
-                    self.userDefaults.set(expiresIn, forKey: "timeLeft")
-                    print(self.userDefaults.integer(forKey: "timeLeft"))
-                    self.userDefaults.set(self.accessToken, forKey: "accessToken")
-                    self.userDefaults.set(self.refreshToken, forKey: "refreshToken")
-                    self.userDefaults.set(self.expired, forKey: "expirationDate")
-
+                    self.defaults.set(expiresIn, forKey: "timeLeft")
+                    print(self.defaults.value(forKey: "timeLeft"))
+                    self.defaults.set(self.accessToken, forKey: "accessToken")
+                    self.defaults.set(self.refreshToken, forKey: "refreshToken")
+                    self.defaults.set(self.expired, forKey: "expirationDate")
                 }
                 
                 print(self.expired)
@@ -100,9 +122,11 @@ class APIManager {
     //Aoi to logout the user
     func logout(completionHandler: @escaping (NSError?) -> Void) {
         //let defaults = UserDefaults.standard
-        userDefaults.set(0, forKey: "timeLeft")
-        userDefaults.set(nil, forKey: "accessToken")
-        userDefaults.set(nil, forKey: "refreshToken")
+        defaults.set(0, forKey: "timeLeft")
+        defaults.set("", forKey: "accessToken")
+        defaults.set("", forKey: "refreshToken")
+        defaults.set(0, forKey: "expirationDate")
+
         let path = "api/social/revoke-token/"
         let url = baseURL!.appendingPathComponent(path)
         print(url )
@@ -356,7 +380,8 @@ class APIManager {
                 let dataString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)!
 
                 let params: [String: Any] = [
-                    "access_token": self.accessToken,
+                    //"access_token": self.accessToken,
+                    "access_token" : self.defaults.value(forKey: "accessToken"),
                     "stripe_token": stripeToken,
                     "restaurant_id": "\(Cart.currentCart.restaurant!.id!)",
                     "order_details": dataString,
@@ -418,8 +443,8 @@ class APIManager {
         ]
         print(accessToken)
         print(params)
-        print(self.userDefaults.value(forKey: "accessToken")!)
-        params["access_token"] = self.userDefaults.value(forKey: "accessToken")!
+        print(defaults.value(forKey: "accessToken")!)
+        params["access_token"] = defaults.value(forKey: "accessToken")!
         print(params)
         
         
