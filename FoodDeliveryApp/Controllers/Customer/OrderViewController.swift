@@ -40,7 +40,20 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        //getLatestOrder()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         getLatestOrder()
+        
+        let seconds = 1.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            self.autoZoom()
+            
+        }
+        
+
+
     }
     
 
@@ -51,9 +64,12 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         APIManager.shared.getLatestOrder { (json) in
             let order = json["order"]
             //print(json)
-            print("order status:\(json["order"]["status"].string!)")
+            //print("order status:\(json["order"]["status"] as? String ?? "no prev orders")")
+            let orderStatus = json["order"]["status"].string as? String ?? nil
+            print("order status:\(orderStatus)")
 
-            if json["order"]["status"].string != nil {
+            //if json["order"]["status"].string != nil {
+            if orderStatus != nil {
                 print("There is a previous order")
                 if let orderDetails = order["order_details"].array {
                     self.lbStatus.text = order["status"].string!
@@ -62,14 +78,12 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 let from = order["restaurant"]["address"].string!
                 let to = order["address"].string!
-                print("order from:\(json["order"]["restaurant"]["address"].string!)")
-                print("order to:\(json["order"]["address"].string!)")
+                print("order from: \(json["order"]["restaurant"]["address"].string!)")
+                print("order to: \(json["order"]["address"].string!)")
 
-                
-                self.getLocation(from, "RES", { (sou) in
+                self.getLocation(from, "Restaurant", { (sou) in
                     self.source = sou
-                    
-                    self.getLocation(to, "CUS", { (des) in
+                    self.getLocation(to, "You", { (des) in
                         self.destination = des
                         self.getDirections()
                     })
@@ -84,11 +98,10 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.lbStatus.text = "No previous orders"
             }
         }
+        //self.autoZoom()
     }
         
-
-    
-    // change to repeats: true to update driver location
+    // repeats: to update driver location
     func setTimer() {
         getDriverLocation(self)
         timer = Timer.scheduledTimer(
@@ -100,14 +113,13 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func autoZoom() {
-        
+        print("AutoZoom called")
         var zoomRect = MKMapRect.null
         for annotation in self.map.annotations {
             let annotationPoint = MKMapPoint(annotation.coordinate)
             let pointRect = MKMapRect(x: annotationPoint.x, y: annotationPoint.y, width: 0.1, height: 0.1)
             zoomRect = zoomRect.union(pointRect)
         }
-        
         let insetWidth = -zoomRect.size.width * 0.2
         let insetHeight = -zoomRect.size.height * 0.2
         let insetRect = zoomRect.insetBy(dx: insetWidth, dy: insetHeight)
@@ -166,10 +178,10 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // #2
     
     func getLocation(_ address: String,_ title: String,_ completionHandler: @escaping (MKPlacemark) -> Void) {
-        print("getLocation started")
+        
         let geocoder = CLGeocoder()
-        print(geocoder)
         geocoder.geocodeAddressString(address) { (placemarks, error) in
+            print("getLocation1 called \(placemarks)")
             
             if (error != nil) {
                 print("Get Location error")
