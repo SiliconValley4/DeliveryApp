@@ -33,19 +33,14 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidAppear(_ animated: Bool) {
         loadmeals()
-        print("DIDAPPEAR")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        print("DIDDISAPPEAR")
-
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("DIDLOAD")
-        
+                
         loadmeals()
         
         

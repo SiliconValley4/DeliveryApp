@@ -84,7 +84,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         self.getDirections()
                     })
                 })
-                if order["status"] != "Delivered" {
+                if order["status"].string! != "Delivered" {
                     self.setTimer()
                 }
             } else {
@@ -99,7 +99,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // change to repeats: true to update driver location
     func setTimer() {
         timer = Timer.scheduledTimer(
-            timeInterval: 10,
+            timeInterval: 1,
             target: self,
             selector: #selector(getDriverLocation(_:)),
             userInfo: nil, repeats: true)
@@ -140,10 +140,12 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         APIManager.shared.getDriverLocation { (json) in
             
             if let location = json["location"].string {
+                print(json)
+                print(location)
                 
                 //self.lbStatus.text = "ON THE WAY"
-                
                 let split = location.components(separatedBy: ",")
+                print(split)
                 let lat = split[0]
                 let lng = split[1]
                 
@@ -168,16 +170,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
     //Map Function
-    
     // #1
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         
@@ -197,6 +190,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         geocoder.geocodeAddressString(address) { (placemarks, error) in
             
             if (error != nil) {
+                print("Get Location error")
                 print("Error: ", error as Any)
             }
             
@@ -294,10 +288,6 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return annotationView
     }
     
-    
-    
-    
-    
     //Table View Functions
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -315,11 +305,6 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
-    
-    
-    
-    
-   
   //End
 
 }

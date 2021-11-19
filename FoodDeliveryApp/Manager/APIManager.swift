@@ -26,32 +26,37 @@ class APIManager {
     var userType = ""
     
     func resetUserDefaults(){
-        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
-            print("\(key) = \(value) \n")
-        }
-
+//        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
+//            print("\(key) = \(value) \n")
+//        }
         print("REMOVED IMPORTANT KEYS")
-//        defaults.removeObject(forKey: "accessToken")
-//        defaults.removeObject(forKey: "refreshToken")
-//        defaults.removeObject(forKey: "timeLeft")
-//        defaults.removeObject(forKey: "expirationDate")
-//        defaults.removeObject(forKey: "userType")
-
+        defaults.removeObject(forKey: "access_token")
+        defaults.removeObject(forKey: "refresh_token")
+        defaults.removeObject(forKey: "time_left")
+        defaults.removeObject(forKey: "expiration_date")
+        defaults.removeObject(forKey: "user_type")
+        print(defaults.value(forKey: "access_token"))
         print(defaults.value(forKey: "accessToken"))
-        print(defaults.value(forKey: "refreshToken"))
-        print(defaults.value(forKey: "timeLeft"))
-        print(defaults.value(forKey: "expirationDate"))
-        print(defaults.value(forKey: "userType"))
-
+        print(defaults.value(forKey: "refresh_token"))
+        print(defaults.value(forKey: "time_left"))
+        print(defaults.value(forKey: "expiration_date"))
+        print(defaults.value(forKey: "user_type"))
+    }
+    
+    func populateFromDefaults(){
+        accessToken = defaults.value(forKey: "access_token") as! String
+        refreshToken = defaults.string(forKey: "refresh_token") as! String
+        timeLeft = defaults.value(forKey: "time_left") as! Int
+        expirationDate = defaults.value(forKey: "expiration_date") as! Date
+        userType = defaults.value(forKey: "user_type") as! String
     }
     
     func checkTokens() -> Bool {
         
-        //resetUserDefaults()
-        
-        print("checking TokenStatus")
-        
-        print("API Global variables accessToken: \(accessToken) -- refreshToken: \(refreshToken)")
+//        print("checking TokenStatus")
+//        print("API Global variables accessToken: \(accessToken) -- refreshToken: \(refreshToken)")
+//        print("UserDfault variables accessToken: \(defaults.value(forKey: "access_token")) -- refreshToken: \(defaults.value(forKey: "refresh_token"))")
+
         //print("Facebook Auth token: \((AccessToken.current?.tokenString)!)\nExpires in: \((AccessToken.current?.expirationDate)!)")
         
         let fbAuthTk = (AccessToken.current?.tokenString)!
@@ -72,8 +77,11 @@ class APIManager {
             self.timeLeft = getTokenTimeLeft()
             
             if(self.timeLeft > 59){ // Tokens have an hour left of life
+                //print("Token life greater than 59 min")
                 return true
             } else{
+                //print("Token life less than 59 min")
+
 //                getNewToken(user_type: userType, completionHandler : {
 //                    (error) in
 //                    if error == nil {
@@ -92,13 +100,19 @@ class APIManager {
 //            print("Facebook access token expires in \(timeLeftInteger) hours")
             
         }
+        print("should never print, fb token inactive")
         return false
         
     }
     
     func getTokenTimeLeft()->Int{
         // interval is given in seconds, we want to look at the minutes left
-        return Int(self.expirationDate.timeIntervalSinceNow) / 60
+        //return Int(self.expirationDate.timeIntervalSinceNow) / 60
+        //let time = defaults.value(forKey: "time_left") as? Int ?? 0
+        let date = defaults.value(forKey: "expiration_date") as? Date ?? Date.now
+        let time = Int((date as! Date).timeIntervalSinceNow) / (60)
+        print("Get Token Time Left: \(time) minutes")
+        return time
     }
     
     func populateUserDefaults(){
@@ -121,7 +135,7 @@ class APIManager {
             "token" : AccessToken.current!.tokenString,
             "user_type" : userType,
         ]
-        print("________________User Type: \(params["user_type"]!)__________________________")
+        //print("________________User Type: \(params["user_type"]!)__________________________")
         
         AF.request(url!, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { [self]
             (response) in
@@ -133,16 +147,15 @@ class APIManager {
                 self.expirationDate = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
                 self.timeLeft = getTokenTimeLeft()
                 self.userType = params["user_type"] as! String
-                print("_____________________________________________________________")
-                print("Token jsonData: \(jsonData)")
-                print("Access and Refresh Tokens expire in \(jsonData["expires_in"].int! / 60) minutes")
-                print("Self.expired = \(self.expirationDate)")
-                print("Date Now = \(Date.now)")
-                print("json expires in = \(jsonData["expires_in"])")
-                print("_____________________________________________________________")
+//                print("_____________________________________________________________")
+//                print("Token jsonData: \(jsonData)")
+//                print("Access and Refresh Tokens expire in \(jsonData["expires_in"].int! / 60) minutes")
+//                print("Self.expired = \(self.expirationDate)")
+//                print("Date Now = \(Date.now)")
+//                print("json expires in = \(jsonData["expires_in"])")
+//                print("_____________________________________________________________")
                 
-
-                //populateUserDefaults()
+                populateUserDefaults()
 
                 print("_______________Success___________________")
                 break
@@ -165,7 +178,7 @@ class APIManager {
             "token" : AccessToken.current!.tokenString,
             "user_type" : user_type,
         ]
-        print("________________User Type: \(params["user_type"]!)__________________________")
+        //print("________________User Type: \(params["user_type"]!)__________________________")
         //Using alamofire for the request
         AF.request(url!, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { [self]
             (response) in
@@ -177,15 +190,15 @@ class APIManager {
                 self.expirationDate = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
                 self.timeLeft = getTokenTimeLeft()
                 self.userType = user_type
-                print("_____________________________________________________________")
-                print("Token jsonData: \(jsonData)")
-                print("Access and Refresh Tokens expire in \(jsonData["expires_in"].int! / 60) minutes")
-                print("Self.expired = \(self.expirationDate)")
-                print("Date Now = \(Date.now)")
-                print("json expires in = \(jsonData["expires_in"])")
-                print("_____________________________________________________________")
+//                print("_____________________________________________________________")
+//                print("Token jsonData: \(jsonData)")
+//                print("Access and Refresh Tokens expire in \(jsonData["expires_in"].int! / 60) minutes")
+//                print("Self.expired = \(self.expirationDate)")
+//                print("Date Now = \(Date.now)")
+//                print("json expires in = \(jsonData["expires_in"])")
+//                print("_____________________________________________________________")
             
-                //populateUserDefaults()
+                populateUserDefaults()
 
                 completitionHandler(nil)
                 print("_______________Success___________________")
@@ -208,21 +221,20 @@ class APIManager {
         tokenAvailable = checkTokens()
         
         if(!tokenAvailable){
+            print("token not available for reuse")
             getToken(user_type: user_type, completitionHandler: completitionHandler)
+        } else{
+            populateFromDefaults()
+            completitionHandler(nil)
         }
     }
     
     //Aoi to logout the user
     func logout(completionHandler: @escaping (NSError?) -> Void) {
-        defaults.removeObject(forKey: "accessToken")
-        defaults.removeObject(forKey: "refreshToken")
-        defaults.removeObject(forKey: "timeLeft")
-        defaults.removeObject(forKey: "expirationDate")
-        defaults.removeObject(forKey: "userType")
-
+        resetUserDefaults()
         let path = "api/social/revoke-token/"
         let url = baseURL!.appendingPathComponent(path)
-        print(url )
+        print(url)
 //        let headers : HTTPHeaders = [
 //            "Content-Type" : "application/x-www-form-urlencoded"
 //        ]
@@ -231,7 +243,7 @@ class APIManager {
             "client_secret" : APIConstants.Client.SKEY,
             "token" : self.accessToken,
         ]
-        print(self.accessToken)
+        //print(self.accessToken)
         // Alamofire for the requests
         AF.request(url!, method: .post, parameters: params, encoding: URLEncoding(), headers: nil).responseJSON{(response) in
             
@@ -318,11 +330,7 @@ class APIManager {
                 break
             }
         }
-        
         print("___________________RESTAURANTS_______________________")
-        
-        
-        
     }
     
     //    Get restaurants List
@@ -344,10 +352,8 @@ class APIManager {
                     break
                 }
             }
-        print("___________________MEALS______________________")
-        print("_______________________________________________________")
-            
-            
+//        print("___________________MEALS______________________")
+//        print("_______________________________________________________")
         }
     
     
@@ -456,7 +462,7 @@ class APIManager {
         let url = baseURL?.appendingPathComponent(path)
         print("___________________Create Order URL_______________________")
         //print("_______________________________________________________")
-        //print(url!)
+        print(url!)
         let simpleArray = Cart.currentCart.items
         let jsonArray = simpleArray.map { item in
             return [
@@ -464,6 +470,8 @@ class APIManager {
                 "quantity": item.qty
             ]
         }
+        
+        print("gets here")
 
         if JSONSerialization.isValidJSONObject(jsonArray) {
 
@@ -474,7 +482,7 @@ class APIManager {
 
                 let params: [String: Any] = [
                     //"access_token": self.accessToken,
-                    "access_token" : self.defaults.value(forKey: "accessToken"),
+                    "access_token" : accessToken,
                     "stripe_token": stripeToken,
                     "restaurant_id": "\(Cart.currentCart.restaurant!.id!)",
                     "order_details": dataString,
@@ -495,12 +503,18 @@ class APIManager {
                     switch response.result {
                     case .success(let value):
                         let jsonData = JSON(value)
+                        print(value)
+                        print(jsonData)
 //                        self.accessToken = jsonData["access_token"].string!
-//                        self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
+//                        self.expirationDate = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
                         completionHandler(jsonData)
+                        print(self.accessToken)
+                        print(self.expirationDate)
+                        Cart.currentCart.reset()
                         break
 
                     case .failure:
+                        print("failure!")
                         break
                     }
                 })
@@ -524,7 +538,7 @@ class APIManager {
 
         let path = "api/customer/order/latest/"
         let url = baseURL?.appendingPathComponent(path)
-        print("__________________getLatestOrderStartAPIManager_____________")
+        //print("__________________getLatestOrderStartAPIManager_____________")
         //print("________________________URL_______________________")
         //print("__________________________________________________")
         
@@ -534,13 +548,7 @@ class APIManager {
         var params: [String: Any] = [
             "access_token": self.accessToken
         ]
-        print(accessToken)
-        print(params)
-        print(defaults.value(forKey: "accessToken")!)
-        params["access_token"] = defaults.value(forKey: "accessToken")!
-        print(params)
-        
-        
+        //print(params)
         
         //requestServer(.get, path, params, URLEncoding(), completionHandler)
         //testing request
@@ -555,7 +563,6 @@ class APIManager {
 //                        self.accessToken = jsonData["access_token"].string!
 //                        self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
                 completionHandler(jsonData)
-
                 break
 
             case .failure:

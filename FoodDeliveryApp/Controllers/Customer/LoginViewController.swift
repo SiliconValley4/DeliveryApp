@@ -44,7 +44,6 @@ class LoginViewController: UIViewController {
     
     func configure() {
         bLogin.layer.cornerRadius = bLogin.bounds.height/2
-        
         backSplashUI.layer.cornerRadius = 36
         backSplashUI.clipsToBounds = true
     }
@@ -52,36 +51,29 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         //for (key, value) in UserDefaults.standard.dictionaryRepresentation() print("\(key) = \(value) \n")
-        
-        print(defaults.value(forKey: "access_token"))
-        print(defaults.value(forKey: "refresh_token"))
-        print(defaults.value(forKey: "time_left"))
-        print(defaults.value(forKey: "expiration_date"))
-        print(defaults.value(forKey: "user_type"))
+        print(UserDefaults.standard.value(forKey: "access_token"))
         
         if (AccessToken.current != nil && fbLoginSuccess == true) {
             userType = userType.capitalized
             performSegue(withIdentifier: "\(userType)View", sender: self)
         }
-        
     }
 
     //Login Action
     
     @IBAction func loginFacebookButton(_ sender: Any) {
-        print(AccessToken.current!)
+        //print(AccessToken.current!)
         if (AccessToken.current != nil ) {
+            //print("loginButton from LoginVC facebook allowed")
             APIManager.shared.login(user_type: userType, completitionHandler: {
                 (error) in
                 if error == nil {
                     self.fbLoginSuccess = true
                     self.viewDidAppear(true)
                 }
-
             })
-
         } else {
-            print("loginButton from LoginVC access token is NULL")
+            //print("loginButton from LoginVC facebook access denied")
             FBManager.shared.logIn(
                 permissions: ["public_profile", "email"],
                 from: self,
@@ -94,11 +86,8 @@ class LoginViewController: UIViewController {
                                     self.fbLoginSuccess = true
                                     self.viewDidAppear(true)
                                 }
-
                             })
-
                         })
-
                     }
                 }
             )
@@ -114,7 +103,6 @@ class LoginViewController: UIViewController {
                 FBManager.shared.logOut()
                 User.currenUser.resetInfo()
                 print("loggin out")
-                
                 
                 self.bLogout.isHidden =  true
                 self.bLogin.setTitle("Login with Facebook", for: .normal)

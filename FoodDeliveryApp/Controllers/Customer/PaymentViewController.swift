@@ -21,6 +21,10 @@ class PaymentViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        print("On Payment View Controller")
+    }
+    
 
     /*
     // MARK: - Navigation
@@ -37,18 +41,18 @@ class PaymentViewController: UIViewController {
     
     
     @IBAction func placeOrder(_ sender: Any) {
-        print("_________________________pressed_______")
+        print("_________________________PlaceOrderButton from Payment View Controller_________________________")
+        //print("_________________________placeOrder -> getLatestOrder_______")
         APIManager.shared.getLatestOrder { (json) in
-            print("_________________________pressed APIMANager_______")
             
-            print(json)
+            //print(json)
             
-            print(json["order"]["status"])
+            print("previous order status: \(json["order"]["status"]), may be NIL if no prev order")
             
             if json["order"]["status"] as? String == nil || json["order"]["status"] as? String == "Delivered" {
 //            if  json["order"]["status"] == "Delivered" || json["order"]["total"] == nil{
                 // Processing the payment and create an Order
-                print("_________________________1_______")
+                print("________________Order can be placed________________")
                 //let card = self.cardTextField.cardParams
                 //let card: STPCardParams = STPCardParams()
                 
@@ -61,22 +65,18 @@ class PaymentViewController: UIViewController {
                 card.expMonth = 12
                 card.expYear = 22
                 card.cvc = "123"
-                print("____________Card Details__________")
-                print(card)
+                
+                //print("________________Create Stripe Token________________")
                 STPAPIClient.shared.createToken(withCard: card, completion: { (token, error) in
-    
-                //STPAPIClient.shared.createToken(withCard: card, completion: { (token, error) in
-                    print("____________Card TOken__________")
-                    print(token as Any)
+                    //print("____________Card Token: \(token!)__________")
                     
                     if let myError = error {
                         print("My Error:", myError)
                     } else if let stripeToken = token {
-                        
-                        print("____________else if Card TOken__________")
+                        //print("____________Token Created no errors__________")
                         //print(token)
                         APIManager.shared.createOrder(stripeToken: stripeToken.tokenId) { (json) in
-                            Cart.currentCart.reset()
+                            //Cart.currentCart.reset()
                             self.performSegue(withIdentifier: "ViewOrder", sender: self)
                         }
                         print("_________________________Order Successfully Created_______")
