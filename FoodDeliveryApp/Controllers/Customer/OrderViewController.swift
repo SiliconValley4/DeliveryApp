@@ -51,7 +51,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         APIManager.shared.getLatestOrder { (json) in
             let order = json["order"]
             //print(json)
-            print(json["order"]["status"].string)
+            print("order status:\(json["order"]["status"].string!)")
 
             if json["order"]["status"].string != nil {
                 print("There is a previous order")
@@ -62,6 +62,9 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 let from = order["restaurant"]["address"].string!
                 let to = order["address"].string!
+                print("order from:\(json["order"]["restaurant"]["address"].string!)")
+                print("order to:\(json["order"]["address"].string!)")
+
                 
                 self.getLocation(from, "RES", { (sou) in
                     self.source = sou
@@ -151,6 +154,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //Map Function
     // #1
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        print("mapView Start")
         
         let renderer = MKPolylineRenderer(overlay: overlay)
         renderer.strokeColor = UIColor.blue
@@ -162,14 +166,14 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // #2
     
     func getLocation(_ address: String,_ title: String,_ completionHandler: @escaping (MKPlacemark) -> Void) {
-        
+        print("getLocation started")
         let geocoder = CLGeocoder()
-        
+        print(geocoder)
         geocoder.geocodeAddressString(address) { (placemarks, error) in
             
             if (error != nil) {
                 print("Get Location error")
-                print("Error: ", error as Any)
+                print("Error in geolocation: \(error!)")
             }
             
             if let placemark = placemarks?.first {

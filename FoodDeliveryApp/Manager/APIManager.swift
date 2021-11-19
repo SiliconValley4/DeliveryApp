@@ -667,14 +667,14 @@ class APIManager {
     
     
     func getDriverLocation(completionHandler: @escaping (JSON) -> Void) {
-        print("API Manager getDriverLocation")
+        print("______________________API Manager getDriverLocation start______________")
         let path = "api/customer/driver/location/"
         let url = baseURL?.appendingPathComponent(path)
         let params: [String: Any] = [
             "access_token": self.accessToken
         ]
         print(params)
-        //requestServer(.get, path, params, URLEncoding(), completionHandler)
+        requestServer(.get, path, params, URLEncoding(), completionHandler)
         
         //testing request
         AF.request(url!, method: .get,  parameters: params, encoding: URLEncoding.default).responseJSON(completionHandler: { (response) in
@@ -695,7 +695,7 @@ class APIManager {
                 break
             }
         })
-        print("______________________Driver Location______")
+        print("______________________API Manager getDriverLocation end ________________")
     }
     
     
