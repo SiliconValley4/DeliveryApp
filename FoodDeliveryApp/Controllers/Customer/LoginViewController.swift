@@ -17,27 +17,20 @@ class LoginViewController: UIViewController {
     //Switching User
     @IBOutlet weak var switchUser: UISegmentedControl!
     
- 
-    
-
-    
-    
-    
     var fbLoginSuccess = false
     
     var userType: String = USER_TYPE_CUSTOMER
-
+    let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("***********\n**********\n*********")
-        
+                
         if AccessToken.current != nil {
             bLogout.isHidden = false
-            print("about to call getFBUserData from LoginVC")
             FBManager.getFBUserData(compleationHandler: {
-                self.bLogin.setTitle("Continue as \(User.currenUser.email!)", for: .normal)
+//                self.bLogin.setTitle("Continue as \(User.currenUser.email!)", for: .normal)
+                self.bLogin.setTitle("Continue as \(User.currenUser.name!)", for: .normal)
+
                 //self.loginFBButton.sizeToFit()
                 print("in LoginVC")
             } )
@@ -57,18 +50,18 @@ class LoginViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("LoginVC didAppear")
         
-//        print(defaults.value(forKey: "accessToken"))
-//        print(defaults.value(forKey: "refreshToken")
-//        print(defaults.value(forKey: "timeLeft")
-//        print(defaults.value(forKey: "expirationDate")
+        //for (key, value) in UserDefaults.standard.dictionaryRepresentation() print("\(key) = \(value) \n")
         
+        print(defaults.value(forKey: "access_token"))
+        print(defaults.value(forKey: "refresh_token"))
+        print(defaults.value(forKey: "time_left"))
+        print(defaults.value(forKey: "expiration_date"))
+        print(defaults.value(forKey: "user_type"))
         
         if (AccessToken.current != nil && fbLoginSuccess == true) {
             userType = userType.capitalized
             performSegue(withIdentifier: "\(userType)View", sender: self)
-
         }
         
     }
@@ -78,32 +71,7 @@ class LoginViewController: UIViewController {
     @IBAction func loginFacebookButton(_ sender: Any) {
         print(AccessToken.current!)
         if (AccessToken.current != nil ) {
-//            print("loginButton from LoginVC access token is not NIL")
-//            let expDate = defaults.value(forKey: "expirationDate")
-//            let expiresIn = Int((expDate! as AnyObject).timeIntervalSinceNow) / 60
-//            print(expiresIn)
-//
-//            let expInt = Int((expDate as! Date).timeIntervalSinceNow) / 60
-//            print("Minutes left = \(expInt)")
-//
-//            if( expInt > 60) { // Token is active for an hour or longer
-//                print("Access and Refresh Tokens have \(expInt) minutes left to expire")
-//                defaults.set(expInt, forKey: "timeLeft")
-//                self.fbLoginSuccess = true
-//                self.viewDidAppear(true)
-//
-//            } else {
-//                APIManager.shared.login(userType: userType, completitionHandler: {
-//                    (error) in
-//                    if error == nil {
-//                        self.fbLoginSuccess = true
-//                        self.viewDidAppear(true)
-//                    }
-//
-//                })
-//
-//            }
-            APIManager.shared.login(userType: userType, completitionHandler: {
+            APIManager.shared.login(user_type: userType, completitionHandler: {
                 (error) in
                 if error == nil {
                     self.fbLoginSuccess = true
@@ -120,7 +88,7 @@ class LoginViewController: UIViewController {
                 handler: {(result, error ) in
                     if (error == nil ) {
                         FBManager.getFBUserData(compleationHandler: {
-                            APIManager.shared.login(userType: self.userType, completitionHandler: {
+                            APIManager.shared.login(user_type: self.userType, completitionHandler: {
                                 (error) in
                                 if error == nil {
                                     self.fbLoginSuccess = true

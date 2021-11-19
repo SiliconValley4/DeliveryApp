@@ -12,50 +12,105 @@ import FBSDKLoginKit
 import MapKit
 
 class APIManager {
+    
     static let shared = APIManager()
     
     let baseURL = NSURL(string: BASE_URL)
+    let defaults = UserDefaults.standard
     
     var accessToken = ""
     var refreshToken = ""
-    var expired = Date()
+    var timeLeft = 0
+    var expirationDate = Date()
+    var tokenAvailable = false
+    var userType = ""
     
-    let defaults = UserDefaults.standard
+    func resetUserDefaults(){
+        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
+            print("\(key) = \(value) \n")
+        }
+
+        print("REMOVED IMPORTANT KEYS")
+//        defaults.removeObject(forKey: "accessToken")
+//        defaults.removeObject(forKey: "refreshToken")
+//        defaults.removeObject(forKey: "timeLeft")
+//        defaults.removeObject(forKey: "expirationDate")
+//        defaults.removeObject(forKey: "userType")
+
+        print(defaults.value(forKey: "accessToken"))
+        print(defaults.value(forKey: "refreshToken"))
+        print(defaults.value(forKey: "timeLeft"))
+        print(defaults.value(forKey: "expirationDate"))
+        print(defaults.value(forKey: "userType"))
+
+    }
     
-    func checkTokens(){
+    func checkTokens() -> Bool {
+        
+        //resetUserDefaults()
         
         print("checking TokenStatus")
+        
+        print("API Global variables accessToken: \(accessToken) -- refreshToken: \(refreshToken)")
         //print("Facebook Auth token: \((AccessToken.current?.tokenString)!)\nExpires in: \((AccessToken.current?.expirationDate)!)")
         
         let fbAuthTk = (AccessToken.current?.tokenString)!
         let fbAuthTkTime = Int((AccessToken.current?.expirationDate as! Date).timeIntervalSinceNow) / (3600 * 24)
+        //print("Facebook Auth token: \(fbAuthTk)\nExpires in: \(fbAuthTkTime) days")
         
-        print("Facebook Auth token: \(fbAuthTk)\nExpires in: \(fbAuthTkTime) days")
-        
+//        let access_token = defaults.value(forKey: "access_token")!
+//        print("access_token: \(access_token)")
+//        let refresh_token = defaults.value(forKey: "refreshToken")!
+//        print("rewfresh-token: \(refresh_token)")
+//        let time_left = defaults.value(forKey: "timeLeft")!
+//        print("Tokens time left in minutes: \(time_left)")
+//        let expiration_date = defaults.value(forKey: "expirationDate")!
+//        print("Tokens expiration date \(expiration_date)")
         
         if(AccessToken.isCurrentAccessTokenActive){
-            let expDate = AccessToken.current?.expirationDate
-    //        let formatter = DateComponentsFormatter()
-    //        formatter.allowedUnits = [.hour]
-    //        let timeLeftString = formatter.string(from: Date.now, to: expDate!)
-            let timeLeftInteger = Int(expDate!.timeIntervalSinceNow - Date.now.timeIntervalSinceNow) / 3600
-            print("Facebook access token expires in \(timeLeftInteger) hours")
             
-            if(timeLeftInteger < 2){
-                
+            self.timeLeft = getTokenTimeLeft()
+            
+            if(self.timeLeft > 59){ // Tokens have an hour left of life
+                return true
+            } else{
+//                getNewToken(user_type: userType, completionHandler : {
+//                    (error) in
+//                    if error == nil {
+//                    }
+//                })
+                return false
             }
+//            // another way of displaying time Data of Facebook Access Token, unnecessary but helpful to visualize
+//            let expDate = AccessToken.current?.expirationDate
+//            let formatter = DateComponentsFormatter()
+//            formatter.allowedUnits = [.day, .hour, .minute]
+//            let timeInMinHour = formatter.string(from: Date.now, to: expDate!)
+//            print("time in days hr:min = \(timeInMinHour!)")
+            
+//            let timeLeftHours = Int(expDate!.timeIntervalSinceNow - Date.now.timeIntervalSinceNow) / (60 * 60)
+//            print("Facebook access token expires in \(timeLeftInteger) hours")
             
         }
+        return false
         
     }
     
-    //APi to login the user
-    func login(userType: String, completitionHandler: @escaping (NSError?) -> Void) {
-        
-        print("Loging User: API Manager")
-        
-        checkTokens()
-        
+    func getTokenTimeLeft()->Int{
+        // interval is given in seconds, we want to look at the minutes left
+        return Int(self.expirationDate.timeIntervalSinceNow) / 60
+    }
+    
+    func populateUserDefaults(){
+        self.defaults.set(self.timeLeft, forKey: "time_left")
+        self.defaults.set(self.accessToken, forKey: "access_token")
+        self.defaults.set(self.refreshToken, forKey: "refresh_token")
+        self.defaults.set(self.expirationDate, forKey: "expiration_date")
+        self.defaults.set(self.userType, forKey: "user_type")
+    }
+    
+    func getNewToken(){
+        print("getting new token")
         let path = "api/social/convert-token/"
         let url = baseURL!.appendingPathComponent(path)
         let params: [String: Any] = [
@@ -66,9 +121,50 @@ class APIManager {
             "token" : AccessToken.current!.tokenString,
             "user_type" : userType,
         ]
+        print("________________User Type: \(params["user_type"]!)__________________________")
         
-        
-        print(JSON(params["user_type"]))
+        AF.request(url!, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { [self]
+            (response) in
+            switch response.result {
+            case .success(let value):
+                let jsonData = JSON(value)
+                self.accessToken = jsonData["access_token"].string!
+                self.refreshToken = jsonData["refresh_token"].string!
+                self.expirationDate = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
+                self.timeLeft = getTokenTimeLeft()
+                self.userType = params["user_type"] as! String
+                print("_____________________________________________________________")
+                print("Token jsonData: \(jsonData)")
+                print("Access and Refresh Tokens expire in \(jsonData["expires_in"].int! / 60) minutes")
+                print("Self.expired = \(self.expirationDate)")
+                print("Date Now = \(Date.now)")
+                print("json expires in = \(jsonData["expires_in"])")
+                print("_____________________________________________________________")
+                
+
+                //populateUserDefaults()
+
+                print("_______________Success___________________")
+                break
+
+            case .failure(let error):
+                print("________EROR______")
+                break
+            }
+        }
+    }
+    
+    func getToken(user_type: String, completitionHandler: @escaping (NSError?) -> Void){
+        let path = "api/social/convert-token/"
+        let url = baseURL!.appendingPathComponent(path)
+        let params: [String: Any] = [
+            "grant_type": "convert_token",
+            "client_id" : APIConstants.Client.ID,
+            "client_secret" : APIConstants.Client.SKEY,
+            "backend" : "facebook",
+            "token" : AccessToken.current!.tokenString,
+            "user_type" : user_type,
+        ]
         print("________________User Type: \(params["user_type"]!)__________________________")
         //Using alamofire for the request
         AF.request(url!, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { [self]
@@ -76,29 +172,20 @@ class APIManager {
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)
-                print("__________________________________________")
-                print(jsonData)
-                print("Access and Refresh Tokens expire in \(jsonData["expires_in"].int! / 60) minutes")
                 self.accessToken = jsonData["access_token"].string!
                 self.refreshToken = jsonData["refresh_token"].string!
-                self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
-                print("Self.expired = \(self.expired)")
+                self.expirationDate = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
+                self.timeLeft = getTokenTimeLeft()
+                self.userType = user_type
+                print("_____________________________________________________________")
+                print("Token jsonData: \(jsonData)")
+                print("Access and Refresh Tokens expire in \(jsonData["expires_in"].int! / 60) minutes")
+                print("Self.expired = \(self.expirationDate)")
                 print("Date Now = \(Date.now)")
                 print("json expires in = \(jsonData["expires_in"])")
-                
-                //let expiresIn = Int(self.expired.timeIntervalSinceNow - Date.now.timeIntervalSinceNow) / 3600
-                let expiresIn = Int(self.expired.timeIntervalSinceNow) / 60
-                print("User access/refresh token expires in \(expiresIn) minutes")
-
-                if (expiresIn > 60){
-                    self.defaults.set(expiresIn, forKey: "timeLeft")
-                    print(self.defaults.value(forKey: "timeLeft"))
-                    self.defaults.set(self.accessToken, forKey: "accessToken")
-                    self.defaults.set(self.refreshToken, forKey: "refreshToken")
-                    self.defaults.set(self.expired, forKey: "expirationDate")
-                }
-                
-                print(self.expired)
+                print("_____________________________________________________________")
+            
+                //populateUserDefaults()
 
                 completitionHandler(nil)
                 print("_______________Success___________________")
@@ -109,23 +196,29 @@ class APIManager {
                 completitionHandler(error as NSError)
                 print("________EROR______")
                 break
-
             }
         }
-        
-        
     }
     
-    
-    
+    //APi to login the user
+    func login(user_type: String, completitionHandler: @escaping (NSError?) -> Void) {
+        
+        print("Loging User: API Manager")
+        
+        tokenAvailable = checkTokens()
+        
+        if(!tokenAvailable){
+            getToken(user_type: user_type, completitionHandler: completitionHandler)
+        }
+    }
     
     //Aoi to logout the user
     func logout(completionHandler: @escaping (NSError?) -> Void) {
-        //let defaults = UserDefaults.standard
-        defaults.set(0, forKey: "timeLeft")
-        defaults.set("", forKey: "accessToken")
-        defaults.set("", forKey: "refreshToken")
-        defaults.set(0, forKey: "expirationDate")
+        defaults.removeObject(forKey: "accessToken")
+        defaults.removeObject(forKey: "refreshToken")
+        defaults.removeObject(forKey: "timeLeft")
+        defaults.removeObject(forKey: "expirationDate")
+        defaults.removeObject(forKey: "userType")
 
         let path = "api/social/revoke-token/"
         let url = baseURL!.appendingPathComponent(path)
@@ -184,7 +277,7 @@ class APIManager {
             "refresh_token": self.refreshToken
         ]
         
-        if (Date() > self.expired) {
+        if (Date() > self.expirationDate) {
             
             AF.request(url!, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON(completionHandler: { (response) in
                 
@@ -192,7 +285,7 @@ class APIManager {
                 case .success(let value):
                     let jsonData = JSON(value)
                     self.accessToken = jsonData["access_token"].string!
-                    self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
+                    self.expirationDate = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
                     completionHandler()
                     break
                     
