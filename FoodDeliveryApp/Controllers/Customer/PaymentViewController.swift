@@ -46,10 +46,13 @@ class PaymentViewController: UIViewController {
         APIManager.shared.getLatestOrder { (json) in
             
             //print(json)
+            let orderStatus = json["order"]["status"].string! as? String ?? nil
             
             print("previous order status: \(json["order"]["status"]), may be NIL if no prev order")
             
-            if json["order"]["status"] as? String == nil || json["order"]["status"] as? String == "Delivered" {
+//            if json["order"]["status"] as? String == nil || json["order"]["status"] as? String == "Delivered" {
+            if orderStatus == "Delivered" || orderStatus == nil{
+
 //            if  json["order"]["status"] == "Delivered" || json["order"]["total"] == nil{
                 // Processing the payment and create an Order
                 print("________________Order can be placed________________")
@@ -85,6 +88,7 @@ class PaymentViewController: UIViewController {
             
             } else {
                 // Showing an alert message.
+                print("Place Order Error")
                 
                 let cancelAction = UIAlertAction(title: "OK", style: .cancel)
                 let okAction = UIAlertAction(title: "Go to order", style: .default, handler: { (action) in

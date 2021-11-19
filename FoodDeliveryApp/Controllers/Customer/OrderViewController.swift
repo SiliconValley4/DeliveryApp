@@ -46,26 +46,13 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     func getLatestOrder() {
         
-        print("******************GET LATEST ORDER GETS CALLED***************************")
+        print("Get Latest Order from Order View Controller")
 
         APIManager.shared.getLatestOrder { (json) in
             let order = json["order"]
             //print(json)
-//            print(order["status"])
-//            print(order["total"])
-//
-//            let status = json["order"]["status"].string
-//            print(status)
-//            if status == nil {
-//                print("yes")
-//            }
-//
-//            if "cook" == nil{
-//                print("nope")
-//            }
-            
+            print(json["order"]["status"].string)
 
-//            if json["order"]["status"].stringValue != "" {
             if json["order"]["status"].string != nil {
                 print("There is a previous order")
                 if let orderDetails = order["order_details"].array {
@@ -84,7 +71,9 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         self.getDirections()
                     })
                 })
-                if order["status"].string! != "Delivered" {
+                //if order["status"].string! != "Delivered" {
+                if order["status"].string! == "On the way" {
+                    //getDriverLocation(self)
                     self.setTimer()
                 }
             } else {
@@ -98,25 +87,14 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // change to repeats: true to update driver location
     func setTimer() {
+        getDriverLocation(self)
         timer = Timer.scheduledTimer(
-            timeInterval: 1,
+            timeInterval: 30,
             target: self,
             selector: #selector(getDriverLocation(_:)),
             userInfo: nil, repeats: true)
         print("Timer Called: Start")
     }
-    
-    
-    /*
-     
-    View DidAppear -> setTimer(Order status on the way)
-     
-     
-     view DidAppear -> if(orderstatus O=Delivered) Timer invalidate
-     
-     */
-    
-    
     
     func autoZoom() {
         
@@ -137,10 +115,10 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //
     @objc func getDriverLocation(_ sender: AnyObject) {
+        print("Get Driver Location from OrderViewController")
         APIManager.shared.getDriverLocation { (json) in
-            
+            print(json)
             if let location = json["location"].string {
-                print(json)
                 print(location)
                 
                 //self.lbStatus.text = "ON THE WAY"

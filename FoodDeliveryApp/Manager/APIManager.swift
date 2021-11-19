@@ -460,8 +460,7 @@ class APIManager {
 
         let path = "api/customer/order/add/"
         let url = baseURL?.appendingPathComponent(path)
-        print("___________________Create Order URL_______________________")
-        //print("_______________________________________________________")
+        //print("___________________Create Order URL_______________________")
         print(url!)
         let simpleArray = Cart.currentCart.items
         let jsonArray = simpleArray.map { item in
@@ -471,15 +470,12 @@ class APIManager {
             ]
         }
         
-        print("gets here")
-
         if JSONSerialization.isValidJSONObject(jsonArray) {
 
             do {
 
                 let data = try JSONSerialization.data(withJSONObject: jsonArray, options: [])
                 let dataString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)!
-
                 let params: [String: Any] = [
                     //"access_token": self.accessToken,
                     "access_token" : accessToken,
@@ -489,11 +485,11 @@ class APIManager {
                     "address": Cart.currentCart.address!
                 ]
 
-                print(accessToken)
-                print(stripeToken)
-                print("\(Cart.currentCart.restaurant!.id!)")
-                print(dataString)
-                print(Cart.currentCart.address!)
+//                print(accessToken)
+//                print(stripeToken)
+//                print("\(Cart.currentCart.restaurant!.id!)")
+//                print(dataString)
+//                print(Cart.currentCart.address!)
 
                 //requestServer(.post, path, params, URLEncoding(), completionHandler)
 
@@ -504,12 +500,7 @@ class APIManager {
                     case .success(let value):
                         let jsonData = JSON(value)
                         print(value)
-                        print(jsonData)
-//                        self.accessToken = jsonData["access_token"].string!
-//                        self.expirationDate = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
                         completionHandler(jsonData)
-                        print(self.accessToken)
-                        print(self.expirationDate)
                         Cart.currentCart.reset()
                         break
 
@@ -520,7 +511,7 @@ class APIManager {
                 })
                 // end of test request
 
-                print("___________________CREATE ORDER_______________________")
+                //print("___________________CREATE ORDER_______________________")
                 //print("_______________________________________________________")
 
             }
@@ -559,9 +550,6 @@ class APIManager {
                 let jsonData = JSON(value)
 
                 print("____________________________________getLatestOrderSUCCESS____________________________")
-                //print(jsonData)
-//                        self.accessToken = jsonData["access_token"].string!
-//                        self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
                 completionHandler(jsonData)
                 break
 
@@ -571,7 +559,6 @@ class APIManager {
                 break
             }
         })
-       
     //print("__________________getLatestOrderEnd_______________")
     }
 
@@ -680,18 +667,23 @@ class APIManager {
     
     
     func getDriverLocation(completionHandler: @escaping (JSON) -> Void) {
+        print("API Manager getDriverLocation")
         let path = "api/customer/driver/location/"
         let url = baseURL?.appendingPathComponent(path)
         let params: [String: Any] = [
             "access_token": self.accessToken
         ]
+        print(params)
         //requestServer(.get, path, params, URLEncoding(), completionHandler)
         
         //testing request
         AF.request(url!, method: .get,  parameters: params, encoding: URLEncoding.default).responseJSON(completionHandler: { (response) in
+            
+            print(response)
 
             switch response.result {
             case .success(let value):
+                print(value)
                 let jsonData = JSON(value)
 //                        self.accessToken = jsonData["access_token"].string!
 //                        self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
@@ -699,6 +691,7 @@ class APIManager {
                 break
 
             case .failure:
+                print("failure")
                 break
             }
         })
