@@ -41,7 +41,7 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
                     for item in listRest {
                         let restaurant = Restaurant(json: item)
                         self.restaurants.append(restaurant)
-                        print("Restaurant \(item["name"])")
+                        //print("Restaurant \(item["name"])")
                     }
                     self.tbvRestaurant.reloadData()
                 }

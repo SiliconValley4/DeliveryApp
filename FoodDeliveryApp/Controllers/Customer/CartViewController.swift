@@ -33,19 +33,14 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidAppear(_ animated: Bool) {
         loadmeals()
-        print("DIDAPPEAR")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        print("DIDDISAPPEAR")
-
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("DIDLOAD")
-        
+                
         loadmeals()
         
         
@@ -71,7 +66,9 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.viewAddress.isHidden = false
             self.viewMap.isHidden = false
             self.viewPayment.isHidden = false
-            self.labelAddress.text = "123 Placer Holder ave."
+            self.labelAddress.text = "74-01 Queens Blvd, Queens, NY 11373"
+//            self.labelAddress.text = "55-01 37th Ave, Queens, NY 11377"
+//            self.labelAddress.text = "123 Placer Holder ave."
             
             self.tbvCart.reloadData()
             self.labelTotal.text = "$\(Cart.currentCart.getTotal())"

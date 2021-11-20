@@ -40,11 +40,11 @@ class MealDetailViewController: UIViewController {
         
         mealName.text = meal?.name
         mealDescription.text = meal?.short_description
-        Helpers.loadImage(imgMeal, "http://cdn.sallysbakingaddiction.com/wp-content/uploads/2020/03/mini-quiches.jpg")
+//        Helpers.loadImage(imgMeal, "http://cdn.sallysbakingaddiction.com/wp-content/uploads/2020/03/mini-quiches.jpg")
         
-//        if let imageUrl = meal?.image {
-//            Helpers.loadImage(imgMeal, "\(imageUrl)")
-//        }
+        if let imageUrl = meal?.image {
+            Helpers.loadImage(imgMeal, "\(imageUrl)")
+        }
         
     }
     

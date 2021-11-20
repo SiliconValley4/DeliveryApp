@@ -40,34 +40,37 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        //getLatestOrder()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         getLatestOrder()
+        
+        let seconds = 1.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            self.autoZoom()
+            
+        }
+        
+
+
     }
     
 
     func getLatestOrder() {
         
-        print("\n\nGET LATEST ORDER GETS CALLED\n***************************")
+        print("Get Latest Order from Order View Controller")
 
         APIManager.shared.getLatestOrder { (json) in
             let order = json["order"]
             //print(json)
-//            print(order["status"])
-//            print(order["total"])
-//
-//            let status = json["order"]["status"].string
-//            print(status)
-//            if status == nil {
-//                print("yes")
-//            }
-//
-//            if "cook" == nil{
-//                print("nope")
-//            }
-            
+            //print("order status:\(json["order"]["status"] as? String ?? "no prev orders")")
+            let orderStatus = json["order"]["status"].string as? String ?? nil
+            print("order status:\(orderStatus)")
 
-//            if json["order"]["status"].stringValue != "" {
-            if json["order"]["status"].string != nil {
-                print("If order total != nil")
+            //if json["order"]["status"].string != nil {
+            if orderStatus != nil {
+                print("There is a previous order")
                 if let orderDetails = order["order_details"].array {
                     self.lbStatus.text = order["status"].string!
                     self.cart = orderDetails
@@ -75,16 +78,19 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 let from = order["restaurant"]["address"].string!
                 let to = order["address"].string!
-                
-                self.getLocation(from, "RES", { (sou) in
+                print("order from: \(json["order"]["restaurant"]["address"].string!)")
+                print("order to: \(json["order"]["address"].string!)")
+
+                self.getLocation(from, "Restaurant", { (sou) in
                     self.source = sou
-                    
-                    self.getLocation(to, "CUS", { (des) in
+                    self.getLocation(to, "You", { (des) in
                         self.destination = des
                         self.getDirections()
                     })
                 })
-                if order["status"] != "Delivered" {
+                //if order["status"].string! != "Delivered" {
+                if order["status"].string! == "On the way" {
+                    //getDriverLocation(self)
                     self.setTimer()
                 }
             } else {
@@ -92,41 +98,28 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.lbStatus.text = "No previous orders"
             }
         }
+        //self.autoZoom()
     }
         
-
-    
-    // change to repeats: true to update driver location
+    // repeats: to update driver location
     func setTimer() {
+        getDriverLocation(self)
         timer = Timer.scheduledTimer(
-            timeInterval: 10,
+            timeInterval: 30,
             target: self,
             selector: #selector(getDriverLocation(_:)),
             userInfo: nil, repeats: true)
         print("Timer Called: Start")
     }
     
-    
-    /*
-     
-    View DidAppear -> setTimer(Order status on the way)
-     
-     
-     view DidAppear -> if(orderstatus O=Delivered) Timer invalidate
-     
-     */
-    
-    
-    
     func autoZoom() {
-        
+        print("AutoZoom called")
         var zoomRect = MKMapRect.null
         for annotation in self.map.annotations {
             let annotationPoint = MKMapPoint(annotation.coordinate)
             let pointRect = MKMapRect(x: annotationPoint.x, y: annotationPoint.y, width: 0.1, height: 0.1)
             zoomRect = zoomRect.union(pointRect)
         }
-        
         let insetWidth = -zoomRect.size.width * 0.2
         let insetHeight = -zoomRect.size.height * 0.2
         let insetRect = zoomRect.insetBy(dx: insetWidth, dy: insetHeight)
@@ -137,13 +130,15 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //
     @objc func getDriverLocation(_ sender: AnyObject) {
+        print("Get Driver Location from OrderViewController")
         APIManager.shared.getDriverLocation { (json) in
-            
+            print(json)
             if let location = json["location"].string {
+                print(location)
                 
                 //self.lbStatus.text = "ON THE WAY"
-                
                 let split = location.components(separatedBy: ",")
+                print(split)
                 let lat = split[0]
                 let lng = split[1]
                 
@@ -168,18 +163,10 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
     //Map Function
-    
     // #1
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        print("mapView Start")
         
         let renderer = MKPolylineRenderer(overlay: overlay)
         renderer.strokeColor = UIColor.blue
@@ -193,11 +180,12 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func getLocation(_ address: String,_ title: String,_ completionHandler: @escaping (MKPlacemark) -> Void) {
         
         let geocoder = CLGeocoder()
-        
         geocoder.geocodeAddressString(address) { (placemarks, error) in
+            print("getLocation1 called \(placemarks)")
             
             if (error != nil) {
-                print("Error: ", error as Any)
+                print("Get Location error")
+                print("Error in geolocation: \(error!)")
             }
             
             if let placemark = placemarks?.first {
@@ -294,10 +282,6 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return annotationView
     }
     
-    
-    
-    
-    
     //Table View Functions
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -315,11 +299,6 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
-    
-    
-    
-    
-   
   //End
 
 }
