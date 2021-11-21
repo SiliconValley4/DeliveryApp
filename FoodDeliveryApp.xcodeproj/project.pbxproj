@@ -39,6 +39,7 @@
 		10E2ACAD27359C45004DBD2B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E2ACAC27359C45004DBD2B /* LoginViewController.swift */; };
 		10E2ACAF27371649004DBD2B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10E2ACAE27371649004DBD2B /* CoreLocation.framework */; };
 		10E2ACB127381738004DBD2B /* DriversProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E2ACB027381738004DBD2B /* DriversProfileViewController.swift */; };
+		5574AD83274AA45E006DE2F3 /* FloatingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5574AD82274AA45E006DE2F3 /* FloatingTabBarController.swift */; };
 		55F34C80273EE91200F9E373 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F34C7F273EE91200F9E373 /* StringConstants.swift */; };
 		55F34C82273EE96F00F9E373 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F34C81273EE96F00F9E373 /* APIConstants.swift */; };
 		C2116E734781032A49192C09 /* Pods_FoodDeliveryApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 268BBD65A1901ECCA5D419B6 /* Pods_FoodDeliveryApp.framework */; };
@@ -81,6 +82,7 @@
 		10E2ACB027381738004DBD2B /* DriversProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriversProfileViewController.swift; sourceTree = "<group>"; };
 		268BBD65A1901ECCA5D419B6 /* Pods_FoodDeliveryApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodDeliveryApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DFD694B146E42E00FC0BD61 /* Pods-FoodDeliveryApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDeliveryApp.debug.xcconfig"; path = "Target Support Files/Pods-FoodDeliveryApp/Pods-FoodDeliveryApp.debug.xcconfig"; sourceTree = "<group>"; };
+		5574AD82274AA45E006DE2F3 /* FloatingTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTabBarController.swift; sourceTree = "<group>"; };
 		55F34C7F273EE91200F9E373 /* StringConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		55F34C81273EE96F00F9E373 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		A6DFB2104F478F0B606D548E /* Pods-FoodDeliveryApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDeliveryApp.release.xcconfig"; path = "Target Support Files/Pods-FoodDeliveryApp/Pods-FoodDeliveryApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			children = (
 				10286BFB27347BBF00E3FBE5 /* Customer */,
 				10286BFA27347BB700E3FBE5 /* Driver */,
+				5574AD82274AA45E006DE2F3 /* FloatingTabBarController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				1028FAB32735894C0038D72D /* OrderViewController.swift in Sources */,
 				1028FABF273593580038D72D /* RevenueViewController.swift in Sources */,
 				10E2ACB127381738004DBD2B /* DriversProfileViewController.swift in Sources */,
+				5574AD83274AA45E006DE2F3 /* FloatingTabBarController.swift in Sources */,
 				55F34C82273EE96F00F9E373 /* APIConstants.swift in Sources */,
 				10286C112734A45300E3FBE5 /* MenuCell.swift in Sources */,
 				1028FAAB2735735E0038D72D /* CartViewController.swift in Sources */,
