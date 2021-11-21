@@ -7,15 +7,43 @@
 2. [Schema](#Schema)
 
 
-## Completed User Stories
-* [x] Overview
-* [x] App Evaluation
-* [x] Product Spec
-* [x] Navigation
-* [x] Schema 
-* [x] Networking 
-* [x] Existing API Endpoints
+# FoodDeliveryApp
 
+## User Stories
+
+The following functionality is completed:
+
+
+### Customer : App
+- [ ] Customer sees app icon in home screen and styled launch screen.
+- [ ] Customer can sign up to create a new account.
+- [ ] Customer can log in.
+- [ ] Customer can logout.
+- [ ] Customer can see profile information
+- [ ] Customer can view restaurants
+- [ ] Customer can view specific restaurant menu
+- [ ] Customer can add meal to its cart
+- [ ] Customer can start a new order with other restaurant
+- [ ] Customer can pay for its order
+- [ ] Customer can view live map current order
+
+### Driver : App
+- [ ] Driver sees see all orders
+- [ ] Driver can pick an order
+- [ ] Driver can see live map of customer address
+- [ ] Driver can complete an order
+- [ ] Driver can see profile details
+
+
+### Restaurant Owner : Website/API
+- [ ] Restauranteurs can sign in / logout
+- [ ] Restauranteurs can register there business
+- [ ] Restauranteurs can see Orders Report
+- [ ] Restauranteurs get live notifications of new orders
+- [ ] Restauranteurs can view Account Summary
+- [ ] Restauranteurs can view and add dishes
+- [ ] Restauranteurs can update dishes
+- [ ] Restauranteurs can view and update profile
 
 
 ## Overview
