@@ -7,43 +7,41 @@
 2. [Schema](#Schema)
 
 
-# FoodDeliveryApp
-
 ## User Stories
 
 The following functionality is completed:
 
 
 ### Customer : App
-- [ ] Customer sees app icon in home screen and styled launch screen.
-- [ ] Customer can sign up to create a new account.
-- [ ] Customer can log in.
-- [ ] Customer can logout.
-- [ ] Customer can see profile information
-- [ ] Customer can view restaurants
-- [ ] Customer can view specific restaurant menu
-- [ ] Customer can add meal to its cart
-- [ ] Customer can start a new order with other restaurant
-- [ ] Customer can pay for its order
-- [ ] Customer can view live map current order
+- [x] Customer sees app icon in home screen and styled launch screen.
+- [x] Customer can sign up to create a new account.
+- [x] Customer can log in.
+- [x] Customer can logout.
+- [x] Customer can see profile information
+- [x] Customer can view restaurants
+- [x] Customer can view specific restaurant menu
+- [x] Customer can add meal to its cart
+- [x] Customer can start a new order with other restaurant
+- [x] Customer can pay for its order
+- [x] Customer can view live map current order
 
 ### Driver : App
-- [ ] Driver sees see all orders
-- [ ] Driver can pick an order
-- [ ] Driver can see live map of customer address
-- [ ] Driver can complete an order
-- [ ] Driver can see profile details
+- [x] Driver sees see all orders
+- [x] Driver can pick an order
+- [x] Driver can see live map of customer address
+- [x] Driver can complete an order
+- [x] Driver can see profile details
 
 
 ### Restaurant Owner : Website/API
-- [ ] Restauranteurs can sign in / logout
-- [ ] Restauranteurs can register there business
-- [ ] Restauranteurs can see Orders Report
-- [ ] Restauranteurs get live notifications of new orders
-- [ ] Restauranteurs can view Account Summary
-- [ ] Restauranteurs can view and add dishes
-- [ ] Restauranteurs can update dishes
-- [ ] Restauranteurs can view and update profile
+- [x] Restauranteurs can sign in / logout
+- [x] Restauranteurs can register there business
+- [x] Restauranteurs can see Orders Report
+- [x] Restauranteurs get live notifications of new orders
+- [x] Restauranteurs can view Account Summary
+- [x] Restauranteurs can view and add dishes
+- [x] Restauranteurs can update dishes
+- [x] Restauranteurs can view and update profile
 
 
 ## Overview
