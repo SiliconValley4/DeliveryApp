@@ -27,6 +27,12 @@ class MenuCell: UITableViewCell {
         configure()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
+    }
+    
     func configure() {
         mealPrice.layer.cornerRadius = mealPrice.bounds.height/2
         mealImg.layer.cornerRadius = 36
