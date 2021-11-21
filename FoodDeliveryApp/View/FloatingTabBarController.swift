@@ -22,6 +22,7 @@ class FloatingTabBarController: UITabBarController {
         layer.isHidden = false
         layer.masksToBounds = false
         layer.fillColor = UIColor.white.cgColor
+        //tabBar.isTranslucent = false
       
         tabBar.layer.insertSublayer(layer, at: 0)
 

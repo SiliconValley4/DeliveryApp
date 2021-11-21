@@ -880,10 +880,10 @@
             </objects>
             <point key="canvasLocation" x="1787" y="3168"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Floating Tab Bar Controller-->
         <scene sceneID="x9W-3D-Lvn">
             <objects>
-                <tabBarController modalPresentationStyle="fullScreen" id="HHd-f4-6Wm" sceneMemberID="viewController">
+                <tabBarController modalPresentationStyle="fullScreen" id="HHd-f4-6Wm" customClass="FloatingTabBarController" customModule="FoodDeliveryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="dXj-sb-gZY"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="w6x-RA-OPP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
