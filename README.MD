@@ -8,9 +8,7 @@
 
 
 ## Completed User Stories
-[x](UI)
-[x](UI)
-[x](UI)
+[x] UI Ready
 []()
 []()
 []()
