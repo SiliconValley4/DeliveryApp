@@ -11,14 +11,15 @@
 [x] Overview
 [x] App Evaluation
 [x] Product Spec
+
 * Welcome Page
    * Customer Login -> Create Account -> Customer Dashboard
    * Driver Login -> Create Account -> Customer Dashboard
+  
 [x] Navigation
 [x] Schema 
 [x] Networking 
-[x] Existing API Endpoints 
-
+[x] Existing API Endpoints
 
 
 
