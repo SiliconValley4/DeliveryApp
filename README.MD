@@ -269,3 +269,12 @@ Delivery App's purpose is to allow customers to order food from any restaurant, 
     `POST`    | `api/customer/order/<order_id>/seal` | finalize order, submit
 
 <img src="https://github.com/SiliconValley4/FoodDeliveryApp/blob/main/Submission/gif2-1.gif">
+
+
+
+
+
+### **Unit 11 - Build Sprint 2**
+##### Example of how the app works Driver/Customer/Owner
+<img src="https://github.com/SiliconValley4/FoodDeliveryApp/blob/main/Submission/app-example.gif">
+
