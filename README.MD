@@ -6,6 +6,17 @@
 1. [Wireframes](#Wireframes)
 2. [Schema](#Schema)
 
+
+## Completed User Stories
+[x](UI)
+[x](UI)
+[x](UI)
+[]()
+[]()
+[]()
+[]()
+
+
 ## Overview
 ### Description
 Delivery App's purpose is to allow customers to order food from any restaurant, providing them with the option to pick-up or get their order delivered.
