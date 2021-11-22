@@ -12,7 +12,7 @@ class FloatingTabBarController: UITabBarController {
         super.viewDidLoad()
 
         let layer = CAShapeLayer()
-        layer.path = UIBezierPath(roundedRect: CGRect(x: 30, y: tabBar.bounds.minY + 5, width: tabBar.bounds.width - 60, height: tabBar.bounds.height + 10), cornerRadius: (tabBar.frame.width/2)).cgPath
+        layer.path = UIBezierPath(roundedRect: CGRect(x: 30, y: tabBar.bounds.minY + 5, width: tabBar.bounds.width - 64, height: tabBar.bounds.height + 10), cornerRadius: 16).cgPath
         layer.shadowColor = UIColor.lightGray.cgColor
         layer.shadowOffset = CGSize(width: 5.0, height: 5.0)
         layer.shadowRadius = 25.0
@@ -21,7 +21,6 @@ class FloatingTabBarController: UITabBarController {
         layer.opacity = 1.0
         layer.isHidden = false
         layer.masksToBounds = false
-        layer.fillColor = UIColor.white.cgColor
         layer.fillColor = UIColor.black.cgColor
         //tabBar.isTranslucent = false
       
@@ -29,7 +28,7 @@ class FloatingTabBarController: UITabBarController {
 
         if let items = tabBar.items {
             items.forEach { item in
-                item.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -15, right: 0)
+                item.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -20, right: 0)
             }
         }
 
