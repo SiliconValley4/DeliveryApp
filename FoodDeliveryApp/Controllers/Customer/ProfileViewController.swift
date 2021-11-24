@@ -44,14 +44,14 @@ class ProfileViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CustomerLogout" {
-            APIManager.shared.logout(completionHandler:{ (error) in
-                if error == nil {
+//            APIManager.shared.logout(completionHandler:{ (error) in
+//                if error == nil {
                     FBManager.shared.logOut()
                     User.currenUser.resetInfo()
                     print("logggin out")
-                }
+//                }
                 
-            })
+//            })
             
         }
         

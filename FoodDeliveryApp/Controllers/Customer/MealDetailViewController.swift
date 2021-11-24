@@ -36,8 +36,8 @@ class MealDetailViewController: UIViewController {
     func loadMeal() {
         
         if let price = meal?.price {
-            lbTotal.text = "Total\n$\(price)"
-            labelIndividualCost.text = "Each\n$\(price)"
+            lbTotal.text = "Total\n$\(price)0"
+            labelIndividualCost.text = "Each\n$\(price)0"
         }
         
         

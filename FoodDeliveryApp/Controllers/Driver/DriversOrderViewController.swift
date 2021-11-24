@@ -9,7 +9,11 @@ import UIKit
 
 class DriversOrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    
+    @IBOutlet weak var userWelcomeLabel: UILabel!
+    
     @IBOutlet weak var tbvDriverOrder: UITableView!
+    
     
     
     //variables
@@ -23,6 +27,8 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
         
         tbvDriverOrder.dataSource = self
         tbvDriverOrder.delegate = self
+        
+        userWelcomeLabel.text = User.currenUser.name
 
         // Do any additional setup after loading the view.
     }
