@@ -3,6 +3,7 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -905,11 +906,11 @@
             </objects>
             <point key="canvasLocation" x="964" y="785"/>
         </scene>
-        <!--Cart-->
+        <!--Navigation Controller-->
         <scene sceneID="H8r-ak-onC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DvQ-4B-DsO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Cart" id="nyD-RF-fTb"/>
+                    <tabBarItem key="tabBarItem" title="" image="bag" catalog="system" id="nyD-RF-fTb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LSa-We-1LS">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
@@ -924,11 +925,15 @@
             </objects>
             <point key="canvasLocation" x="1786" y="1588"/>
         </scene>
-        <!--Restaurants-->
+        <!--Navigation Controller-->
         <scene sceneID="coD-Xb-h6K">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YDG-BH-NXP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Restaurants" id="gHd-2c-MTZ"/>
+                    <tabBarItem key="tabBarItem" title="" id="gHd-2c-MTZ">
+                        <imageReference key="image" image="house" catalog="system" symbolScale="default"/>
+                        <imageReference key="selectedImage" image="house" catalog="system" symbolScale="default"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cMa-bM-V5m">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
@@ -1049,11 +1054,11 @@
             </objects>
             <point key="canvasLocation" x="2715.9420289855075" y="2391.9642857142858"/>
         </scene>
-        <!--Order-->
+        <!--Navigation Controller-->
         <scene sceneID="TYa-Vo-vFR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gNN-Dv-nHg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Order" id="ryo-9M-Tb2"/>
+                    <tabBarItem key="tabBarItem" title="" image="map" catalog="system" id="ryo-9M-Tb2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uNi-B8-odb">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
@@ -1135,11 +1140,11 @@
             </objects>
             <point key="canvasLocation" x="3595.652173913044" y="2390.625"/>
         </scene>
-        <!--Profile-->
+        <!--Navigation Controller-->
         <scene sceneID="X2w-3m-4gc">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0lp-xk-IhZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="Cpt-Yb-gud"/>
+                    <tabBarItem key="tabBarItem" title="" image="person" catalog="system" id="Cpt-Yb-gud"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="r9p-NU-stg">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
@@ -1260,13 +1265,17 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="2Ju-VD-KLc"/>
-        <segue reference="gnU-P8-AcY"/>
+        <segue reference="I6Y-LZ-N8p"/>
+        <segue reference="hFm-H6-UXJ"/>
         <segue reference="Zp8-kZ-mcx"/>
         <segue reference="CGc-Mu-YFZ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Take_Away" width="2000" height="2000"/>
+        <image name="bag" catalog="system" width="128" height="128"/>
+        <image name="house" catalog="system" width="128" height="106"/>
+        <image name="map" catalog="system" width="128" height="110"/>
+        <image name="person" catalog="system" width="128" height="117"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

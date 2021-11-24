@@ -32,8 +32,8 @@ class FloatingTabBarController: UITabBarController {
             }
         }
 
-        tabBar.itemWidth = 30.0
-        tabBar.itemPositioning = .centered
+        tabBar.itemWidth = 32
+        tabBar.itemPositioning = .fill
         tabBar.unselectedItemTintColor = .white
       }
 }
