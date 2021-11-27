@@ -17,7 +17,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     //Cart views
     @IBOutlet weak var viewTotal: UIView!
     @IBOutlet weak var viewAddress: UIView!
-    @IBOutlet weak var viewMap: UIView!
+    //@IBOutlet weak var viewMap: UIView!
     @IBOutlet weak var viewPayment: UIView!
     
     //Cart labels
@@ -29,7 +29,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     let emptyCart = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     
     //Location
-    var locationManager: CLLocationManager!
+    //var locationManager: CLLocationManager!
     
     override func viewDidAppear(_ animated: Bool) {
         loadmeals()
@@ -40,12 +40,13 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
         loadmeals()
         
-        
+        self.title = "My Order"
         tbvCart.dataSource = self
         tbvCart.delegate = self
+        
+        paymentButton.layer.cornerRadius = paymentButton.bounds.height/2
         
         // Do any additional setup after loading the view.
     }
@@ -64,7 +65,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.tbvCart.isHidden = false
             self.viewTotal.isHidden = false
             self.viewAddress.isHidden = false
-            self.viewMap.isHidden = false
+            //self.viewMap.isHidden = false
             self.viewPayment.isHidden = false
             self.labelAddress.text = "74-01 Queens Blvd, Queens, NY 11373"
 //            self.labelAddress.text = "55-01 37th Ave, Queens, NY 11377"
@@ -74,15 +75,15 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.labelTotal.text = "$\(Cart.currentCart.getTotal())"
         }
         //Show Current Location
-        if CLLocationManager.locationServicesEnabled(){
-            locationManager = CLLocationManager()
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestAlwaysAuthorization()
-            locationManager.startUpdatingLocation()
-            
-            self.labelMap.showsUserLocation = true
-        }
+//        if CLLocationManager.locationServicesEnabled(){
+//            locationManager = CLLocationManager()
+//            locationManager.delegate = self
+//            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//            locationManager.requestAlwaysAuthorization()
+//            locationManager.startUpdatingLocation()
+//
+//            self.labelMap.showsUserLocation = true
+//        }
 
     }
     
@@ -145,7 +146,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
                 )
                 
                 self.labelMap.setRegion(region, animated: true)
-                self.locationManager.stopUpdatingLocation()
+                //self.locationManager.stopUpdatingLocation()
                 
                 // Create a pin
                 let dropPin = MKPointAnnotation()
@@ -159,7 +160,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 126
+        return 100
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

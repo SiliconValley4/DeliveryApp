@@ -18,6 +18,8 @@ class CartCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        mealImage.contentMode = .scaleAspectFill
+        mealImage.layer.cornerRadius = 8
         // Initialization code
     }
 
