@@ -13,6 +13,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var imgAvatar: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userEmailLabel: UILabel!
+    @IBOutlet weak var signoutActionButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,7 @@ class ProfileViewController: UIViewController {
         imgAvatar.image = try! UIImage(data: Data (contentsOf: URL(string: User.currenUser.pictureURL!)!))
         
         imgAvatar.layer.cornerRadius = imgAvatar.bounds.height/2
-
+        signoutActionButton.layer.cornerRadius = 16
         // Do any additional setup after loading the view.
     }
     
@@ -58,6 +59,11 @@ class ProfileViewController: UIViewController {
     }
     
     
+    @IBAction func signoutAction(_ sender: Any) {
+        FBManager.shared.logOut()
+        User.currenUser.resetInfo()
+        self.dismiss(animated: true, completion: nil)
+    }
     
     
     

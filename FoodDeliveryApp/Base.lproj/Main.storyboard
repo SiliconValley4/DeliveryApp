@@ -183,7 +183,7 @@
             <objects>
                 <viewController id="qJj-rX-Pd6" customClass="DriversProfileViewController" customModule="FoodDeliveryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z4W-Sa-l6R">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Fd-L8-x4p">
@@ -1143,14 +1143,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCA-6C-RKa">
+                                <rect key="frame" x="122" y="455.66666666666669" width="146" height="35.666666666666686"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Sign Out">
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="signoutAction:" destination="ap8-OE-AEg" eventType="touchUpInside" id="Po1-bc-5iC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dCR-zu-dWV"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="tdg-u5-R3d" firstAttribute="leading" secondItem="dCR-zu-dWV" secondAttribute="leading" constant="55" id="0UM-hh-Lbn"/>
                             <constraint firstItem="dCR-zu-dWV" firstAttribute="trailing" secondItem="K6f-MK-n0b" secondAttribute="trailing" constant="36" id="9o9-Ks-3cA"/>
                             <constraint firstItem="K6f-MK-n0b" firstAttribute="leading" secondItem="dCR-zu-dWV" secondAttribute="leading" constant="36" id="AcJ-tz-uG6"/>
                             <constraint firstItem="tdg-u5-R3d" firstAttribute="top" secondItem="Vei-Vs-LRQ" secondAttribute="bottom" constant="16" id="BXy-W3-aWe"/>
+                            <constraint firstItem="cCA-6C-RKa" firstAttribute="leading" secondItem="dCR-zu-dWV" secondAttribute="leading" constant="122" id="DYP-5j-da2"/>
                             <constraint firstItem="dCR-zu-dWV" firstAttribute="trailing" secondItem="QGO-0v-ieQ" secondAttribute="trailing" constant="36" id="GWB-pK-cd6"/>
                             <constraint firstItem="Vei-Vs-LRQ" firstAttribute="top" secondItem="QGO-0v-ieQ" secondAttribute="bottom" constant="36" id="JyO-pO-1r9"/>
                             <constraint firstItem="Vei-Vs-LRQ" firstAttribute="centerX" secondItem="dCR-zu-dWV" secondAttribute="centerX" id="R8M-Zc-4VS"/>
@@ -1158,6 +1172,8 @@
                             <constraint firstItem="dCR-zu-dWV" firstAttribute="trailing" secondItem="tdg-u5-R3d" secondAttribute="trailing" constant="55" id="ZMv-XM-P1w"/>
                             <constraint firstItem="K6f-MK-n0b" firstAttribute="top" secondItem="tdg-u5-R3d" secondAttribute="bottom" constant="8" id="ZTK-Yp-R9Z"/>
                             <constraint firstItem="QGO-0v-ieQ" firstAttribute="leading" secondItem="dCR-zu-dWV" secondAttribute="leading" constant="36" id="eFU-RN-dFK"/>
+                            <constraint firstItem="dCR-zu-dWV" firstAttribute="trailing" secondItem="cCA-6C-RKa" secondAttribute="trailing" constant="122" id="gIE-aw-kUf"/>
+                            <constraint firstItem="cCA-6C-RKa" firstAttribute="top" secondItem="K6f-MK-n0b" secondAttribute="bottom" constant="100" id="jG9-SA-rsb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EAf-Nz-fZu">
@@ -1169,13 +1185,14 @@
                     </navigationItem>
                     <connections>
                         <outlet property="imgAvatar" destination="Vei-Vs-LRQ" id="JyS-PZ-GSn"/>
+                        <outlet property="signoutActionButton" destination="cCA-6C-RKa" id="6Ph-ZF-Yi1"/>
                         <outlet property="userEmailLabel" destination="K6f-MK-n0b" id="zzp-b1-8Dx"/>
                         <outlet property="userNameLabel" destination="tdg-u5-R3d" id="HUb-Xm-7qW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8iJ-Xt-3Nd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3595.652173913044" y="2390.625"/>
+            <point key="canvasLocation" x="3595.3846153846152" y="2390.0473933649287"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="X2w-3m-4gc">
@@ -1201,7 +1218,7 @@
             <objects>
                 <viewController id="EAz-fl-qHg" customClass="RevenueViewController" customModule="FoodDeliveryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0g7-dU-mzS">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2XV-df-N6z" customClass="BarChartView" customModule="Charts">
@@ -1229,7 +1246,7 @@
                     <tabBarItem key="tabBarItem" title="Orders" id="ytF-wS-Avb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OdH-Yc-jvB">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1248,7 +1265,7 @@
                     <tabBarItem key="tabBarItem" title="Delivery" id="aZ1-3H-8iF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6X0-9s-sQE">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1267,7 +1284,7 @@
                     <tabBarItem key="tabBarItem" title="Earnings" id="iOf-GC-RRA"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sqO-rX-5fY">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1286,7 +1303,7 @@
                     <tabBarItem key="tabBarItem" title="Profile" id="Sw4-jh-aF4"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZaB-45-LcT">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1304,7 +1321,7 @@
         <segue reference="gnU-P8-AcY"/>
         <segue reference="Zp8-kZ-mcx"/>
         <segue reference="CGc-Mu-YFZ"/>
-        <segue reference="tPs-We-3KK"/>
+        <segue reference="mHw-je-SqN"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Take_Away" width="2000" height="2000"/>
