@@ -10,8 +10,6 @@ import Stripe
 
 class RestaurantViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
-    
-    
     @IBOutlet weak var searchRestaurant: UISearchBar!
     @IBOutlet weak var tbvRestaurant: UITableView!
     
@@ -41,7 +39,9 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
                     for item in listRest {
                         let restaurant = Restaurant(json: item)
                         self.restaurants.append(restaurant)
-                        //print("Restaurant \(item["name"])")
+                        print(item)
+                        print("Restaurant \(item["name"])")
+                        print("Description \(item["description"])")
                     }
                     self.tbvRestaurant.reloadData()
                 }
@@ -109,6 +109,7 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
         }
     
         cell.lbRestaurantName.text = restaurant.name
+        cell.lbRestaurantDesc.text = restaurant.description
         cell.lbRestaurantAddress.text = "Address: \(restaurant.address ?? StringConstants.ErrorMessages.NO_ADDRESS)"
         cell.lbRestaurantPhone.text = "Phone: \(restaurant.phone ?? StringConstants.ErrorMessages.NO_PHONE)"
         
