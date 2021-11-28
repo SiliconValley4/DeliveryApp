@@ -26,14 +26,14 @@ class FloatingTabBarController: UITabBarController {
       
         tabBar.layer.insertSublayer(layer, at: 0)
 
-        if let items = tabBar.items {
+        if let items = self.tabBar.items {
             items.forEach { item in
-                item.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -20, right: 0)
+                item.imageInsets = UIEdgeInsets(top: 20, left: 0, bottom: -20, right: 0)
             }
         }
 
-        tabBar.itemWidth = 32
-        tabBar.itemPositioning = .fill
+//        tabBar.itemWidth = 32
+        //tabBar.itemPositioning = .fill
         tabBar.unselectedItemTintColor = .white
       }
 }

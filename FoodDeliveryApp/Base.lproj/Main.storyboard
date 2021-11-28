@@ -916,7 +916,7 @@
             <objects>
                 <tabBarController modalPresentationStyle="fullScreen" id="HHd-f4-6Wm" customClass="FloatingTabBarController" customModule="FoodDeliveryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="dXj-sb-gZY"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="w6x-RA-OPP">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="centered" itemWidth="40" id="w6x-RA-OPP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
