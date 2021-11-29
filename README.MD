@@ -27,24 +27,29 @@ The following functionality is completed:
 - [x] Customer can view live map current order
 
 #### Customer : App Week 12
-- [ ] Customer App Redesign v2 Started
-- Customer App Redesign v2 Started
+- [X] Customer App Redesign v2 Started
 
 
 ### Driver : App
+#### Driver : App Week 11
 - [x] Driver sees see all orders
 - [x] Driver can pick an order
 - [x] Driver can see live map of customer address
 - [x] Driver can complete an order
 - [x] Driver can see profile details
 
+#### Driver : App Week 12
+- [X] Driver App Redesign v2 Started
+
 
 ### Restaurant Owner : Website/API
+#### Customer : App Week 11
 - [x] Restauranteurs can sign in / logout
 - [x] Restauranteurs can register there business
 - [x] Restauranteurs can see Orders Report
 - [x] Restauranteurs get live notifications of new orders
 - [x] Restauranteurs can view Account Summary
+#### Customer : App Week 12
 - [x] Restauranteurs can view and add dishes
 - [x] Restauranteurs can update dishes
 - [x] Restauranteurs can view and update profile
