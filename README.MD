@@ -289,3 +289,10 @@ Delivery App's purpose is to allow customers to order food from any restaurant, 
 ##### Example of how the app works Driver/Customer/Owner
 <img src="https://github.com/SiliconValley4/FoodDeliveryApp/blob/main/Submission/app-example.gif">
 
+
+### **Unit 12 - Build Sprint 3**
+##### Example of the design v2
+<img src="https://github.com/SiliconValley4/DeliveryApp/blob/main/Submission/Unit%2012%20-%20Build%20Sprint%203.gif">
+
+
+
