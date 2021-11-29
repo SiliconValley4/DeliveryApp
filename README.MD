@@ -13,6 +13,7 @@ The following functionality is completed:
 
 
 ### Customer : App
+#### Customer : App Week 11
 - [x] Customer sees app icon in home screen and styled launch screen.
 - [x] Customer can sign up to create a new account.
 - [x] Customer can log in.
@@ -24,6 +25,10 @@ The following functionality is completed:
 - [x] Customer can start a new order with other restaurant
 - [x] Customer can pay for its order
 - [x] Customer can view live map current order
+
+#### Customer : App Week 12
+- [] Customer App Redesign v2 Started
+
 
 ### Driver : App
 - [x] Driver sees see all orders
