@@ -292,7 +292,7 @@ Delivery App's purpose is to allow customers to order food from any restaurant, 
 
 ### **Unit 12 - Build Sprint 3**
 ##### Example of the design v2
-<img src="https://github.com/SiliconValley4/DeliveryApp/blob/main/Submission/Unit%2012%20-%20Build%20Sprint%203.gif" width="250" height="250">
+<img src="https://github.com/SiliconValley4/DeliveryApp/blob/main/Submission/Unit%2012%20-%20Build%20Sprint%203.gif" width="250">
 
 
 
