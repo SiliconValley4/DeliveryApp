@@ -27,7 +27,8 @@ The following functionality is completed:
 - [x] Customer can view live map current order
 
 #### Customer : App Week 12
-- [] Customer App Redesign v2 Started
+- [ ] Customer App Redesign v2 Started
+- Customer App Redesign v2 Started
 
 
 ### Driver : App
