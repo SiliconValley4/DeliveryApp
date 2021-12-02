@@ -571,15 +571,15 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="hBg-vP-vXD" customClass="RestaurantViewController" customModule="FoodDeliveryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gnX-iU-WBG">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="4E0-n1-v2R">
-                                <rect key="frame" x="0.0" y="88" width="390" height="51"/>
+                                <rect key="frame" x="0.0" y="56" width="390" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="v1d-Sa-YNf">
-                                <rect key="frame" x="0.0" y="139" width="390" height="622"/>
+                                <rect key="frame" x="0.0" y="107" width="390" height="654"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="RestaurantCell" rowHeight="325" id="bHs-OZ-0Sm" customClass="RestaurantCell" customModule="FoodDeliveryApp" customModuleProvider="target">
@@ -648,7 +648,7 @@
                                             <outlet property="lbRestaurantDesc" destination="o5N-sq-Yz9" id="lfH-Vf-7A1"/>
                                             <outlet property="lbRestaurantName" destination="fgs-MK-bvP" id="n6z-yf-M6Y"/>
                                             <outlet property="lbRestaurantPhone" destination="EOT-tu-qjf" id="vpO-PO-Fb9"/>
-                                            <segue destination="bOw-Y2-yop" kind="presentation" identifier="MealList" id="8aZ-vI-ODu"/>
+                                            <segue destination="bOw-Y2-yop" kind="presentation" identifier="MealList" modalPresentationStyle="fullScreen" id="8aZ-vI-ODu"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -681,11 +681,11 @@
             <objects>
                 <viewController id="bOw-Y2-yop" customClass="CustomerMenuViewController" customModule="FoodDeliveryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nPs-nA-o5y">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="XMA-Ns-Aro">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="756"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="810"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" rowHeight="164" id="Hkt-Sf-wjI" customClass="MenuCell" customModule="FoodDeliveryApp" customModuleProvider="target">
@@ -976,7 +976,7 @@
                     <tabBarItem key="tabBarItem" title="" image="bag" catalog="system" id="nyD-RF-fTb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LSa-We-1LS">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -999,7 +999,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cMa-bM-V5m">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1124,7 +1124,7 @@
                     <tabBarItem key="tabBarItem" title="" image="map" catalog="system" id="ryo-9M-Tb2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uNi-B8-odb">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1141,36 +1141,36 @@
             <objects>
                 <viewController id="ap8-OE-AEg" customClass="ProfileViewController" customModule="FoodDeliveryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ktb-b9-bct">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdg-u5-R3d">
-                                <rect key="frame" x="55" y="330" width="280" height="28.666666666666686"/>
+                                <rect key="frame" x="55" y="302" width="280" height="28.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGO-0v-ieQ">
-                                <rect key="frame" x="36" y="96" width="318" height="34"/>
+                                <rect key="frame" x="36" y="64" width="318" height="34"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vei-Vs-LRQ">
-                                <rect key="frame" x="121" y="166" width="148" height="148"/>
+                                <rect key="frame" x="105" y="106" width="180" height="180"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="148" id="mcQ-J7-q0L"/>
-                                    <constraint firstAttribute="width" constant="148" id="vDX-p6-Io1"/>
+                                    <constraint firstAttribute="height" constant="180" id="mcQ-J7-q0L"/>
+                                    <constraint firstAttribute="width" constant="180" id="vDX-p6-Io1"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6f-MK-n0b">
-                                <rect key="frame" x="36" y="366.66666666666669" width="318" height="21"/>
+                                <rect key="frame" x="36" y="338.66666666666669" width="318" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCA-6C-RKa">
-                                <rect key="frame" x="122" y="487.66666666666669" width="146" height="35.666666666666686"/>
+                                <rect key="frame" x="122" y="459.66666666666669" width="146" height="35.666666666666686"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Sign Out">
@@ -1192,7 +1192,7 @@
                             <constraint firstItem="tdg-u5-R3d" firstAttribute="top" secondItem="Vei-Vs-LRQ" secondAttribute="bottom" constant="16" id="BXy-W3-aWe"/>
                             <constraint firstItem="cCA-6C-RKa" firstAttribute="leading" secondItem="dCR-zu-dWV" secondAttribute="leading" constant="122" id="DYP-5j-da2"/>
                             <constraint firstItem="dCR-zu-dWV" firstAttribute="trailing" secondItem="QGO-0v-ieQ" secondAttribute="trailing" constant="36" id="GWB-pK-cd6"/>
-                            <constraint firstItem="Vei-Vs-LRQ" firstAttribute="top" secondItem="QGO-0v-ieQ" secondAttribute="bottom" constant="36" id="JyO-pO-1r9"/>
+                            <constraint firstItem="Vei-Vs-LRQ" firstAttribute="top" secondItem="QGO-0v-ieQ" secondAttribute="bottom" constant="8" id="JyO-pO-1r9"/>
                             <constraint firstItem="Vei-Vs-LRQ" firstAttribute="centerX" secondItem="dCR-zu-dWV" secondAttribute="centerX" id="R8M-Zc-4VS"/>
                             <constraint firstItem="QGO-0v-ieQ" firstAttribute="top" secondItem="dCR-zu-dWV" secondAttribute="top" constant="8" id="Tlz-f1-Z6I"/>
                             <constraint firstItem="dCR-zu-dWV" firstAttribute="trailing" secondItem="tdg-u5-R3d" secondAttribute="trailing" constant="55" id="ZMv-XM-P1w"/>
@@ -1227,7 +1227,7 @@
                     <tabBarItem key="tabBarItem" title="" image="person" catalog="system" id="Cpt-Yb-gud"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="r9p-NU-stg">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1347,7 +1347,7 @@
         <segue reference="gnU-P8-AcY"/>
         <segue reference="Zp8-kZ-mcx"/>
         <segue reference="CGc-Mu-YFZ"/>
-        <segue reference="tPs-We-3KK"/>
+        <segue reference="mHw-je-SqN"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Take_Away" width="2000" height="2000"/>
