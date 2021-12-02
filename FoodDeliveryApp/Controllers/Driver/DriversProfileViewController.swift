@@ -23,12 +23,13 @@ class DriversProfileViewController: UIViewController {
         lbEmail.text = User.currenUser.email
         
         driversAvatar.image = try! UIImage(data: Data (contentsOf: URL(string: User.currenUser.pictureURL!)!))
-        
-        driversAvatar.layer.cornerRadius = driversAvatar.bounds.height/2
+        configure()
     }
     
-    
-    
+    func configure() {
+        driversAvatar.clipsToBounds = true
+        driversAvatar.layer.cornerRadius = driversAvatar.bounds.height/2
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DriverLogout" {
@@ -42,12 +43,5 @@ class DriversProfileViewController: UIViewController {
 //            })
             
         }
-        
     }
-    
-    
-    
-    
-
-
 }
