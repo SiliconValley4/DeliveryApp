@@ -47,6 +47,7 @@ class MealDetailViewController: UIViewController {
         
         if let imageUrl = meal?.image {
             Helpers.loadImage(mealImage, "\(imageUrl)")
+            print(imageUrl)
         }
     }
     
@@ -79,7 +80,7 @@ class MealDetailViewController: UIViewController {
             lbQty.text = String(qty)
             
             if let price = meal?.price {
-                lbTotal.text = "Total\n$\(price * Float(qty))"
+                lbTotal.text = "Total\n$\(price * Float(qty))0"
             }
         }
     }
@@ -90,7 +91,7 @@ class MealDetailViewController: UIViewController {
             lbQty.text = String(qty)
             
             if let price = meal?.price {
-                lbTotal.text = "Total\n$\(price * Float(qty))"
+                lbTotal.text = "Total\n$\(price * Float(qty))0"
             }
         }
     

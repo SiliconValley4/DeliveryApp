@@ -25,11 +25,13 @@ class CustomerMenuViewController: UIViewController, UITableViewDelegate, UITable
         if let restaurantName = restaurant?.name {
             self.navigationItem.title = restaurantName
         }
+
+        // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
         
         //Run Fuctions
         loadMeals()
-
-        // Do any additional setup after loading the view.
     }
     
     
