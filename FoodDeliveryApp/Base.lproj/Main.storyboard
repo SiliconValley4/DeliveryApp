@@ -321,7 +321,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="rxE-nI-VIE"/>
                     <connections>
-                        <outlet property="image" destination="QkA-zI-Ftc" id="F4d-4R-Del"/>
                         <outlet property="tbvDriverOrder" destination="wc6-H8-swf" id="EVL-hf-M59"/>
                         <outlet property="userWelcomeLabel" destination="k2L-7b-ZPL" id="FhD-hs-wgM"/>
                         <segue destination="rEK-uE-wpZ" kind="show" identifier="CurrentDelivery" id="CGc-Mu-YFZ"/>
