@@ -14,29 +14,23 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var tbvDriverOrder: UITableView!
     
-    
-    
     //variables
     var orders = [DriverOrder]()
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         tbvDriverOrder.dataSource = self
         tbvDriverOrder.delegate = self
         
         userWelcomeLabel.text = User.currenUser.name
 
+        
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
         loadReadyOrders()
     }
-    
     
     
     func loadReadyOrders() {
