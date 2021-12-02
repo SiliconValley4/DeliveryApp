@@ -251,7 +251,8 @@
                     <connections>
                         <outlet property="driversAvatar" destination="ZIe-pP-bPF" id="jaA-15-Sfu"/>
                         <outlet property="lbEmail" destination="kfs-uY-9Xr" id="VpH-r5-n9x"/>
-                        <outlet property="lbName" destination="5Fd-L8-x4p" id="Xi1-Pu-Qq7"/>
+                        <outlet property="lbFirstName" destination="5Fd-L8-x4p" id="cys-I6-Qfo"/>
+                        <outlet property="lbLastName" destination="mlV-YG-tHs" id="oi0-59-aaq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DJk-qN-c4k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
