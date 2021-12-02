@@ -30,6 +30,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var locationTimer = Timer()
     var zoomTimer = Timer()
+    var getLatestOrderTimer = Timer()
     
     
 
@@ -39,23 +40,29 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tbvOrder.dataSource = self
         tbvOrder.delegate = self
         
-        
-        //getLatestOrder()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.getLatestOrder()
+        }
+
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("On orderView Controller")
+        getLatestOrderTimer = Timer.scheduledTimer(
+            timeInterval: 5.0,
+            target: self,
+            selector: #selector(refreshViewController),
+            userInfo: nil,
+            repeats: true)
         //getLatestOrder()
+        let seconds = 1.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.autoZoom()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-        print("On orderView Controller")
-        getLatestOrder()
-        let seconds = 1.0
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            self.autoZoom()
-        }
     }
     
 
@@ -80,8 +87,8 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 let from = order["restaurant"]["address"].string!
                 let to = order["address"].string!
-                print("order from: \(json["order"]["restaurant"]["address"].string!)")
-                print("order to: \(json["order"]["address"].string!)")
+                //print("order from: \(json["order"]["restaurant"]["address"].string!)")
+                //print("order to: \(json["order"]["address"].string!)")
 
                 self.getLocation(from, "Restaurant", { (sou) in
                     self.source = sou
@@ -114,6 +121,10 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
             selector: #selector(getDriverLocation(_:)),
             userInfo: nil,
             repeats: true)
+    }
+        
+    @objc func refreshViewController(){
+        self.getLatestOrder()
     }
     
     func setZoomTimer() {
@@ -200,9 +211,9 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) { (placemarks, error) in
-            print("Address: ************")
-            print("Address: \(placemarks?.first?.location?.coordinate)")
-            print("Address: \(placemarks?.first?.location?.description)")
+            //print("Address: ************")
+            //print("Address: \(placemarks?.first?.location?.coordinate)")
+            //print("Address: \(placemarks?.first?.location?.description)")
             if (error != nil) {
                 print("Error in geolocation: \(error!)")
             }

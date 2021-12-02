@@ -17,7 +17,9 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var bcomplete: UIButton!
     
-    let maxd = 0.0001
+     let maxd = 0.0001
+    let delta = 0.00001
+    let simulatorFrequency = 0.02
     
     var orderId: Int?
     
@@ -42,46 +44,69 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Show current Driver's location
-        
         if CLLocationManager.locationServicesEnabled() {
-            
-            print(self.driverLocation)
             locationManager = CLLocationManager()
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestAlwaysAuthorization()
             locationManager.startUpdatingLocation()
             self.map.showsUserLocation = false
-            
-            print(self.driverLocation)
-
-            
-            if(driverLocation == nil){
-                setDriverLocationTo()
+            if(self.driverLocation == nil){
+                let seconds = 2.0
+                DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                    self.setDriverLocationTo()
+                }
                 print(self.driverLocation)
-
             }
-            
         }
+        
         //Update location
-        timerDriverLocation = Timer.scheduledTimer(
-            timeInterval: 0.5,
-            target: self,
-            selector: #selector(updateLocation(_:)),
-            userInfo: nil,
-            repeats: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            self.timerDriverLocation = Timer.scheduledTimer(
+                timeInterval: 0.5,
+                target: self,
+                selector: #selector(self.sendLocationToServer(_:)),
+                userInfo: nil,
+                repeats: true)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            if(!self.timerToRestaurant.isValid && self.restaurantLocation != nil){
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                    print("Moving to Restaurant now")
+                    print("Total distance to travel dx:\(abs(self.restaurantLocation.longitude-self.driverLocation.longitude)) dy:\(abs(self.driverLocation.latitude-self.restaurantLocation.latitude))")
+                    self.timerToRestaurant = Timer.scheduledTimer(
+                        timeInterval: self.simulatorFrequency,
+                        target: self,
+                        selector: #selector(self.moveToRestaurant),
+                        userInfo: nil,
+                        repeats: true)
+                }
+            }
+        }
+
         
        
         // Do any additional setup after loading the view.
 //        let seconds = 2.0
-//        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-//            self.setDriverLocationTo()
-//        }
+
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        // Show current Driver's location
+        if(self.driverLocation == nil){
+
+        }
+    }
     
-    @objc func updateLocation(_ sender: AnyObject) {
+//    @objc refreshViewController(){
+//
+//
+//
+//
+//    }
+
+    @objc func sendLocationToServer(_ sender: AnyObject) {
         APIManager.shared.updateLocation(location: self.driverLocation) { (json) in
             //print(self.driverLocation)
             //self.autoZoom()
@@ -97,18 +122,9 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         //if(!timerDriverLocation.isValid &&
         
         
-        if(!timerToRestaurant.isValid && self.restaurantLocation != nil){
-            DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
-                print("Moving to Restaurant now")
-                print("Total distance to travel dx:\(abs(self.restaurantLocation.longitude-self.driverLocation.longitude)) dy:\(abs(self.driverLocation.latitude-self.restaurantLocation.latitude))")
-                self.timerToRestaurant = Timer.scheduledTimer(
-                    timeInterval: 0.001,
-                    target: self,
-                    selector: #selector(self.moveToRestaurant),
-                    userInfo: nil,
-                    repeats: true)
-            }
-        }
+
+        
+
     }
     
     func loadData() {
@@ -291,7 +307,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                     print("Moving to Customer now")
                     print("Total distance to travel dx:\(abs(self.customerLocation.longitude-self.driverLocation.longitude)) dy:\(abs(self.driverLocation.latitude-self.customerLocation.latitude))")
                     self.timerToCustomer = Timer.scheduledTimer(
-                        timeInterval: 0.001,
+                        timeInterval: self.simulatorFrequency,
                         target: self,
                         selector: #selector(self.moveToCustomer),
                         userInfo: nil,
@@ -305,23 +321,23 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     func moveX(_ destination: CLLocationCoordinate2D){
         let dx = abs(self.driverLocation.longitude-destination.longitude)
-        let rx = Double(arc4random_uniform(10000)+1)
+        let rx = Double(arc4random_uniform(10)+1)
         if(dx > maxd){
             if(self.driverLocation.longitude > destination.longitude){
-                self.driverLocation.longitude -= 0.000000001 * rx
+                self.driverLocation.longitude -= delta * rx
             } else{
-                self.driverLocation.longitude += 0.000000001 * rx
+                self.driverLocation.longitude += delta * rx
             }
         }
     }
     func moveY(_ destination: CLLocationCoordinate2D){
         let dy = abs(self.driverLocation.latitude-destination.latitude)
-        let ry = Double(arc4random_uniform(10000)+1)
+        let ry = Double(arc4random_uniform(10)+1)
         if(dy > maxd){
             if(self.driverLocation.latitude > destination.latitude){
-                self.driverLocation.latitude -= 0.000000001 * ry
+                self.driverLocation.latitude -= delta * ry
             } else{
-                self.driverLocation.latitude += 0.000000001 * ry
+                self.driverLocation.latitude += delta * ry
             }
         }
     }
@@ -334,7 +350,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         
         let location = locations.last! as CLLocation
         self.driverLocation = location.coordinate
-        
+        print("GETS HERE SOMEHOW@!!!!!")
 //        print("location")
 //        print(location.coordinate)
         
@@ -346,7 +362,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             driverPin.coordinate = self.driverLocation
             self.map.addAnnotation(driverPin)
         }
-        driverPin.title = "Me"
+        driverPin.title = "You"
         
         //All 3 locations
         var zoomRect = MKMapRect.null
@@ -361,9 +377,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         let insetRect = zoomRect.insetBy(dx: insetWidth, dy: insetHeight)
         
         self.map.setVisibleMapRect(insetRect, animated: true)
-        
-        
-        
+
         
     }
     //Complete Order Button Action
