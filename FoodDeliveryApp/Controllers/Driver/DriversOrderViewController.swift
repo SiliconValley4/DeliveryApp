@@ -13,23 +13,19 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var userWelcomeLabel: UILabel!
     
     @IBOutlet weak var tbvDriverOrder: UITableView!
-    
-    
+    @IBOutlet weak var image: UIImageView!
     
     //variables
     var orders = [DriverOrder]()
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         tbvDriverOrder.dataSource = self
         tbvDriverOrder.delegate = self
         
         userWelcomeLabel.text = User.currenUser.name
 
+        
         // Do any additional setup after loading the view.
     }
     
@@ -37,7 +33,10 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
         loadReadyOrders()
     }
     
-    
+    func configure() {
+        image.clipsToBounds = true
+        image.layer.cornerRadius = image.bounds.height/2
+    }
     
     func loadReadyOrders() {
         APIManager.shared.getDriverOrders{(json) in
