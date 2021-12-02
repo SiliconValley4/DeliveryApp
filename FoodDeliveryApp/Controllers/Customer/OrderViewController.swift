@@ -24,7 +24,13 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var source: MKPlacemark?
     
     var driverPin: MKPointAnnotation!
-    var timer = Timer()
+    var selfPin: MKPointAnnotation!
+    var restaurantPin: MKPointAnnotation!
+    
+    
+    var locationTimer = Timer()
+    var zoomTimer = Timer()
+    var getLatestOrderTimer = Timer()
     
     
 
@@ -34,26 +40,29 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tbvOrder.dataSource = self
         tbvOrder.delegate = self
         
-        
-        //getLatestOrder()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.getLatestOrder()
+        }
+
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("On orderView Controller")
+        getLatestOrderTimer = Timer.scheduledTimer(
+            timeInterval: 5.0,
+            target: self,
+            selector: #selector(refreshViewController),
+            userInfo: nil,
+            repeats: true)
         //getLatestOrder()
+        let seconds = 1.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.autoZoom()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        getLatestOrder()
-        
-        let seconds = 1.0
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            self.autoZoom()
-            
-        }
-        
-
-
     }
     
 
@@ -78,8 +87,8 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 let from = order["restaurant"]["address"].string!
                 let to = order["address"].string!
-                print("order from: \(json["order"]["restaurant"]["address"].string!)")
-                print("order to: \(json["order"]["address"].string!)")
+                //print("order from: \(json["order"]["restaurant"]["address"].string!)")
+                //print("order to: \(json["order"]["address"].string!)")
 
                 self.getLocation(from, "Restaurant", { (sou) in
                     self.source = sou
@@ -91,7 +100,8 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 //if order["status"].string! != "Delivered" {
                 if order["status"].string! == "On the way" {
                     //getDriverLocation(self)
-                    self.setTimer()
+                    self.setLocationTimer()
+                    self.setZoomTimer()
                 }
             } else {
                 print("No prev order")
@@ -102,18 +112,34 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
         
     // repeats: to update driver location
-    func setTimer() {
-        getDriverLocation(self)
-        timer = Timer.scheduledTimer(
-            timeInterval: 30,
+    func setLocationTimer() {
+        print("Timer START")
+        //getDriverLocation(self)
+        locationTimer = Timer.scheduledTimer(
+            timeInterval: 0.5,
             target: self,
             selector: #selector(getDriverLocation(_:)),
-            userInfo: nil, repeats: true)
-        print("Timer Called: Start")
+            userInfo: nil,
+            repeats: true)
+    }
+        
+    @objc func refreshViewController(){
+        self.getLatestOrder()
     }
     
-    func autoZoom() {
-        print("AutoZoom called")
+    func setZoomTimer() {
+        print("Zoom Timer START")
+        //getDriverLocation(self)
+        locationTimer = Timer.scheduledTimer(
+            timeInterval: 5.0,
+            target: self,
+            selector: #selector(autoZoom),
+            userInfo: nil,
+            repeats: true)
+    }
+    
+    @objc func autoZoom() {
+        //print("AutoZoom called")
         var zoomRect = MKMapRect.null
         for annotation in self.map.annotations {
             let annotationPoint = MKMapPoint(annotation.coordinate)
@@ -130,15 +156,15 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //
     @objc func getDriverLocation(_ sender: AnyObject) {
-        print("Get Driver Location from OrderViewController")
+        //print("Get Driver Location from OrderViewController")
         APIManager.shared.getDriverLocation { (json) in
-            print(json)
+            //print(json)
             if let location = json["location"].string {
-                print(location)
+                //print(location)
                 
                 //self.lbStatus.text = "ON THE WAY"
                 let split = location.components(separatedBy: ",")
-                print(split)
+                //print(split)
                 let lat = split[0]
                 let lng = split[1]
                 
@@ -150,16 +176,19 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 } else {
                     self.driverPin = MKPointAnnotation()
                     self.driverPin.coordinate = coordinate
-                    self.driverPin.title = "DRI"
+                    self.driverPin.title = "Driver"
                     self.map.addAnnotation(self.driverPin)
                 }
                 
                 // Reset zoom rect to cover 3 locations
-                self.autoZoom()
+                //self.autoZoom()
                 
             } else {
-                self.timer.invalidate()
-                print("Timer Stopped")
+                self.locationTimer.invalidate()
+                self.zoomTimer.invalidate()
+                self.map.removeAnnotation(self.driverPin)
+                self.map.removeAnnotation(self.restaurantPin)
+                print("Timer END")
             }
         }
     }
@@ -176,18 +205,19 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     // #2
-    
+    // When you call getLocation for each address, you add an "annotation" to the map
+    // these are the pins
     func getLocation(_ address: String,_ title: String,_ completionHandler: @escaping (MKPlacemark) -> Void) {
         
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) { (placemarks, error) in
-            print("getLocation1 called \(placemarks)")
-            
+            //print("Address: ************")
+            //print("Address: \(placemarks?.first?.location?.coordinate)")
+            //print("Address: \(placemarks?.first?.location?.description)")
             if (error != nil) {
-                print("Get Location error")
                 print("Error in geolocation: \(error!)")
             }
-            
+        
             if let placemark = placemarks?.first {
                 
                 let coordinates: CLLocationCoordinate2D = placemark.location!.coordinate
@@ -196,7 +226,9 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 let dropPin = MKPointAnnotation()
                 dropPin.coordinate = coordinates
                 dropPin.title = title
-                
+                if(title=="Restaurant"){
+                    self.restaurantPin = dropPin
+                }
                 self.map.addAnnotation(dropPin)
                 completionHandler(MKPlacemark.init(placemark: placemark))
             }
@@ -264,13 +296,13 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if let annotationView = annotationView, let name = annotation.title! {
             switch name {
-            case "DRI":
+            case "Driver":
                 annotationView.canShowCallout = true
                 annotationView.image = UIImage(named: "pin_car")
-            case "RES":
+            case "Restaurant":
                 annotationView.canShowCallout = true
                 annotationView.image = UIImage(named: "pin_restaurant")
-            case "CUS":
+            case "You":
                 annotationView.canShowCallout = true
                 annotationView.image = UIImage(named: "pin_customer")
             default:
