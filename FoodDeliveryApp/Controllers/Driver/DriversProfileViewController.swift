@@ -19,8 +19,29 @@ class DriversProfileViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        lbName.text = User.currenUser.name
+        lbEmail.text = User.currenUser.email
+        
+        driversAvatar.image = try! UIImage(data: Data (contentsOf: URL(string: User.currenUser.pictureURL!)!))
+        configure()
     }
     
-
-
+    func configure() {
+        driversAvatar.clipsToBounds = true
+        driversAvatar.layer.cornerRadius = driversAvatar.bounds.height/2
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DriverLogout" {
+//            APIManager.shared.logout(completionHandler:{ (error) in
+//                if error == nil {
+                    FBManager.shared.logOut()
+                    User.currenUser.resetInfo()
+                    print("logggin out")
+//                }
+                
+//            })
+            
+        }
+    }
 }

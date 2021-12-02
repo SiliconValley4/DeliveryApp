@@ -12,6 +12,7 @@ class Restaurant {
     
     var id: Int?
     var name: String?
+    var description: String?
     var address: String?
     var phone: String?
     var logo: String?
@@ -19,6 +20,7 @@ class Restaurant {
     init(json: JSON) {
         self.id = json["id"].int
         self.name = json["name"].string
+        self.description = json["description"].string
         self.address = json["address"].string
         self.phone = json["phone"].string
         self.logo = json["logo"].string

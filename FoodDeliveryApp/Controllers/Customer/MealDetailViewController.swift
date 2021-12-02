@@ -10,12 +10,15 @@ import Stripe
 
 class MealDetailViewController: UIViewController {
     
-    @IBOutlet weak var imgMeal: UIImageView!
+    @IBOutlet weak var mealImage: UIImageView!
     @IBOutlet weak var mealName: UILabel!
     @IBOutlet weak var mealDescription: UILabel!
     @IBOutlet weak var lbQty: UILabel!
     @IBOutlet weak var lbTotal: UILabel!
     @IBOutlet var labelIndividualCost: UILabel!
+    @IBOutlet weak var reduceQtyButton: UIButton!
+    @IBOutlet weak var increaseQtyButton: UIButton!
+    @IBOutlet weak var addToCartButton: UIButton!
     
     var meal: Meal?
     var restaurant: Restaurant?
@@ -33,8 +36,8 @@ class MealDetailViewController: UIViewController {
     func loadMeal() {
         
         if let price = meal?.price {
-            lbTotal.text = "Total:\n$\(price)"
-            labelIndividualCost.text = "Each:\n$\(price)"
+            lbTotal.text = "Total\n$\(price)0"
+            labelIndividualCost.text = "Each\n$\(price)0"
         }
         
         
@@ -43,14 +46,27 @@ class MealDetailViewController: UIViewController {
 //        Helpers.loadImage(imgMeal, "http://cdn.sallysbakingaddiction.com/wp-content/uploads/2020/03/mini-quiches.jpg")
         
         if let imageUrl = meal?.image {
-            Helpers.loadImage(imgMeal, "\(imageUrl)")
+            Helpers.loadImage(mealImage, "\(imageUrl)")
         }
-        
     }
     
     private func configure() {
-        imgMeal.layer.cornerRadius = 32
-        imgMeal.clipsToBounds = true
+        mealImage.layer.cornerRadius = 32
+        mealImage.clipsToBounds = true
+        view.backgroundColor = .systemGray5
+        
+        labelIndividualCost.backgroundColor = .white
+        lbTotal.backgroundColor = .white
+        
+        labelIndividualCost.layer.cornerRadius = 16
+        labelIndividualCost.clipsToBounds = true
+        lbTotal.layer.cornerRadius = 16
+        lbTotal.clipsToBounds = true
+        lbQty.clipsToBounds = true
+        lbQty.layer.cornerRadius = 8
+        reduceQtyButton.layer.cornerRadius = 8
+        increaseQtyButton.layer.cornerRadius = 8
+        addToCartButton.layer.cornerRadius = 8
         
     }
     
@@ -63,7 +79,7 @@ class MealDetailViewController: UIViewController {
             lbQty.text = String(qty)
             
             if let price = meal?.price {
-                lbTotal.text = "Total:\n$\(price * Float(qty))"
+                lbTotal.text = "Total\n$\(price * Float(qty))"
             }
         }
     }
@@ -74,7 +90,7 @@ class MealDetailViewController: UIViewController {
             lbQty.text = String(qty)
             
             if let price = meal?.price {
-                lbTotal.text = "Total:\n$\(price * Float(qty))"
+                lbTotal.text = "Total\n$\(price * Float(qty))"
             }
         }
     
@@ -158,12 +174,5 @@ class MealDetailViewController: UIViewController {
         
         print("Added items to cart")
     }
-    
-    
-    
-    
-    
-
- 
 
 }

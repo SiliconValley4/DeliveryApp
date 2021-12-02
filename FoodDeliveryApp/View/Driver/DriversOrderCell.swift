@@ -17,12 +17,18 @@ class DriversOrderCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        configure()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func configure() {
+        imgCustomerAvatar.clipsToBounds = true
+        imgCustomerAvatar.layer.cornerRadius = imgCustomerAvatar.bounds.height/2
     }
 
 }

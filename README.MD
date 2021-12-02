@@ -6,6 +6,55 @@
 1. [Wireframes](#Wireframes)
 2. [Schema](#Schema)
 
+
+## User Stories
+
+The following functionality is completed:
+
+
+### Customer : App
+#### Customer : App Week 11
+- [x] Customer sees app icon in home screen and styled launch screen.
+- [x] Customer can sign up to create a new account.
+- [x] Customer can log in.
+- [x] Customer can logout.
+- [x] Customer can see profile information
+- [x] Customer can view restaurants
+- [x] Customer can view specific restaurant menu
+- [x] Customer can add meal to its cart
+- [x] Customer can start a new order with other restaurant
+- [x] Customer can pay for its order
+- [x] Customer can view live map current order
+
+#### Customer : App Week 12
+- [X] Customer App Redesign v2 Started
+
+
+### Driver : App
+#### Driver : App Week 11
+- [x] Driver sees see all orders
+- [x] Driver can pick an order
+- [x] Driver can see live map of customer address
+- [x] Driver can complete an order
+- [x] Driver can see profile details
+
+#### Driver : App Week 12
+- [X] Driver App Redesign v2 Started
+
+
+### Restaurant Owner : Website/API
+#### Customer : App Week 11
+- [x] Restauranteurs can sign in / logout
+- [x] Restauranteurs can register there business
+- [x] Restauranteurs can see Orders Report
+- [x] Restauranteurs get live notifications of new orders
+- [x] Restauranteurs can view Account Summary
+#### Customer : App Week 12
+- [x] Restauranteurs can view and add dishes
+- [x] Restauranteurs can update dishes
+- [x] Restauranteurs can view and update profile
+
+
 ## Overview
 ### Description
 Delivery App's purpose is to allow customers to order food from any restaurant, providing them with the option to pick-up or get their order delivered.
@@ -231,3 +280,19 @@ Delivery App's purpose is to allow customers to order food from any restaurant, 
     `POST`    | `api/customer/order/<order_id>/seal` | finalize order, submit
 
 <img src="https://github.com/SiliconValley4/FoodDeliveryApp/blob/main/Submission/gif2-1.gif">
+
+
+
+
+
+### **Unit 11 - Build Sprint 2**
+##### Example of how the app works Driver/Customer/Owner
+<img src="https://github.com/SiliconValley4/FoodDeliveryApp/blob/main/Submission/app-example.gif">
+
+
+### **Unit 12 - Build Sprint 3**
+##### Example of the design v2
+<img src="https://github.com/SiliconValley4/DeliveryApp/blob/main/Submission/Unit%2012%20-%20Build%20Sprint%203.gif" width="250">
+
+
+
