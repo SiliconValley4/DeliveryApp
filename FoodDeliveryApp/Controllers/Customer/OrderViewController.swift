@@ -49,11 +49,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let seconds = 1.0
         DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
             self.autoZoom()
-            
         }
-        
-
-
     }
     
 
@@ -103,13 +99,13 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     // repeats: to update driver location
     func setTimer() {
+        print("Timer START")
         getDriverLocation(self)
         timer = Timer.scheduledTimer(
-            timeInterval: 30,
+            timeInterval: 1.0,
             target: self,
             selector: #selector(getDriverLocation(_:)),
             userInfo: nil, repeats: true)
-        print("Timer Called: Start")
     }
     
     func autoZoom() {
@@ -130,15 +126,15 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //
     @objc func getDriverLocation(_ sender: AnyObject) {
-        print("Get Driver Location from OrderViewController")
+        //print("Get Driver Location from OrderViewController")
         APIManager.shared.getDriverLocation { (json) in
-            print(json)
+            //print(json)
             if let location = json["location"].string {
-                print(location)
+                //print(location)
                 
                 //self.lbStatus.text = "ON THE WAY"
                 let split = location.components(separatedBy: ",")
-                print(split)
+                //print(split)
                 let lat = split[0]
                 let lng = split[1]
                 
@@ -150,7 +146,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 } else {
                     self.driverPin = MKPointAnnotation()
                     self.driverPin.coordinate = coordinate
-                    self.driverPin.title = "DRI"
+                    self.driverPin.title = "Driver"
                     self.map.addAnnotation(self.driverPin)
                 }
                 
@@ -159,7 +155,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
             } else {
                 self.timer.invalidate()
-                print("Timer Stopped")
+                print("Timer END")
             }
         }
     }
@@ -181,10 +177,11 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) { (placemarks, error) in
-            print("getLocation1 called \(placemarks)")
-            
+            print("Address: ************")
+            print("Address: \(placemarks?.first?.location?.coordinate)")
+            print("Address: \(placemarks?.first?.location?.description)")
+
             if (error != nil) {
-                print("Get Location error")
                 print("Error in geolocation: \(error!)")
             }
             

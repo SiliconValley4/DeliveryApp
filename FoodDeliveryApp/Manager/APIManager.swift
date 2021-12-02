@@ -363,7 +363,7 @@ class APIManager {
     //
     // Request Server function
     func requestServer(_ method: Alamofire.HTTPMethod,_ path: String,_ params: [String: Any]?,_ encoding: ParameterEncoding,_ completionHandler: @escaping (JSON) -> Void ) {
-        print("Request Server from API Manager")
+        //print("Request Server from API Manager")
         
         let url = baseURL?.appendingPathComponent(path)
         
@@ -374,15 +374,15 @@ class APIManager {
                 switch response.result {
                 case .success(let value):
                     let jsonData = JSON(value)
-                    print("__________________________________________")
-                    print(jsonData)
-                    print("___________________requestServer______________________")
+                    //print(jsonData)
+                    print("____requestServer success____")
                     completionHandler(jsonData)
                     
                     break
                     
                 case .failure:
                     //completionHandler((rawValue: JSON) )
+                    //print("reqServer Failed")
                     break
                 }
             }
@@ -548,7 +548,6 @@ class APIManager {
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)
-
                 print("____________________________________getLatestOrderSUCCESS____________________________")
                 completionHandler(jsonData)
                 break
@@ -582,7 +581,6 @@ class APIManager {
             "access_token": self.accessToken
         ]
         print("__________PARAMS_______")
-        print(orderId)
         print(accessToken)
         
         //testing request
@@ -591,8 +589,6 @@ class APIManager {
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)
-//                        self.accessToken = jsonData["access_token"].string!
-//                        self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
                 completionHandler(jsonData)
                 break
 
@@ -615,9 +611,9 @@ class APIManager {
         let params: [String: Any] = [
             "access_token": self.accessToken
         ]
-        print("__________PARAMS_______")
-        print(accessToken)
-        //requestServer(.get, path, params, URLEncoding(), completionHandler)
+        //print("__________PARAMS_______")
+        //print(accessToken)
+        requestServer(.get, path, params, URLEncoding(), completionHandler)
         
         //testing request
         AF.request(url!, method: .get,  parameters: params, encoding: URLEncoding.default).responseJSON(completionHandler: { (response) in
@@ -625,8 +621,6 @@ class APIManager {
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)
-//                        self.accessToken = jsonData["access_token"].string!
-//                        self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
                 completionHandler(jsonData)
                 break
 
@@ -653,40 +647,37 @@ class APIManager {
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)
-//                        self.accessToken = jsonData["access_token"].string!
-//                        self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
                 completionHandler(jsonData)
+                //print("_____Updating Drivers Location Success_____")
                 break
 
             case .failure:
                 break
             }
         })
-        print("______________________Updating Drivers Location Success______")
+
     }
     
     
     func getDriverLocation(completionHandler: @escaping (JSON) -> Void) {
-        print("______________________API Manager getDriverLocation start______________")
+        //print("______________________API Manager getDriverLocation start______________")
         let path = "api/customer/driver/location/"
         let url = baseURL?.appendingPathComponent(path)
         let params: [String: Any] = [
             "access_token": self.accessToken
         ]
-        print(params)
-        requestServer(.get, path, params, URLEncoding(), completionHandler)
+        //print(params)
+        //requestServer(.get, path, params, URLEncoding(), completionHandler)
         
         //testing request
         AF.request(url!, method: .get,  parameters: params, encoding: URLEncoding.default).responseJSON(completionHandler: { (response) in
             
-            print(response)
+            //print(response)
 
             switch response.result {
             case .success(let value):
-                print(value)
+                //print(value)
                 let jsonData = JSON(value)
-//                        self.accessToken = jsonData["access_token"].string!
-//                        self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
                 completionHandler(jsonData)
                 break
 
@@ -695,12 +686,10 @@ class APIManager {
                 break
             }
         })
-        print("______________________API Manager getDriverLocation end ________________")
+        //print("______________________API Manager getDriverLocation end ________________")
     }
     
-    
-    
-    
+
     func compeleteOrder(orderId: Int, completionHandler: @escaping (JSON) -> Void) {
         let path = "api/driver/order/complete/"
         let url = baseURL?.appendingPathComponent(path)
@@ -716,8 +705,6 @@ class APIManager {
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)
-//                        self.accessToken = jsonData["access_token"].string!
-//                        self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
                 completionHandler(jsonData)
                 break
 
@@ -727,10 +714,7 @@ class APIManager {
         })
         print("______________________Complete Order Success______")
     }
-//
-    
-    
-    
+
     
     func getDriverRevenue(completionHandler: @escaping (JSON) -> Void) {
         let path = "api/driver/revenue/"
@@ -745,8 +729,6 @@ class APIManager {
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)
-//                        self.accessToken = jsonData["access_token"].string!
-//                        self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
                 completionHandler(jsonData)
                 break
 
@@ -757,15 +739,6 @@ class APIManager {
         print("______________________Driver Revenue______")
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 //End Class APIMAnager
 }
