@@ -11,6 +11,11 @@ import CoreLocation
 
 class CartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UITextFieldDelegate {
     
+    
+//    just added
+    var meals = [Meal]()
+    
+    
     //TableView as tbvCart
     @IBOutlet weak var tbvCart: UITableView!
         
@@ -72,7 +77,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
 //            self.labelAddress.text = "123 Placer Holder ave."
             
             self.tbvCart.reloadData()
-            self.labelTotal.text = "$\(Cart.currentCart.getTotal())"
+            self.labelTotal.text = "$\(Cart.currentCart.getTotal())0"
         }
         //Show Current Location
 //        if CLLocationManager.locationServicesEnabled(){
@@ -86,6 +91,21 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        }
 
     }
+    
+    //Load Images
+    func loadImage(imageView: UIImageView, urlString: String) {
+        let imgUrl:URL = URL(string: urlString)!
+        
+        URLSession.shared.dataTask(with: imgUrl) {
+            (data, response, error) in
+            guard let data = data, error == nil else {return}
+            
+            DispatchQueue.main.async(execute: {
+                imageView.image = UIImage(data: data)
+            })
+        }.resume()
+    }
+    
     
     
     
@@ -174,7 +194,14 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cart = Cart.currentCart.items[indexPath.row]
         cell.qtyItemLabel.text = "X\(cart.qty)"
         cell.mealNameLabel.text = cart.meal.name
-        cell.priceItemLabel.text = "$\(cart.meal.price! * Float(cart.qty))"
+        cell.priceItemLabel.text = "$\(cart.meal.price! * Float(cart.qty))0"
+        
+       
+        if let image = cart.meal.image {
+            loadImage(imageView: cell.mealImage , urlString: "\(image)")
+        }
+        
+        print(cart)
         
         return cell
     }
