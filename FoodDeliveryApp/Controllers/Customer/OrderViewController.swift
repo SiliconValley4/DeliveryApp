@@ -24,7 +24,12 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var source: MKPlacemark?
     
     var driverPin: MKPointAnnotation!
-    var timer = Timer()
+    var selfPin: MKPointAnnotation!
+    var restaurantPin: MKPointAnnotation!
+    
+    
+    var locationTimer = Timer()
+    var zoomTimer = Timer()
     
     
 
@@ -44,8 +49,9 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        getLatestOrder()
         
+        print("On orderView Controller")
+        getLatestOrder()
         let seconds = 1.0
         DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
             self.autoZoom()
@@ -87,7 +93,8 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 //if order["status"].string! != "Delivered" {
                 if order["status"].string! == "On the way" {
                     //getDriverLocation(self)
-                    self.setTimer()
+                    self.setLocationTimer()
+                    self.setZoomTimer()
                 }
             } else {
                 print("No prev order")
@@ -98,18 +105,30 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
         
     // repeats: to update driver location
-    func setTimer() {
+    func setLocationTimer() {
         print("Timer START")
-        getDriverLocation(self)
-        timer = Timer.scheduledTimer(
-            timeInterval: 2.0,
+        //getDriverLocation(self)
+        locationTimer = Timer.scheduledTimer(
+            timeInterval: 0.5,
             target: self,
             selector: #selector(getDriverLocation(_:)),
-            userInfo: nil, repeats: true)
+            userInfo: nil,
+            repeats: true)
     }
     
-    func autoZoom() {
-        print("AutoZoom called")
+    func setZoomTimer() {
+        print("Zoom Timer START")
+        //getDriverLocation(self)
+        locationTimer = Timer.scheduledTimer(
+            timeInterval: 5.0,
+            target: self,
+            selector: #selector(autoZoom),
+            userInfo: nil,
+            repeats: true)
+    }
+    
+    @objc func autoZoom() {
+        //print("AutoZoom called")
         var zoomRect = MKMapRect.null
         for annotation in self.map.annotations {
             let annotationPoint = MKMapPoint(annotation.coordinate)
@@ -151,10 +170,13 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 
                 // Reset zoom rect to cover 3 locations
-                self.autoZoom()
+                //self.autoZoom()
                 
             } else {
-                self.timer.invalidate()
+                self.locationTimer.invalidate()
+                self.zoomTimer.invalidate()
+                self.map.removeAnnotation(self.driverPin)
+                self.map.removeAnnotation(self.restaurantPin)
                 print("Timer END")
             }
         }
@@ -172,7 +194,8 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     // #2
-    
+    // When you call getLocation for each address, you add an "annotation" to the map
+    // these are the pins
     func getLocation(_ address: String,_ title: String,_ completionHandler: @escaping (MKPlacemark) -> Void) {
         
         let geocoder = CLGeocoder()
@@ -180,11 +203,10 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
             print("Address: ************")
             print("Address: \(placemarks?.first?.location?.coordinate)")
             print("Address: \(placemarks?.first?.location?.description)")
-
             if (error != nil) {
                 print("Error in geolocation: \(error!)")
             }
-            
+        
             if let placemark = placemarks?.first {
                 
                 let coordinates: CLLocationCoordinate2D = placemark.location!.coordinate
@@ -193,7 +215,9 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 let dropPin = MKPointAnnotation()
                 dropPin.coordinate = coordinates
                 dropPin.title = title
-                
+                if(title=="Restaurant"){
+                    self.restaurantPin = dropPin
+                }
                 self.map.addAnnotation(dropPin)
                 completionHandler(MKPlacemark.init(placemark: placemark))
             }
@@ -261,13 +285,13 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if let annotationView = annotationView, let name = annotation.title! {
             switch name {
-            case "DRI":
+            case "Driver":
                 annotationView.canShowCallout = true
                 annotationView.image = UIImage(named: "pin_car")
-            case "RES":
+            case "Restaurant":
                 annotationView.canShowCallout = true
                 annotationView.image = UIImage(named: "pin_restaurant")
-            case "CUS":
+            case "You":
                 annotationView.canShowCallout = true
                 annotationView.image = UIImage(named: "pin_customer")
             default:
