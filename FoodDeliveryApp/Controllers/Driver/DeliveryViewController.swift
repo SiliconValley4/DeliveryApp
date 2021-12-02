@@ -51,13 +51,13 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             locationManager.requestAlwaysAuthorization()
             locationManager.startUpdatingLocation()
             self.map.showsUserLocation = false
-            if(self.driverLocation == nil){
-                let seconds = 2.0
-                DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-                    self.setDriverLocationTo()
-                }
-                print(self.driverLocation)
-            }
+//            if(self.driverLocation == nil){
+//                let seconds = 2.0
+//                DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+//                    self.setDriverLocationTo()
+//                }
+//                print(self.driverLocation)
+//            }
         }
         
         //Update location
@@ -377,8 +377,6 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         let insetRect = zoomRect.insetBy(dx: insetWidth, dy: insetHeight)
         
         self.map.setVisibleMapRect(insetRect, animated: true)
-
-        
     }
     //Complete Order Button Action
     
