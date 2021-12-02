@@ -57,11 +57,12 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             self.map.showsUserLocation = false
         }
         //Update location
-        timerDriverLocation = Timer.scheduledTimer(timeInterval: 1,
-                                     target: self,
-                                     selector: #selector(updateLocation(_:)),
-                                     userInfo: nil,
-                                     repeats: true)
+        timerDriverLocation = Timer.scheduledTimer(
+            timeInterval: 2.0,
+            target: self,
+            selector: #selector(updateLocation(_:)),
+            userInfo: nil,
+            repeats: true)
         
        
         // Do any additional setup after loading the view.

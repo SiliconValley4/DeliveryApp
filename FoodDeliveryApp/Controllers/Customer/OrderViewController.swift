@@ -102,7 +102,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         print("Timer START")
         getDriverLocation(self)
         timer = Timer.scheduledTimer(
-            timeInterval: 1.0,
+            timeInterval: 2.0,
             target: self,
             selector: #selector(getDriverLocation(_:)),
             userInfo: nil, repeats: true)
