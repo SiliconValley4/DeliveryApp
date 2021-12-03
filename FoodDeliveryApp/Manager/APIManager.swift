@@ -548,7 +548,7 @@ class APIManager {
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)
-                print("____________________________________getLatestOrderSUCCESS____________________________")
+                //print("____________getLatestOrderSUCCESS_____________")
                 completionHandler(jsonData)
                 break
 
