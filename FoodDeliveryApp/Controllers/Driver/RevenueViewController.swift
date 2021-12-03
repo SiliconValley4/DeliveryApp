@@ -10,14 +10,12 @@ import Charts
 
 class RevenueViewController: UIViewController {
     
-    
     @IBOutlet weak var viewChart: BarChartView!
-    
-    
-    // week array
+        // week array
     var weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     
-
+    @IBOutlet var butt: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,7 +26,27 @@ class RevenueViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+ 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let tabBarController = segue.destination as! UITabBarController
+        let destination = sender as? String
+        //let send = sender as? UIButton
+        //if(send == self.butt){
+        if(destination == "toProfile"){
+            tabBarController.selectedIndex = 3
+        }
+   }
     
+    @IBAction func onButton(_ sender: Any) {
+        
+        let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "DriverTabBarController") as? UITabBarController
+
+        //let destination = self.storyboar
+
+        homeViewController?.selectedIndex = 3
+        self.performSegue(withIdentifier: "test1", sender: "toProfile")
+
+    }
     
     func initializeChart() {
         

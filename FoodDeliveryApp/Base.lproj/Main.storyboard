@@ -358,19 +358,19 @@
                         <outlet property="tbvDriverOrder" destination="wc6-H8-swf" id="EVL-hf-M59"/>
                         <outlet property="userWelcomeLabel" destination="k2L-7b-ZPL" id="FhD-hs-wgM"/>
                         <segue destination="rEK-uE-wpZ" kind="show" identifier="CurrentDelivery2" id="CGc-Mu-YFZ"/>
-                        <segue destination="4TY-Dx-ocd" kind="show" identifier="CurrentDelivery" id="pBh-0s-JFf"/>
+                        <segue destination="4TY-Dx-ocd" kind="show" identifier="CurrentDelivery" id="0Tw-oe-cBd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gKo-JQ-mXm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2778" y="2361"/>
+            <point key="canvasLocation" x="-2792" y="2391"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="4mK-By-j7z">
             <objects>
-                <tabBarController modalPresentationStyle="fullScreen" id="bQk-ef-zcq" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="DriverTabBarController" modalPresentationStyle="fullScreen" id="bQk-ef-zcq" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="qau-Uf-cbo"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vfd-fT-ick">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vfd-fT-ick" customClass="DriverTabBar">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -384,7 +384,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kWd-4r-Bru" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1212" y="785"/>
+            <point key="canvasLocation" x="-1002" y="826"/>
         </scene>
         <!--Cart View Controller-->
         <scene sceneID="5gM-3u-Ipq">
@@ -968,7 +968,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t7Z-Av-fCn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="964" y="785"/>
+            <point key="canvasLocation" x="1892.3076923076922" y="784.83412322274876"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="H8r-ak-onC">
@@ -1251,6 +1251,17 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2XV-df-N6z" customClass="BarChartView" customModule="Charts">
                                 <rect key="frame" x="20" y="166" width="374" height="461"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sv5-Bg-VnP">
+                                        <rect key="frame" x="154" y="157" width="67" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                        <connections>
+                                            <action selector="onButton:" destination="EAz-fl-qHg" eventType="touchUpInside" id="z9A-AF-5Wr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
@@ -1259,12 +1270,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="4qe-d4-J8D"/>
                     <connections>
+                        <outlet property="butt" destination="Sv5-Bg-VnP" id="njC-yK-LXx"/>
                         <outlet property="viewChart" destination="2XV-df-N6z" id="DMj-Cv-QEi"/>
+                        <segue destination="bQk-ef-zcq" kind="showDetail" identifier="test1" id="kMT-4u-qVt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uQr-1m-sF2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1213.0434782608697" y="2391.9642857142858"/>
+            <point key="canvasLocation" x="-1212" y="2391"/>
         </scene>
         <!--Orders-->
         <scene sceneID="4Yc-RS-9zn">
@@ -1330,6 +1343,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PpB-o7-KJD" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" id="Sw4-jh-aF4"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="kgp-MS-ObN"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZaB-45-LcT">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1345,9 +1359,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pBh-0s-JFf"/>
+        <segue reference="Vuk-xr-uqi"/>
         <segue reference="2Ju-VD-KLc"/>
         <segue reference="gnU-P8-AcY"/>
+        <segue reference="kMT-4u-qVt"/>
         <segue reference="Zp8-kZ-mcx"/>
         <segue reference="CGc-Mu-YFZ"/>
         <segue reference="tPs-We-3KK"/>
