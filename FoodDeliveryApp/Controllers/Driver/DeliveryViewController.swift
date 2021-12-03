@@ -22,7 +22,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     let simulatorFrequency = 0.0002
     
     var orderId: Int?
-    var driverHasOrder: Bool
+    var driverHasOrder: Bool = false
     
     //map destination
     var destination: MKPlacemark?
@@ -41,6 +41,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     var updateDriverLocationTimer = Timer()
     var simulatorToRestaurantTimer = Timer()
     var simulatorToCustomerTimer = Timer()
+    var moving = false
     
     /*
      view did load
@@ -54,27 +55,19 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
      
     if (order){
         startLocationTimer
-            
-            
-            
-     
-     
-     
-     
-     
      */
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        if CLLocationManager.locationServicesEnabled() {
-//            locationManager = CLLocationManager()
-//            locationManager.delegate = self
-//            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//            locationManager.requestAlwaysAuthorization()
-//            locationManager.startUpdatingLocation()
-//            self.map.showsUserLocation = false
-//        }
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+            self.map.showsUserLocation = false
+        }
         
         if(!self.refreshTimer.isValid){
             self.setRefreshVCTimer()
@@ -84,7 +77,6 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         if(self.driverLocation == nil){
             print("1")
             print(self.driverLocation)
-
             print(self.driverLocation)
         }
         
@@ -114,12 +106,6 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 }
             }
         }
-
-        
-       
-        // Do any additional setup after loading the view.
-//        let seconds = 2.0
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -161,28 +147,21 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
 
     }
     
-    func loadData() {
-        
+    @objc func loadData() {
         APIManager.shared.getCurrentDriverOrder { (json) in
-
-            /*
-             customer
+        /*  customer
                  name
                  email
                  picture url
                  address
-
              order
-             
              cart -> Order (order details 1-n) : orderID
              mealID qty
              total
-             */
+         */
             
             let order = json["order"]
-            
-            
-            
+
             if let id = order["id"].int, order["status"] == "On the way" {
                 
                 for annotation in self.map.annotations {
@@ -193,9 +172,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 //print("Order id retrieved: \(self.orderId)")
                 //print(order)
                 let to = order["address"].string!
-                //print("To destination: \(to)")
                 let from = order["restaurant"]["address"].string!
-                //print("From restaurant: \(from)")
                 
                 let customerName = order["customer"]["name"].string!
                 let customerAvatar = order["customer"]["avatar"].string!
@@ -218,20 +195,15 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                         //print("From source: \(self.restaurantLocation) coordinates")
                     })
                 })
-                
             } else {
-                
                 self.map.isHidden = true
                 self.viewInfo.isHidden = true
                 self.bcomplete.isHidden = true
-                
                 // Showing a message here
-                
                 let lbMessage = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))
                 lbMessage.center = self.view.center
                 lbMessage.textAlignment = NSTextAlignment.center
                 lbMessage.text = "You don't have any orders for delivery."
-                
                 self.view.addSubview(lbMessage)
             }
         }
@@ -313,15 +285,14 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     @objc func moveToRestaurant(){
         moveTo_(self.restaurantLocation, "Restaurant")
-        
     }
     
     @objc func moveToCustomer(){
         moveTo_(self.customerLocation, "Customer")
-        //print("moving to customer")
     }
     
     func moveTo_(_ destination: CLLocationCoordinate2D,_ name: String){
+        self.moving = true
         var dx = abs(self.driverLocation.longitude-destination.longitude)
         var dy = abs(self.driverLocation.latitude-destination.latitude)
         if(dx > maxd && dy > maxd){
@@ -341,6 +312,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             
             if(name == "Restaurant"){
                 self.simulatorToRestaurantTimer.invalidate()
+                self.moving = false
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
                     print("Moving to Customer now")
                     print("Total distance to travel dx:\(abs(self.customerLocation.longitude-self.driverLocation.longitude)) dy:\(abs(self.driverLocation.latitude-self.customerLocation.latitude))")
@@ -353,6 +325,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 }
             } else if (name ==  "Customer"){
                 self.simulatorToCustomerTimer.invalidate()
+                self.moving = false
             }
         }
     }
@@ -379,9 +352,6 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             }
         }
     }
-    
-    
-    
     
     //Location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -417,10 +387,9 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         
         self.map.setVisibleMapRect(insetRect, animated: true)
     }
-    //Complete Order Button Action
     
+    //Complete Order Button Action
     @IBAction func completeOrder(_ sender: Any) {
-        
         if(canProceedWithOrder("CompleteOrder")){
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
             let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -455,10 +424,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             alertView.addAction(cancelAction)
             
             self.present(alertView, animated: true, completion: nil)
-            
         }
-        
-        
     }
     
     func canProceedWithOrder(_ phase: String)->Bool{
@@ -480,3 +446,4 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     }
 
 }
+
