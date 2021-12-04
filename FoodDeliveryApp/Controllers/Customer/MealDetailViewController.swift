@@ -173,6 +173,7 @@ class MealDetailViewController: UIViewController {
             }
         })
         
+        self.dismiss(animated: true)
         print("Added items to cart")
     }
 

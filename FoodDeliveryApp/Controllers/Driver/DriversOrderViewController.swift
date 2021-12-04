@@ -70,18 +70,15 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
-    
-    
-    
-    //
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let order = orders[indexPath.row]
         self.pickOrder(orderId: order.id!)
     }
     
-    
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
     
     //Picking Order
     private func pickOrder(orderId: Int) {
