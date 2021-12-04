@@ -18,10 +18,9 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
     var orders = [DriverOrder]()
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let tabBarController = segue.destination.tabBarController!
         let destination = sender as? String
         if(destination == "CurrentDelivery"){
-            tabBarController.selectedIndex = 1
+            tabBarController?.selectedIndex = 1
         }
     }
 
@@ -116,7 +115,7 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
                     let alertView = UIAlertController(title: nil, message: "Success!", preferredStyle: .alert)
                     
                     let okAction = UIAlertAction(title: "Show my map", style: .default, handler: { (action) in
-                        self.performSegue(withIdentifier: "CurrentDelivery", sender: "CurrentDelivery")
+                        self.performSegue(withIdentifier: "CurrentDeliverySegue", sender: "CurrentDelivery")
                     })
                     
                     alertView.addAction(okAction)

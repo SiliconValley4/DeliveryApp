@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Image references" minToolsVersion="12.0"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -118,50 +117,97 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="rEK-uE-wpZ" customClass="DeliveryViewController" customModule="FoodDeliveryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qYi-nQ-oZH">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oli-Zo-Hbj">
-                                <rect key="frame" x="77" y="131" width="262" height="356"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oli-Zo-Hbj">
+                                <rect key="frame" x="0.0" y="50" width="390" height="433"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="433" id="juC-U0-fZL"/>
+                                </constraints>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNl-5n-Pid">
-                                <rect key="frame" x="77" y="714" width="228" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNl-5n-Pid">
+                                <rect key="frame" x="80" y="656" width="230" height="85"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="CwY-hQ-H4y"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Complete Order"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <backgroundConfiguration key="background" cornerRadius="15">
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </backgroundConfiguration>
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Complete Order">
+                                            <attributes>
+                                                <font key="NSFont" size="27" name="Helvetica-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <attributedString key="attributedSubtitle">
+                                        <fragment content="Press after order has been delivered to customer">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="smallSystem"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="completeOrder:" destination="rEK-uE-wpZ" eventType="touchUpInside" id="kAX-z7-SiK"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aMv-jE-KTP">
-                                <rect key="frame" x="20" y="554" width="374" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aMv-jE-KTP">
+                                <rect key="frame" x="20" y="503" width="350" height="138"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yE5-De-GXH">
-                                        <rect key="frame" x="0.0" y="0.0" width="135" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yE5-De-GXH">
+                                        <rect key="frame" x="5" y="5" width="128" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="1d5-Mb-jIZ"/>
+                                            <constraint firstAttribute="width" constant="128" id="Fe7-oI-9mZ"/>
+                                        </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Customer Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhx-0K-IIa">
-                                        <rect key="frame" x="166" y="26" width="124" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhx-0K-IIa">
+                                        <rect key="frame" x="145" y="25" width="185" height="21.666666666666671"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Customer Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gD-Ny-JwK">
-                                        <rect key="frame" x="166" y="55" width="142" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gD-Ny-JwK">
+                                        <rect key="frame" x="145" y="54.666666666666636" width="185" height="20.333333333333336"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="yE5-De-GXH" firstAttribute="leading" secondItem="aMv-jE-KTP" secondAttribute="leading" constant="5" id="1w8-BV-nyc"/>
+                                    <constraint firstAttribute="bottom" secondItem="yE5-De-GXH" secondAttribute="bottom" constant="5" id="Ggu-U2-cyS"/>
+                                    <constraint firstItem="lhx-0K-IIa" firstAttribute="top" secondItem="aMv-jE-KTP" secondAttribute="top" constant="25" id="GkT-z3-Uc8"/>
+                                    <constraint firstItem="lhx-0K-IIa" firstAttribute="leading" secondItem="yE5-De-GXH" secondAttribute="trailing" constant="12" id="Pzn-FY-15F"/>
+                                    <constraint firstItem="yE5-De-GXH" firstAttribute="top" secondItem="aMv-jE-KTP" secondAttribute="top" constant="5" id="RUc-AL-nki"/>
+                                    <constraint firstItem="4gD-Ny-JwK" firstAttribute="top" secondItem="lhx-0K-IIa" secondAttribute="bottom" constant="8" id="Vz0-jc-mdt"/>
+                                    <constraint firstAttribute="trailing" secondItem="lhx-0K-IIa" secondAttribute="trailing" constant="20" id="dx5-Oo-SyD"/>
+                                    <constraint firstItem="4gD-Ny-JwK" firstAttribute="leading" secondItem="yE5-De-GXH" secondAttribute="trailing" constant="12" id="tNp-Ts-R6s"/>
+                                    <constraint firstAttribute="trailing" secondItem="4gD-Ny-JwK" secondAttribute="trailing" constant="20" id="xwK-Pc-BHb"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Fbw-02-PIr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="aMv-jE-KTP" secondAttribute="trailing" constant="20" id="6Rm-ns-6ej"/>
+                            <constraint firstItem="aMv-jE-KTP" firstAttribute="leading" secondItem="Fbw-02-PIr" secondAttribute="leading" constant="20" id="Dj5-kN-0dW"/>
+                            <constraint firstItem="QNl-5n-Pid" firstAttribute="leading" secondItem="Fbw-02-PIr" secondAttribute="leading" constant="80" id="Kqj-Nh-BiK"/>
+                            <constraint firstItem="oli-Zo-Hbj" firstAttribute="top" secondItem="qYi-nQ-oZH" secondAttribute="top" constant="50" id="OI4-Be-Lvp"/>
+                            <constraint firstItem="Fbw-02-PIr" firstAttribute="trailing" secondItem="QNl-5n-Pid" secondAttribute="trailing" constant="80" id="TBm-fe-n7f"/>
+                            <constraint firstItem="oli-Zo-Hbj" firstAttribute="leading" secondItem="Fbw-02-PIr" secondAttribute="leading" id="VtH-IF-zw7"/>
+                            <constraint firstItem="oli-Zo-Hbj" firstAttribute="trailing" secondItem="Fbw-02-PIr" secondAttribute="trailing" id="bf8-i6-qCt"/>
+                            <constraint firstItem="QNl-5n-Pid" firstAttribute="top" secondItem="aMv-jE-KTP" secondAttribute="bottom" constant="15" id="cfO-CB-JTC"/>
+                            <constraint firstItem="aMv-jE-KTP" firstAttribute="top" secondItem="oli-Zo-Hbj" secondAttribute="bottom" constant="20" id="zeR-xR-cLR"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="48j-nV-ouR"/>
                     <connections>
@@ -176,7 +222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RAi-mf-Cqr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1957.9710144927537" y="2391.9642857142858"/>
+            <point key="canvasLocation" x="-1958.4615384615383" y="2390.7582938388623"/>
         </scene>
         <!--Drivers Profile View Controller-->
         <scene sceneID="DNS-8h-Uj3">
@@ -357,8 +403,7 @@
                     <connections>
                         <outlet property="tbvDriverOrder" destination="wc6-H8-swf" id="EVL-hf-M59"/>
                         <outlet property="userWelcomeLabel" destination="k2L-7b-ZPL" id="FhD-hs-wgM"/>
-                        <segue destination="rEK-uE-wpZ" kind="show" identifier="CurrentDelivery2" id="CGc-Mu-YFZ"/>
-                        <segue destination="4TY-Dx-ocd" kind="show" identifier="CurrentDelivery" id="0Tw-oe-cBd"/>
+                        <segue destination="bQk-ef-zcq" kind="showDetail" identifier="CurrentDeliverySegue" id="j8I-5e-oKy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gKo-JQ-mXm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -906,11 +951,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ozs-CV-qMz">
-                        <barButtonItem key="rightBarButtonItem" title="Cart" id="HPg-8Q-CiO">
-                            <connections>
-                                <segue destination="bLA-Nk-fFz" kind="show" id="gnU-P8-AcY"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Cart" id="HPg-8Q-CiO"/>
                     </navigationItem>
                     <connections>
                         <outlet property="addToCartButton" destination="gQD-1p-55g" id="pBr-eQ-ZmH"/>
@@ -922,6 +963,7 @@
                         <outlet property="mealImage" destination="gOa-Rw-Can" id="BTD-3J-Yv4"/>
                         <outlet property="mealName" destination="p4b-iN-du8" id="OsJ-BS-eTY"/>
                         <outlet property="reduceQtyButton" destination="h2b-wH-2ny" id="llB-bI-rqQ"/>
+                        <segue destination="HHd-f4-6Wm" kind="showDetail" identifier="ViewCartSegue" id="wcU-TS-ALa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gim-F6-pYk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -937,11 +979,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23p-SJ-Sc7">
-                                <rect key="frame" x="100" y="526" width="190" height="65"/>
-                                <color key="backgroundColor" name="AccentColor"/>
+                                <rect key="frame" x="50" y="436" width="290" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="SCa-5t-jTk"/>
+                                </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="CREDIT CARD ADDED AUTOMATICALLY just click"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <backgroundConfiguration key="background" cornerRadius="25">
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </backgroundConfiguration>
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Press to Pay">
+                                            <attributes>
+                                                <font key="NSFont" size="31" name="Helvetica-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="placeOrder:" destination="eJb-ld-bIz" eventType="touchUpInside" id="xDc-rg-B3r"/>
                                 </connections>
@@ -957,10 +1013,10 @@
                         <viewLayoutGuide key="safeArea" id="JuQ-OM-csF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="23p-SJ-Sc7" firstAttribute="leading" secondItem="JuQ-OM-csF" secondAttribute="leading" constant="100" id="0oB-yU-tuJ"/>
-                            <constraint firstItem="23p-SJ-Sc7" firstAttribute="top" secondItem="UO2-JZ-cRK" secondAttribute="bottom" constant="250" id="3qH-7H-Me6"/>
+                            <constraint firstItem="23p-SJ-Sc7" firstAttribute="leading" secondItem="JuQ-OM-csF" secondAttribute="leading" constant="50" id="0oB-yU-tuJ"/>
+                            <constraint firstItem="23p-SJ-Sc7" firstAttribute="top" secondItem="UO2-JZ-cRK" secondAttribute="bottom" constant="160" id="3qH-7H-Me6"/>
                             <constraint firstItem="UO2-JZ-cRK" firstAttribute="top" secondItem="JuQ-OM-csF" secondAttribute="top" constant="80" id="84q-dS-uJH"/>
-                            <constraint firstItem="JuQ-OM-csF" firstAttribute="trailing" secondItem="23p-SJ-Sc7" secondAttribute="trailing" constant="100" id="9aF-2N-HHy"/>
+                            <constraint firstItem="JuQ-OM-csF" firstAttribute="trailing" secondItem="23p-SJ-Sc7" secondAttribute="trailing" constant="50" id="9aF-2N-HHy"/>
                             <constraint firstItem="JuQ-OM-csF" firstAttribute="trailing" secondItem="UO2-JZ-cRK" secondAttribute="trailing" constant="20" id="PVf-no-LTh"/>
                             <constraint firstItem="UO2-JZ-cRK" firstAttribute="leading" secondItem="JuQ-OM-csF" secondAttribute="leading" constant="20" id="mfB-On-gz4"/>
                         </constraints>
@@ -968,7 +1024,7 @@
                     <navigationItem key="navigationItem" id="EyM-nO-hsq"/>
                     <connections>
                         <outlet property="cardTextField" destination="UO2-JZ-cRK" id="SIz-Ts-5MF"/>
-                        <segue destination="pro-bR-1cM" kind="show" identifier="ViewOrder" id="2Ju-VD-KLc"/>
+                        <segue destination="HHd-f4-6Wm" kind="showDetail" identifier="ViewOrderSegue" id="hCR-YE-TdT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wWs-H4-LKz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1298,7 +1354,6 @@
                     <connections>
                         <outlet property="butt" destination="Sv5-Bg-VnP" id="njC-yK-LXx"/>
                         <outlet property="viewChart" destination="2XV-df-N6z" id="DMj-Cv-QEi"/>
-                        <segue destination="bQk-ef-zcq" kind="showDetail" identifier="test1" id="kMT-4u-qVt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uQr-1m-sF2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1385,12 +1440,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="0Tw-oe-cBd"/>
-        <segue reference="2Ju-VD-KLc"/>
-        <segue reference="gnU-P8-AcY"/>
-        <segue reference="kMT-4u-qVt"/>
+        <segue reference="hCR-YE-TdT"/>
+        <segue reference="j8I-5e-oKy"/>
         <segue reference="Zp8-kZ-mcx"/>
-        <segue reference="CGc-Mu-YFZ"/>
         <segue reference="mHw-je-SqN"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -1400,9 +1452,6 @@
         <image name="jennifer-burk" width="2205" height="3304"/>
         <image name="map" catalog="system" width="128" height="110"/>
         <image name="person" catalog="system" width="128" height="117"/>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
