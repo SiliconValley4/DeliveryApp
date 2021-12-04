@@ -171,7 +171,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @objc func getDriverLocation(_ sender: AnyObject) {
         //print("Get Driver Location from OrderViewController")
         APIManager.shared.getDriverLocation { (json) in
-            //print(json)
+            print(json)
             if let location = json["location"].string {
                 let split = location.components(separatedBy: ",")
                 let lat = split[0]

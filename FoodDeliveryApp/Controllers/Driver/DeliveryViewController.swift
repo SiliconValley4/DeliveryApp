@@ -130,7 +130,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
 
     @objc func sendDriverLocationToServer(_ sender: AnyObject) {
         APIManager.shared.updateLocation(location: self.driverLocation) { (json) in
-            //print(self.driverLocation)
+            print(self.driverLocation)
             //self.autoZoom()
         }
     }
@@ -166,7 +166,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             if let id = order["id"].int, order["status"] == "On the way" {
                 
                 for annotation in self.map.annotations {
-                    print(annotation)
+                    //print(annotation)
                 }
                 
                 self.orderId = id
@@ -293,6 +293,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     }
     
     func moveTo_(_ destination: CLLocationCoordinate2D,_ name: String){
+        //print("****MOVING******")
         self.moving = true
         var dx = abs(self.driverLocation.longitude-destination.longitude)
         var dy = abs(self.driverLocation.latitude-destination.latitude)

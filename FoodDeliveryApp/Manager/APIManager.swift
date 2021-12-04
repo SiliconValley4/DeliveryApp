@@ -374,7 +374,7 @@ class APIManager {
                 switch response.result {
                 case .success(let value):
                     let jsonData = JSON(value)
-                    //print(jsonData)
+                    print(jsonData)
                     print("____requestServer success____")
                     completionHandler(jsonData)
                     
@@ -505,7 +505,7 @@ class APIManager {
                         break
 
                     case .failure:
-                        print("failure!")
+                        print("failure to create order")
                         break
                     }
                 })
@@ -613,7 +613,7 @@ class APIManager {
         ]
         //print("__________PARAMS_______")
         //print(accessToken)
-        requestServer(.get, path, params, URLEncoding(), completionHandler)
+        //requestServer(.get, path, params, URLEncoding(), completionHandler)
         
         //testing request
         AF.request(url!, method: .get,  parameters: params, encoding: URLEncoding.default).responseJSON(completionHandler: { (response) in
@@ -621,6 +621,8 @@ class APIManager {
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)
+//                                        self.accessToken = jsonData["access_token"].string!
+                //                        self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
                 completionHandler(jsonData)
                 break
 
@@ -666,13 +668,13 @@ class APIManager {
         let params: [String: Any] = [
             "access_token": self.accessToken
         ]
-        //print(params)
-        //requestServer(.get, path, params, URLEncoding(), completionHandler)
+        print(params)
+        requestServer(.get, path, params, URLEncoding(), completionHandler)
         
         //testing request
         AF.request(url!, method: .get,  parameters: params, encoding: URLEncoding.default).responseJSON(completionHandler: { (response) in
             
-            //print(response)
+            print(response.error)
 
             switch response.result {
             case .success(let value):

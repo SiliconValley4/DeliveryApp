@@ -28,13 +28,11 @@ class MealDetailViewController: UIViewController {
         performSegue(withIdentifier: "ViewCartSegue", sender: "ViewCart")
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let tabBarController = segue.destination as? UITabBarController
         let destination = sender as? String
         if(destination == "ViewCart"){
-            print("I'm here")
             tabBarController?.selectedIndex = 1
         }
-   }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,6 +108,9 @@ class MealDetailViewController: UIViewController {
     }
     
     @IBAction func addToCart(_ sender: Any) {
+        print("Add to cart from restaurant: \(restaurant?.id)")
+        //print("\(Cart.currentCart.restaurant)")
+
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 40))
         image.image = UIImage(named: "")
         image.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height-100)
@@ -123,14 +124,18 @@ class MealDetailViewController: UIViewController {
             image.removeFromSuperview()
             let cartItem = CartItem(meal: self.meal!, qty: self.qty)
             guard let cartRestaurant = Cart.currentCart.restaurant, let currentRestaurant = self.restaurant else {
+                print(Cart.currentCart.restaurant)
+                print(self.restaurant)
                 // If those requirements are not met
                 Cart.currentCart.restaurant = self.restaurant
                 Cart.currentCart.items.append(cartItem)
-                print("Added item to fresh cart")
+                print("Added item(s) to empty cart")
                 self.dismiss()
                 return
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel){_ in
+                self.dismiss()
+            }
             // If ordering meal from the same restaurant
             if cartRestaurant.id == currentRestaurant.id {
                 let inCart = Cart.currentCart.items.firstIndex(where: { (item) -> Bool in
@@ -142,7 +147,7 @@ class MealDetailViewController: UIViewController {
                         message: "Your Cart already has this.",
                         preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "Add more", style: .default, handler: { (action: UIAlertAction!) in
-                        print("Added more items to cart")
+                        print("Added more of the same item")
                         Cart.currentCart.items[index].qty += self.qty
                         self.dismiss()
                     })
@@ -150,7 +155,7 @@ class MealDetailViewController: UIViewController {
                     alertView.addAction(cancelAction)
                     self.present(alertView, animated: true, completion: nil)
                 } else {
-                    print("Added something")
+                    print("Added something new")
                     Cart.currentCart.items.append(cartItem)
                     self.dismiss()
                 }
@@ -162,20 +167,18 @@ class MealDetailViewController: UIViewController {
                     message: "You're ordering meal from another restaurant. Create New Order?",
                     preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "New Order", style: .default, handler: { (action: UIAlertAction!) in
-                    print("Started new order")
-                    Cart.currentCart.restaurant = self.restaurant
                     Cart.currentCart.items = []
                     Cart.currentCart.items.append(cartItem)
-                    print("Items added to cart")
+                    Cart.currentCart.restaurant = self.restaurant
+                    print("Item(s) added from new restaurant")
                     self.dismiss()
                 })
                 alertView.addAction(okAction)
                 alertView.addAction(cancelAction)
-                self.dismiss()
+                self.present(alertView, animated: true, completion: nil)
             }
         })
     }
-    
     func dismiss(){
         self.navigationController?.popViewController(animated: true)
     }
