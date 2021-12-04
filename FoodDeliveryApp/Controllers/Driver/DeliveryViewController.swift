@@ -17,7 +17,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var bcomplete: UIButton!
     
-     let maxd = 0.0001
+    let maxd = 0.0001
     let delta = 0.00001
     let simulatorFrequency = 0.02
     
@@ -144,10 +144,6 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         loadData()
         //Maybe include what  happens if there are no current orders, turn of currentlocationtimer?
         //if(!timerDriverLocation.isValid &&
-        
-        
-
-        
 
     }
     
