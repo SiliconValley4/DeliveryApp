@@ -27,10 +27,12 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var selfPin: MKPointAnnotation!
     var restaurantPin: MKPointAnnotation!
     
+    var userLocation: CLLocationCoordinate2D!
     
-    var locationTimer = Timer()
+    
+    var updateDriverLocationTimer = Timer()
     var zoomTimer = Timer()
-    var getLatestOrderTimer = Timer()
+    var refreshTimer = Timer()
     
     
 
@@ -49,37 +51,44 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         print("On orderView Controller")
-        getLatestOrderTimer = Timer.scheduledTimer(
-            timeInterval: 5.0,
-            target: self,
-            selector: #selector(refreshViewController),
-            userInfo: nil,
-            repeats: true)
-        //getLatestOrder()
+        if(!self.refreshTimer.isValid){
+            setRefreshViewControllerTimer()
+        }
         let seconds = 1.0
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.autoZoom()
         }
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
     }
     
-
+    func setRefreshViewControllerTimer(){
+        print("setRefreshViewControllerTimer START")
+        refreshTimer = Timer.scheduledTimer(
+            timeInterval: 5.0,
+            target: self,
+            selector: #selector(refreshViewController),
+            userInfo: nil,
+            repeats: true)
+    }
+    @objc func refreshViewController(){
+        self.getLatestOrder()
+    }
     func getLatestOrder() {
-        
-        print("Get Latest Order from Order View Controller")
-
-        APIManager.shared.getLatestOrder { (json) in
+        //print("Get Latest Order from Order View Controller")
+        APIManager.shared.getLatestOrder { [self] (json) in
             let order = json["order"]
             //print(json)
             //print("order status:\(json["order"]["status"] as? String ?? "no prev orders")")
             let orderStatus = json["order"]["status"].string as? String ?? nil
-            print("order status:\(orderStatus)")
-
-            //if json["order"]["status"].string != nil {
+            //print("order status:\(orderStatus)")
             if orderStatus != nil {
-                print("There is a previous order")
+                if(orderStatus! == "Delivered"){
+                    self.zoomTimer.invalidate()
+                    self.updateDriverLocationTimer.invalidate()
+                }
                 if let orderDetails = order["order_details"].array {
                     self.lbStatus.text = order["status"].string!
                     self.cart = orderDetails
@@ -87,8 +96,6 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 let from = order["restaurant"]["address"].string!
                 let to = order["address"].string!
-                //print("order from: \(json["order"]["restaurant"]["address"].string!)")
-                //print("order to: \(json["order"]["address"].string!)")
 
                 self.getLocation(from, "Restaurant", { (sou) in
                     self.source = sou
@@ -97,11 +104,14 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         self.getDirections()
                     })
                 })
-                //if order["status"].string! != "Delivered" {
-                if order["status"].string! == "On the way" {
+                if orderStatus! == "On the way" {
                     //getDriverLocation(self)
-                    self.setLocationTimer()
-                    self.setZoomTimer()
+                    if(!self.zoomTimer.isValid){
+                        self.setZoomTimer()
+                    }
+                    if(!self.updateDriverLocationTimer.isValid){
+                        self.setUpdateDriverLocationTimer()
+                    }
                 }
             } else {
                 print("No prev order")
@@ -110,34 +120,16 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         //self.autoZoom()
     }
-        
-    // repeats: to update driver location
-    func setLocationTimer() {
-        print("Timer START")
-        //getDriverLocation(self)
-        locationTimer = Timer.scheduledTimer(
-            timeInterval: 0.5,
-            target: self,
-            selector: #selector(getDriverLocation(_:)),
-            userInfo: nil,
-            repeats: true)
-    }
-        
-    @objc func refreshViewController(){
-        self.getLatestOrder()
-    }
-    
     func setZoomTimer() {
-        print("Zoom Timer START")
+        print("SetZoomTimer START")
         //getDriverLocation(self)
-        locationTimer = Timer.scheduledTimer(
+        zoomTimer = Timer.scheduledTimer(
             timeInterval: 5.0,
             target: self,
             selector: #selector(autoZoom),
             userInfo: nil,
             repeats: true)
     }
-    
     @objc func autoZoom() {
         //print("AutoZoom called")
         var zoomRect = MKMapRect.null
@@ -154,22 +146,26 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    //
+    // repeats: to update driver location
+    func setUpdateDriverLocationTimer() {
+        print("SetUpdateDriverLocationTimer START")
+        //getDriverLocation(self)
+        updateDriverLocationTimer = Timer.scheduledTimer(
+            timeInterval: 1.0,
+            target: self,
+            selector: #selector(getDriverLocation(_:)),
+            userInfo: nil,
+            repeats: true)
+    }
     @objc func getDriverLocation(_ sender: AnyObject) {
         //print("Get Driver Location from OrderViewController")
         APIManager.shared.getDriverLocation { (json) in
-            //print(json)
             if let location = json["location"].string {
-                //print(location)
-                
-                //self.lbStatus.text = "ON THE WAY"
                 let split = location.components(separatedBy: ",")
-                //print(split)
                 let lat = split[0]
                 let lng = split[1]
-                
                 let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(lat)!, longitude: CLLocationDegrees(lng)!)
-                
+                //print(coordinate)
                 // Create pin annotation for Driver
                 if self.driverPin != nil {
                     self.driverPin.coordinate = coordinate
@@ -179,12 +175,9 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     self.driverPin.title = "Driver"
                     self.map.addAnnotation(self.driverPin)
                 }
-                
                 // Reset zoom rect to cover 3 locations
-                //self.autoZoom()
-                
             } else {
-                self.locationTimer.invalidate()
+                self.updateDriverLocationTimer.invalidate()
                 self.zoomTimer.invalidate()
                 self.map.removeAnnotation(self.driverPin)
                 self.map.removeAnnotation(self.restaurantPin)
@@ -228,6 +221,8 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 dropPin.title = title
                 if(title=="Restaurant"){
                     self.restaurantPin = dropPin
+                } else if(title == "You"){
+                    self.userLocation = coordinates
                 }
                 self.map.addAnnotation(dropPin)
                 completionHandler(MKPlacemark.init(placemark: placemark))
@@ -326,7 +321,8 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let item = cart[indexPath.row]
         cell.orderItemQuantityLabel.text = String(item["quantity"].int!)
         cell.orderItemNameLabel.text = item["meal"]["name"].string
-        cell.orderItemPriceLabel.text = "$\(String(item["sub_total"].float!))"
+        //cell.orderItemPriceLabel.text = "$\(String(item["sub_total"].float!))"
+        cell.orderItemPriceLabel.text = (String(format: "$%.2f", item["sub_total"].float!))
         
         return cell
     }

@@ -29,19 +29,6 @@ class ProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
-
-    
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "CustomerLogout" {
-//
-//            //
-//            FBManager.shared.logOut()
-//            User.currenUser.resetInfo()
-//
-//        }
-//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CustomerLogout" {
@@ -49,15 +36,12 @@ class ProfileViewController: UIViewController {
 //                if error == nil {
                     FBManager.shared.logOut()
                     User.currenUser.resetInfo()
-                    print("logggin out")
+//                    print("logggin out")
 //                }
                 
 //            })
-            
         }
-        
     }
-    
     
     @IBAction func signoutAction(_ sender: Any) {
         FBManager.shared.logOut()

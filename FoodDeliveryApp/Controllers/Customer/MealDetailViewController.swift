@@ -23,6 +23,16 @@ class MealDetailViewController: UIViewController {
     var meal: Meal?
     var restaurant: Restaurant?
     var qty = 1
+    
+    @IBAction func goToCart(_ sender: Any) {
+        performSegue(withIdentifier: "ViewCartSegue", sender: "ViewCart")
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = sender as? String
+        if(destination == "ViewCart"){
+            tabBarController?.selectedIndex = 1
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +57,7 @@ class MealDetailViewController: UIViewController {
         
         if let imageUrl = meal?.image {
             Helpers.loadImage(mealImage, "\(imageUrl)")
-            print(imageUrl)
+            //print(imageUrl)
         }
     }
     
@@ -98,6 +108,9 @@ class MealDetailViewController: UIViewController {
     }
     
     @IBAction func addToCart(_ sender: Any) {
+        print("Add to cart from restaurant: \(restaurant?.id)")
+        //print("\(Cart.currentCart.restaurant)")
+
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 40))
         image.image = UIImage(named: "")
         image.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height-100)
@@ -108,73 +121,72 @@ class MealDetailViewController: UIViewController {
                        options: UIView.AnimationOptions.curveEaseOut,
                        animations: { image.center = CGPoint(x: self.view.frame.width - 40, y: 24) },
                        completion: { _ in
-                        
             image.removeFromSuperview()
-            
             let cartItem = CartItem(meal: self.meal!, qty: self.qty)
-                        
             guard let cartRestaurant = Cart.currentCart.restaurant, let currentRestaurant = self.restaurant else {
+                print(Cart.currentCart.restaurant)
+                print(self.restaurant)
                 // If those requirements are not met
-                
                 Cart.currentCart.restaurant = self.restaurant
                 Cart.currentCart.items.append(cartItem)
+                print("Added item(s) to empty cart")
+                self.dismiss()
                 return
             }
-                        
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-               
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel){_ in
+                self.dismiss()
+            }
             // If ordering meal from the same restaurant
             if cartRestaurant.id == currentRestaurant.id {
-                
                 let inCart = Cart.currentCart.items.firstIndex(where: { (item) -> Bool in
-                    
                     return item.meal.id! == cartItem.meal.id!
                 })
-                
                 if let index = inCart {
-                    
                     let alertView = UIAlertController(
                         title: "Add more?",
-                        message: "Your Cart already has this meal. Add more?",
+                        message: "Your Cart already has this.",
                         preferredStyle: .alert)
-                    
                     let okAction = UIAlertAction(title: "Add more", style: .default, handler: { (action: UIAlertAction!) in
-                        
+                        print("Added more of the same item")
                         Cart.currentCart.items[index].qty += self.qty
+                        self.dismiss()
                     })
-                    
                     alertView.addAction(okAction)
                     alertView.addAction(cancelAction)
-                    
                     self.present(alertView, animated: true, completion: nil)
                 } else {
+                    print("Added something new")
                     Cart.currentCart.items.append(cartItem)
+                    self.dismiss()
                 }
-            
             }
             else {// If ordering meal from the another restaurant
-            
+                print("Diff Rest")
                 let alertView = UIAlertController(
                     title: "Start new Order?",
                     message: "You're ordering meal from another restaurant. Create New Order?",
                     preferredStyle: .alert)
-                
                 let okAction = UIAlertAction(title: "New Order", style: .default, handler: { (action: UIAlertAction!) in
-                    
                     Cart.currentCart.items = []
                     Cart.currentCart.items.append(cartItem)
                     Cart.currentCart.restaurant = self.restaurant
+                    print("Item(s) added from new restaurant")
+                    self.dismiss()
                 })
-                
                 alertView.addAction(okAction)
                 alertView.addAction(cancelAction)
-                
                 self.present(alertView, animated: true, completion: nil)
             }
         })
+<<<<<<< HEAD
         
         self.dismiss(animated: true)
         print("Added items to cart")
+=======
+    }
+    func dismiss(){
+        self.navigationController?.popViewController(animated: true)
+>>>>>>> 122d8137d5231f59a6c63dfeafa206e89d7baf26
     }
 
 }

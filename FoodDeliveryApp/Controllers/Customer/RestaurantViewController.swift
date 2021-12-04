@@ -13,6 +13,8 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
     @IBOutlet weak var searchRestaurant: UISearchBar!
     @IBOutlet weak var tbvRestaurant: UITableView!
     
+    @IBOutlet weak var userWelcomeLabel: UILabel!
+    
     
     //Getting data Dictionaries
     var restaurants = [Restaurant]()
@@ -24,6 +26,9 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
         tbvRestaurant.dataSource = self
         tbvRestaurant.delegate = self
         //loadRestaurants()
+        
+        
+        userWelcomeLabel.text = User.currenUser.name
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,9 +44,9 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
                     for item in listRest {
                         let restaurant = Restaurant(json: item)
                         self.restaurants.append(restaurant)
-                        print(item)
-                        print("Restaurant \(item["name"])")
-                        print("Description \(item["description"])")
+                        //print(item)
+                        //print("Restaurant \(item["name"])")
+                        //print("Description \(item["description"])")
                     }
                     self.tbvRestaurant.reloadData()
                 }
@@ -90,9 +95,9 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
         return restaurants.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 350
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 350
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell = UITableViewCell()

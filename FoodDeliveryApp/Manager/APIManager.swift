@@ -366,7 +366,7 @@ class APIManager {
         //print("Request Server from API Manager")
         
         let url = baseURL?.appendingPathComponent(path)
-        
+        print("In req server")
         //refreshTokenIfNeed {
             
             AF.request(url!, method: method, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON{ response in
@@ -374,15 +374,14 @@ class APIManager {
                 switch response.result {
                 case .success(let value):
                     let jsonData = JSON(value)
-                    //print(jsonData)
+                    print(jsonData)
                     print("____requestServer success____")
                     completionHandler(jsonData)
                     
                     break
                     
                 case .failure:
-                    //completionHandler((rawValue: JSON) )
-                    //print("reqServer Failed")
+                    print("reqServer Failed")
                     break
                 }
             }
@@ -505,7 +504,7 @@ class APIManager {
                         break
 
                     case .failure:
-                        print("failure!")
+                        print("failure to create order")
                         break
                     }
                 })
@@ -548,7 +547,7 @@ class APIManager {
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)
-                print("____________________________________getLatestOrderSUCCESS____________________________")
+                //print("____________getLatestOrderSUCCESS_____________")
                 completionHandler(jsonData)
                 break
 
@@ -613,7 +612,7 @@ class APIManager {
         ]
         //print("__________PARAMS_______")
         //print(accessToken)
-        requestServer(.get, path, params, URLEncoding(), completionHandler)
+        //requestServer(.get, path, params, URLEncoding(), completionHandler)
         
         //testing request
         AF.request(url!, method: .get,  parameters: params, encoding: URLEncoding.default).responseJSON(completionHandler: { (response) in
@@ -621,6 +620,8 @@ class APIManager {
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)
+//                                        self.accessToken = jsonData["access_token"].string!
+                //                        self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
                 completionHandler(jsonData)
                 break
 
@@ -648,7 +649,7 @@ class APIManager {
             case .success(let value):
                 let jsonData = JSON(value)
                 completionHandler(jsonData)
-                //print("_____Updating Drivers Location Success_____")
+                print("_____Updating Drivers Location Success_____")
                 break
 
             case .failure:
@@ -666,30 +667,18 @@ class APIManager {
         let params: [String: Any] = [
             "access_token": self.accessToken
         ]
-        //print(params)
-        //requestServer(.get, path, params, URLEncoding(), completionHandler)
-        
-        //testing request
         AF.request(url!, method: .get,  parameters: params, encoding: URLEncoding.default).responseJSON(completionHandler: { (response) in
-            
-            //print(response)
-
             switch response.result {
             case .success(let value):
-                //print(value)
                 let jsonData = JSON(value)
                 completionHandler(jsonData)
                 break
-
             case .failure:
                 print("failure")
                 break
             }
         })
-        //print("______________________API Manager getDriverLocation end ________________")
     }
-    
-
     func compeleteOrder(orderId: Int, completionHandler: @escaping (JSON) -> Void) {
         let path = "api/driver/order/complete/"
         let url = baseURL?.appendingPathComponent(path)
