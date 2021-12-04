@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Image references" minToolsVersion="12.0"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -838,9 +837,8 @@
                                     <action selector="addQty:" destination="xaz-zd-jsO" eventType="touchUpInside" id="Aoa-z7-yn5"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WK9-1N-awv">
-                                <rect key="frame" x="32" y="426" width="326" height="122"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WK9-1N-awv">
+                                <rect key="frame" x="32" y="416.33333333333331" width="326" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -870,9 +868,12 @@
                         <viewLayoutGuide key="safeArea" id="IR1-AN-mae"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
+                            <constraint firstItem="WK9-1N-awv" firstAttribute="leading" secondItem="IR1-AN-mae" secondAttribute="leading" constant="32" id="419-Bo-QVJ"/>
+                            <constraint firstItem="WK9-1N-awv" firstAttribute="top" secondItem="p4b-iN-du8" secondAttribute="bottom" constant="5" id="Ijl-2x-yiI"/>
                             <constraint firstItem="gOa-Rw-Can" firstAttribute="top" secondItem="IR1-AN-mae" secondAttribute="top" constant="16" id="L2d-Qg-iOV"/>
                             <constraint firstItem="IR1-AN-mae" firstAttribute="trailing" secondItem="p4b-iN-du8" secondAttribute="trailing" constant="32" id="Lk8-6I-9J1"/>
                             <constraint firstItem="gOa-Rw-Can" firstAttribute="leading" secondItem="IR1-AN-mae" secondAttribute="leading" constant="32" id="Q3C-8u-eh6"/>
+                            <constraint firstItem="IR1-AN-mae" firstAttribute="trailing" secondItem="WK9-1N-awv" secondAttribute="trailing" constant="32" id="ScI-uF-Vic"/>
                             <constraint firstItem="p4b-iN-du8" firstAttribute="leading" secondItem="IR1-AN-mae" secondAttribute="leading" constant="32" id="TG4-lM-vhc"/>
                             <constraint firstAttribute="trailing" secondItem="gOa-Rw-Can" secondAttribute="trailing" constant="32" id="pfP-be-ymM"/>
                             <constraint firstItem="p4b-iN-du8" firstAttribute="top" secondItem="gOa-Rw-Can" secondAttribute="bottom" constant="8" id="zxn-ji-xUl"/>
@@ -911,18 +912,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23p-SJ-Sc7">
-                                <rect key="frame" x="100" y="526" width="190" height="65"/>
-                                <color key="backgroundColor" name="AccentColor"/>
+                                <rect key="frame" x="85" y="526" width="220" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="ZCs-1i-qCT"/>
+                                    <constraint firstAttribute="height" constant="100" id="avu-pq-sWP"/>
+                                </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="CREDIT CARD ADDED AUTOMATICALLY just click"/>
+                                <buttonConfiguration key="configuration" style="plain" cornerStyle="large">
+                                    <backgroundConfiguration key="background">
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </backgroundConfiguration>
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="CREDIT CARD ADDED AUTOMATICALLY just click">
+                                            <attributes>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <font key="NSFont" size="13" name="Helvetica-Bold"/>
+                                                <font key="NSOriginalFont" size="14" name="Helvetica-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="placeOrder:" destination="eJb-ld-bIz" eventType="touchUpInside" id="xDc-rg-B3r"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UO2-JZ-cRK" customClass="STPPaymentCardTextField" customModule="Stripe">
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UO2-JZ-cRK" customClass="STPPaymentCardTextField" customModule="Stripe">
                                 <rect key="frame" x="20" y="136" width="350" height="140"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="8gt-yA-YoK"/>
                                 </constraints>
@@ -931,12 +950,11 @@
                         <viewLayoutGuide key="safeArea" id="JuQ-OM-csF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="23p-SJ-Sc7" firstAttribute="leading" secondItem="JuQ-OM-csF" secondAttribute="leading" constant="100" id="0oB-yU-tuJ"/>
                             <constraint firstItem="23p-SJ-Sc7" firstAttribute="top" secondItem="UO2-JZ-cRK" secondAttribute="bottom" constant="250" id="3qH-7H-Me6"/>
                             <constraint firstItem="UO2-JZ-cRK" firstAttribute="top" secondItem="JuQ-OM-csF" secondAttribute="top" constant="80" id="84q-dS-uJH"/>
-                            <constraint firstItem="JuQ-OM-csF" firstAttribute="trailing" secondItem="23p-SJ-Sc7" secondAttribute="trailing" constant="100" id="9aF-2N-HHy"/>
                             <constraint firstItem="JuQ-OM-csF" firstAttribute="trailing" secondItem="UO2-JZ-cRK" secondAttribute="trailing" constant="20" id="PVf-no-LTh"/>
                             <constraint firstItem="UO2-JZ-cRK" firstAttribute="leading" secondItem="JuQ-OM-csF" secondAttribute="leading" constant="20" id="mfB-On-gz4"/>
+                            <constraint firstItem="23p-SJ-Sc7" firstAttribute="centerX" secondItem="hm9-ut-dWz" secondAttribute="centerX" id="sU1-yc-Ffd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EyM-nO-hsq"/>
@@ -1082,13 +1100,14 @@
                             </tableView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ngl-Nk-de6">
                                 <rect key="frame" x="20" y="76" width="350" height="238"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="238" id="L22-Wn-5T6"/>
                                 </constraints>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On your way" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VsC-n4-ciD">
-                                <rect key="frame" x="80" y="567" width="230" height="32.666666666666629"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <rect key="frame" x="80" y="567" width="230" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1346,7 +1365,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="h73-mq-zZl"/>
+        <segue reference="Zz6-d4-NM8"/>
         <segue reference="wFf-Dq-kkU"/>
         <segue reference="Zp8-kZ-mcx"/>
         <segue reference="tPs-We-3KK"/>
@@ -1358,9 +1377,6 @@
         <image name="jennifer-burk" width="2205" height="3304"/>
         <image name="map" catalog="system" width="128" height="110"/>
         <image name="person" catalog="system" width="128" height="117"/>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

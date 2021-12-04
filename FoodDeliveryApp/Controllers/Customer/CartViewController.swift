@@ -77,7 +77,9 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
 //            self.labelAddress.text = "123 Placer Holder ave."
             
             self.tbvCart.reloadData()
-            self.labelTotal.text = "$\(Cart.currentCart.getTotal())0"
+            //self.labelTotal.text = "$\(Cart.currentCart.getTotal())0"
+            self.labelTotal.text = (String(format: "$%.2f", Cart.currentCart.getTotal()))
+
         }
         //Show Current Location
 //        if CLLocationManager.locationServicesEnabled(){
@@ -194,7 +196,8 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cart = Cart.currentCart.items[indexPath.row]
         cell.qtyItemLabel.text = "X\(cart.qty)"
         cell.mealNameLabel.text = cart.meal.name
-        cell.priceItemLabel.text = "$\(cart.meal.price! * Float(cart.qty))0"
+        //cell.priceItemLabel.text = "$\(cart.meal.price! * Float(cart.qty))0"
+        cell.priceItemLabel.text = (String(format: "$%.2f", cart.meal.price!*Float(cart.qty)))
         
        
         if let image = cart.meal.image {

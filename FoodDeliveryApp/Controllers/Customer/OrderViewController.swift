@@ -336,7 +336,8 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let item = cart[indexPath.row]
         cell.orderItemQuantityLabel.text = String(item["quantity"].int!)
         cell.orderItemNameLabel.text = item["meal"]["name"].string
-        cell.orderItemPriceLabel.text = "$\(String(item["sub_total"].float!))"
+        //cell.orderItemPriceLabel.text = "$\(String(item["sub_total"].float!))"
+        cell.orderItemPriceLabel.text = (String(format: "$%.2f", item["sub_total"].float!))
         
         return cell
     }
