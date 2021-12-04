@@ -106,7 +106,6 @@ class PaymentViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //let tarBarController = segue.destination.tabBarController
         let destination = sender as? String
         if(destination == "CurrentOrder"){
             tabBarController?.selectedIndex = 2
