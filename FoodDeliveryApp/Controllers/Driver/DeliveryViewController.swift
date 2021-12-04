@@ -56,6 +56,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     if (order){
         startLocationTimer
      */
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

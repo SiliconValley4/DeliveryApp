@@ -30,8 +30,6 @@ class RevenueViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let tabBarController = segue.destination as! UITabBarController
         let destination = sender as? String
-        //let send = sender as? UIButton
-        //if(send == self.butt){
         if(destination == "toProfile"){
             tabBarController.selectedIndex = 3
         }

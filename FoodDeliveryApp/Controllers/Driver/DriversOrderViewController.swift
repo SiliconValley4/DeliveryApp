@@ -17,6 +17,15 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
     //variables
     var orders = [DriverOrder]()
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let tabBarController = segue.destination.tabBarController!
+        let destination = sender as? String
+        if(destination == "CurrentDelivery"){
+            tabBarController.selectedIndex = 1
+        }
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tbvDriverOrder.dataSource = self
@@ -39,6 +48,7 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
                 self.orders = []
                 if let  readyOrders = json["orders"].array {
                     for item in readyOrders {
+                        print(item)
                         let order = DriverOrder(json: item)
                         self.orders.append(order)
                     }
@@ -59,6 +69,7 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "DriversOrderCell") as! DriversOrderCell
         
         let order = orders[indexPath.row]
+        //print(order.restaurant)
         cell.lbRestaurantName.text = order.restaurantName
         cell.lbCustomerName.text = order.customerName
         cell.lbCustomerAddress.text = order.customerAddress
@@ -68,6 +79,9 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
         
         
         return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 125
     }
     
     
@@ -79,9 +93,7 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
         let order = orders[indexPath.row]
         self.pickOrder(orderId: order.id!)
     }
-    
-    
-    
+
     
     //Picking Order
     private func pickOrder(orderId: Int) {
@@ -104,7 +116,7 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
                     let alertView = UIAlertController(title: nil, message: "Success!", preferredStyle: .alert)
                     
                     let okAction = UIAlertAction(title: "Show my map", style: .default, handler: { (action) in
-                        self.performSegue(withIdentifier: "CurrentDelivery", sender: self)
+                        self.performSegue(withIdentifier: "CurrentDelivery", sender: "CurrentDelivery")
                     })
                     
                     alertView.addAction(okAction)

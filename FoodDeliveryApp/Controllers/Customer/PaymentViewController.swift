@@ -80,7 +80,7 @@ class PaymentViewController: UIViewController {
                         //print(token)
                         APIManager.shared.createOrder(stripeToken: stripeToken.tokenId) { (json) in
                             //Cart.currentCart.reset()
-                            self.performSegue(withIdentifier: "ViewOrder", sender: self)
+                            self.performSegue(withIdentifier: "CurrentOrderSegue", sender: "CurrentOrder")
                         }
                         print("_________________________Order Successfully Created_______")
                     }
@@ -92,7 +92,7 @@ class PaymentViewController: UIViewController {
                 
                 let cancelAction = UIAlertAction(title: "OK", style: .cancel)
                 let okAction = UIAlertAction(title: "Go to order", style: .default, handler: { (action) in
-                    self.performSegue(withIdentifier: "ViewOrder", sender: self)
+                    self.performSegue(withIdentifier: "CurrentOrder", sender: "CurrentOrder")
                 })
                 
                 let alertView = UIAlertController(title: "Already Order?", message: "Your current order isn't completed", preferredStyle: .alert)
@@ -102,6 +102,14 @@ class PaymentViewController: UIViewController {
                 
                 self.present(alertView, animated: true, completion: nil)
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //let tarBarController = segue.destination.tabBarController
+        let destination = sender as? String
+        if(destination == "CurrentOrder"){
+            tabBarController?.selectedIndex = 2
         }
     }
     

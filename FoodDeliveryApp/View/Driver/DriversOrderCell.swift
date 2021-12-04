@@ -28,7 +28,7 @@ class DriversOrderCell: UITableViewCell {
     
     func configure() {
         imgCustomerAvatar.clipsToBounds = true
-        imgCustomerAvatar.layer.cornerRadius = imgCustomerAvatar.bounds.height/2
+        imgCustomerAvatar.layer.cornerRadius = imgCustomerAvatar.bounds.height/3
     }
 
 }
