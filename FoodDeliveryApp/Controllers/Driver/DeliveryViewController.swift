@@ -119,6 +119,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 self.setDriverLocationTo()
             }
         }
+        loadData()
     }
     
     @objc func setRefreshVCTimer(){
