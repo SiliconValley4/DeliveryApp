@@ -49,7 +49,7 @@ class ProfileViewController: UIViewController {
 //                if error == nil {
                     FBManager.shared.logOut()
                     User.currenUser.resetInfo()
-                    print("logggin out")
+//                    print("logggin out")
 //                }
                 
 //            })
