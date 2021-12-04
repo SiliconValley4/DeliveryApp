@@ -45,6 +45,8 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.getLatestOrder()
         }
+        
+        map.layer.cornerRadius = 32
 
         // Do any additional setup after loading the view.
     }
