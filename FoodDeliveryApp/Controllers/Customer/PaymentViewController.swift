@@ -35,7 +35,7 @@ class PaymentViewController: UIViewController {
         APIManager.shared.getLatestOrder { (json) in
             
             //print(json)
-            let orderStatus = json["order"]["status"].string as? String ?? nil
+            let orderStatus = json["order"]["status"].string ?? nil
             
             print("previous order status: \(orderStatus), may be NIL if no prev order")
             
