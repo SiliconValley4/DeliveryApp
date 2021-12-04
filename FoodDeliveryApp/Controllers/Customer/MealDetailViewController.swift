@@ -178,15 +178,9 @@ class MealDetailViewController: UIViewController {
                 self.present(alertView, animated: true, completion: nil)
             }
         })
-<<<<<<< HEAD
-        
-        self.dismiss(animated: true)
-        print("Added items to cart")
-=======
     }
     func dismiss(){
         self.navigationController?.popViewController(animated: true)
->>>>>>> 122d8137d5231f59a6c63dfeafa206e89d7baf26
     }
 
 }
