@@ -69,8 +69,6 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
         }.resume()
     }
     
-    
-    //
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MealList" {
             let controller = segue.destination as! CustomerMenuViewController
@@ -85,8 +83,6 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
         })
         self.tbvRestaurant.reloadData()
     }
-    
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchRestaurant.text != "" {
@@ -125,6 +121,4 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
         
         return cell
     }
-    
-
 }

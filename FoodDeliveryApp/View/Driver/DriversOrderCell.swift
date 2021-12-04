@@ -30,5 +30,4 @@ class DriversOrderCell: UITableViewCell {
         imgCustomerAvatar.clipsToBounds = true
         imgCustomerAvatar.layer.cornerRadius = imgCustomerAvatar.bounds.height/2
     }
-
 }

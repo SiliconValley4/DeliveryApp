@@ -22,7 +22,6 @@ class FloatingTabBarController: UITabBarController {
         layer.isHidden = false
         layer.masksToBounds = false
         layer.fillColor = UIColor.black.cgColor
-        //tabBar.isTranslucent = false
       
         tabBar.layer.insertSublayer(layer, at: 0)
 
@@ -31,9 +30,6 @@ class FloatingTabBarController: UITabBarController {
                 item.imageInsets = UIEdgeInsets(top: 20, left: 0, bottom: -20, right: 0)
             }
         }
-
-//        tabBar.itemWidth = 32
-        //tabBar.itemPositioning = .fill
         tabBar.unselectedItemTintColor = .white
       }
 }

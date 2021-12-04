@@ -39,6 +39,7 @@
 		10E2ACAD27359C45004DBD2B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E2ACAC27359C45004DBD2B /* LoginViewController.swift */; };
 		10E2ACAF27371649004DBD2B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10E2ACAE27371649004DBD2B /* CoreLocation.framework */; };
 		10E2ACB127381738004DBD2B /* DriversProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E2ACB027381738004DBD2B /* DriversProfileViewController.swift */; };
+		550C4A2D275BE0290097C098 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550C4A2C275BE0290097C098 /* UIHelper.swift */; };
 		5574AD83274AA45E006DE2F3 /* FloatingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5574AD82274AA45E006DE2F3 /* FloatingTabBarController.swift */; };
 		55F34C80273EE91200F9E373 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F34C7F273EE91200F9E373 /* StringConstants.swift */; };
 		55F34C82273EE96F00F9E373 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F34C81273EE96F00F9E373 /* APIConstants.swift */; };
@@ -82,6 +83,7 @@
 		10E2ACB027381738004DBD2B /* DriversProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriversProfileViewController.swift; sourceTree = "<group>"; };
 		268BBD65A1901ECCA5D419B6 /* Pods_FoodDeliveryApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodDeliveryApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DFD694B146E42E00FC0BD61 /* Pods-FoodDeliveryApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDeliveryApp.debug.xcconfig"; path = "Target Support Files/Pods-FoodDeliveryApp/Pods-FoodDeliveryApp.debug.xcconfig"; sourceTree = "<group>"; };
+		550C4A2C275BE0290097C098 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		5574AD82274AA45E006DE2F3 /* FloatingTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTabBarController.swift; sourceTree = "<group>"; };
 		55F34C7F273EE91200F9E373 /* StringConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		55F34C81273EE96F00F9E373 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				10286BEE2734783600E3FBE5 /* Model */,
 				10286BED2734781B00E3FBE5 /* View */,
 				10286BEC2734780C00E3FBE5 /* Controllers */,
+				550C4A2B275BDFE70097C098 /* Utilities */,
 				10286BD72734772E00E3FBE5 /* AppDelegate.swift */,
 				10286BD92734772E00E3FBE5 /* SceneDelegate.swift */,
 				10286BDD2734772E00E3FBE5 /* Main.storyboard */,
@@ -163,7 +166,6 @@
 			children = (
 				10286BFB27347BBF00E3FBE5 /* Customer */,
 				10286BFA27347BB700E3FBE5 /* Driver */,
-				5574AD82274AA45E006DE2F3 /* FloatingTabBarController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -239,6 +241,15 @@
 				10286C0427347C5600E3FBE5 /* Cart.swift */,
 			);
 			path = Customer;
+			sourceTree = "<group>";
+		};
+		550C4A2B275BDFE70097C098 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				5574AD82274AA45E006DE2F3 /* FloatingTabBarController.swift */,
+				550C4A2C275BE0290097C098 /* UIHelper.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		C5CDD41D47FD5EFC6EE5AD50 /* Pods */ = {
@@ -381,6 +392,7 @@
 				1028FAB927358C6E0038D72D /* DriversOrderViewController.swift in Sources */,
 				1028FAAD2735738D0038D72D /* PaymentViewController.swift in Sources */,
 				1028FABB27358D710038D72D /* DriversOrderCell.swift in Sources */,
+				550C4A2D275BE0290097C098 /* UIHelper.swift in Sources */,
 				10286BF727347AFC00E3FBE5 /* Helper.swift in Sources */,
 				10286BF027347ACA00E3FBE5 /* FBManager.swift in Sources */,
 				10286C0527347C5600E3FBE5 /* Cart.swift in Sources */,
