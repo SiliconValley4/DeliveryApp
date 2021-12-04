@@ -59,7 +59,7 @@ class MealDetailViewController: UIViewController {
         
         if let imageUrl = meal?.image {
             Helpers.loadImage(mealImage, "\(imageUrl)")
-            print(imageUrl)
+            //print(imageUrl)
         }
     }
     
@@ -130,9 +130,7 @@ class MealDetailViewController: UIViewController {
                 self.dismiss()
                 return
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel){_ in
-                self.dismiss()
-            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
             // If ordering meal from the same restaurant
             if cartRestaurant.id == currentRestaurant.id {
                 let inCart = Cart.currentCart.items.firstIndex(where: { (item) -> Bool in
@@ -158,6 +156,7 @@ class MealDetailViewController: UIViewController {
                 }
             }
             else {// If ordering meal from the another restaurant
+                print("Diff Rest")
                 let alertView = UIAlertController(
                     title: "Start new Order?",
                     message: "You're ordering meal from another restaurant. Create New Order?",
