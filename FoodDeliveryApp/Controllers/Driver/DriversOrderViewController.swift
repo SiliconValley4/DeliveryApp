@@ -88,14 +88,11 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
         let order = orders[indexPath.row]
         self.pickOrder(orderId: order.id!)
     }
-<<<<<<< HEAD
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
-=======
 
->>>>>>> 122d8137d5231f59a6c63dfeafa206e89d7baf26
     
     //Picking Order
     private func pickOrder(orderId: Int) {
@@ -128,8 +125,5 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
             
         }
     }
-    
-    
-    
 
 }
