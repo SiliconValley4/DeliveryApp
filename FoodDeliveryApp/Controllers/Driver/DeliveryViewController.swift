@@ -23,6 +23,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     var orderId: Int?
     var driverHasOrder: Bool = false
+    var customerName: String?
     
     //map destination
     var destination: MKPlacemark?
@@ -60,6 +61,8 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // MUST REMOVE PINS FROM CUSTOMER RESTAURANT VIEW CONTROLLER
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager = CLLocationManager()
@@ -175,10 +178,11 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 let to = order["address"].string!
                 let from = order["restaurant"]["address"].string!
                 
-                let customerName = order["customer"]["name"].string!
+//                let customerName = order["customer"]["name"].string!
+                self.customerName = order["customer"]["name"].string!
                 let customerAvatar = order["customer"]["avatar"].string!
                 
-                self.lbcustomerName.text = customerName
+                self.lbcustomerName.text = self.customerName
                 self.lbCustomerAddress.text = from
                 
                 self.imgCustomerAvatar.image = try! UIImage(data: Data(contentsOf: URL(string: customerAvatar)!))
@@ -407,7 +411,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                     }
                 })
             }
-            let alertView = UIAlertController(title: "Complete Order", message: "Are you sure?", preferredStyle: .alert)
+            let alertView = UIAlertController(title: "Complete Order", message: "Please hand the order to \(self.customerName) before completing", preferredStyle: .alert)
             alertView.addAction(cancelAction)
             alertView.addAction(okAction)
             

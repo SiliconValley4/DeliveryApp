@@ -64,18 +64,26 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidAppear(_ animated: Bool) {
     }
     
-
+    func setRefreshViewControllerTimer(){
+        print("setRefreshViewControllerTimer START")
+        refreshTimer = Timer.scheduledTimer(
+            timeInterval: 5.0,
+            target: self,
+            selector: #selector(refreshViewController),
+            userInfo: nil,
+            repeats: true)
+    }
+    @objc func refreshViewController(){
+        self.getLatestOrder()
+    }
     func getLatestOrder() {
-        
         //print("Get Latest Order from Order View Controller")
-
         APIManager.shared.getLatestOrder { [self] (json) in
             let order = json["order"]
             //print(json)
             //print("order status:\(json["order"]["status"] as? String ?? "no prev orders")")
             let orderStatus = json["order"]["status"].string as? String ?? nil
             //print("order status:\(orderStatus)")
-
             if orderStatus != nil {
                 if(orderStatus! == "Delivered"){
                     self.zoomTimer.invalidate()
@@ -122,35 +130,6 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
             userInfo: nil,
             repeats: true)
     }
-    
-    func setRefreshViewControllerTimer(){
-        print("setRefreshViewControllerTimer START")
-        refreshTimer = Timer.scheduledTimer(
-            timeInterval: 5.0,
-            target: self,
-            selector: #selector(refreshViewController),
-            userInfo: nil,
-            repeats: true)
-    }
-        
-    // repeats: to update driver location
-    func setUpdateDriverLocationTimer() {
-        print("SetUpdateDriverLocationTimer START")
-        //getDriverLocation(self)
-        updateDriverLocationTimer = Timer.scheduledTimer(
-            timeInterval: 1.0,
-            target: self,
-            selector: #selector(getDriverLocation(_:)),
-            userInfo: nil,
-            repeats: true)
-    }
-        
-    @objc func refreshViewController(){
-        self.getLatestOrder()
-    }
-    
-
-    
     @objc func autoZoom() {
         //print("AutoZoom called")
         var zoomRect = MKMapRect.null
@@ -167,17 +146,26 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    //
+    // repeats: to update driver location
+    func setUpdateDriverLocationTimer() {
+        print("SetUpdateDriverLocationTimer START")
+        //getDriverLocation(self)
+        updateDriverLocationTimer = Timer.scheduledTimer(
+            timeInterval: 1.0,
+            target: self,
+            selector: #selector(getDriverLocation(_:)),
+            userInfo: nil,
+            repeats: true)
+    }
     @objc func getDriverLocation(_ sender: AnyObject) {
         //print("Get Driver Location from OrderViewController")
         APIManager.shared.getDriverLocation { (json) in
-            print(json)
             if let location = json["location"].string {
                 let split = location.components(separatedBy: ",")
                 let lat = split[0]
                 let lng = split[1]
                 let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(lat)!, longitude: CLLocationDegrees(lng)!)
-                
+                //print(coordinate)
                 // Create pin annotation for Driver
                 if self.driverPin != nil {
                     self.driverPin.coordinate = coordinate
@@ -187,10 +175,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     self.driverPin.title = "Driver"
                     self.map.addAnnotation(self.driverPin)
                 }
-                
                 // Reset zoom rect to cover 3 locations
-                //self.autoZoom()
-                
             } else {
                 self.updateDriverLocationTimer.invalidate()
                 self.zoomTimer.invalidate()

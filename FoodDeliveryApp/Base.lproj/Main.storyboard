@@ -1027,7 +1027,7 @@
                     <navigationItem key="navigationItem" id="EyM-nO-hsq"/>
                     <connections>
                         <outlet property="cardTextField" destination="UO2-JZ-cRK" id="SIz-Ts-5MF"/>
-                        <segue destination="HHd-f4-6Wm" kind="showDetail" identifier="ViewOrderSegue" id="hCR-YE-TdT"/>
+                        <segue destination="HHd-f4-6Wm" kind="showDetail" identifier="CurrentOrderSegue" id="hCR-YE-TdT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wWs-H4-LKz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
