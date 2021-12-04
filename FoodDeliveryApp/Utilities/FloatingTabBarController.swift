@@ -30,6 +30,7 @@ class FloatingTabBarController: UITabBarController {
                 item.imageInsets = UIEdgeInsets(top: 20, left: 0, bottom: -20, right: 0)
             }
         }
+        tabBar.unselectedItemTintColor = .systemOrange
         tabBar.unselectedItemTintColor = .white
       }
 }
