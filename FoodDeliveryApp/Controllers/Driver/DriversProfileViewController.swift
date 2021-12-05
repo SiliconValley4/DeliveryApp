@@ -11,24 +11,31 @@ class DriversProfileViewController: UIViewController {
     
     
     @IBOutlet weak var driversAvatar: UIImageView!
-    @IBOutlet weak var lbName: UILabel!
+    @IBOutlet weak var lbLastName: UILabel!
+    @IBOutlet weak var lbFirstName: UILabel!
     @IBOutlet weak var lbEmail: UILabel!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        lbName.text = User.currenUser.name
-        lbEmail.text = User.currenUser.email
-        
-        driversAvatar.image = try! UIImage(data: Data (contentsOf: URL(string: User.currenUser.pictureURL!)!))
+        configureUserProfile()
         configure()
     }
     
     func configure() {
         driversAvatar.clipsToBounds = true
         driversAvatar.layer.cornerRadius = driversAvatar.bounds.height/2
+    }
+    
+    func configureUserProfile() {
+        let fullName = User.currenUser.name
+        
+        lbEmail.text = User.currenUser.email
+        
+        //TODO: Split the name
+        
+        driversAvatar.image = try! UIImage(data: Data (contentsOf: URL(string: User.currenUser.pictureURL!)!))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

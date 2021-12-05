@@ -364,29 +364,21 @@ class APIManager {
     // Request Server function
     func requestServer(_ method: Alamofire.HTTPMethod,_ path: String,_ params: [String: Any]?,_ encoding: ParameterEncoding,_ completionHandler: @escaping (JSON) -> Void ) {
         //print("Request Server from API Manager")
-        
         let url = baseURL?.appendingPathComponent(path)
-        
-        //refreshTokenIfNeed {
-            
-            AF.request(url!, method: method, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON{ response in
-                
-                switch response.result {
-                case .success(let value):
-                    let jsonData = JSON(value)
-                    //print(jsonData)
-                    print("____requestServer success____")
-                    completionHandler(jsonData)
-                    
-                    break
-                    
-                case .failure:
-                    //completionHandler((rawValue: JSON) )
-                    //print("reqServer Failed")
-                    break
-                }
+        //print("In req server")
+        AF.request(url!, method: method, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON{ response in
+            switch response.result {
+            case .success(let value):
+                let jsonData = JSON(value)
+                //print(jsonData)
+                //print("____requestServer success____")
+                completionHandler(jsonData)
+                break
+            case .failure:
+                print("reqServer Failed")
+                break
             }
-        //}
+        }
         
     }
     
@@ -446,18 +438,10 @@ class APIManager {
 //
 //        print(path)
 //    }
-
-    
-    
-    
-    
-    
     
     //Creating New Order Payment
     func createOrder(stripeToken: String, completionHandler: @escaping (JSON) -> Void){
-        
         print("Create Order from API Manager")
-
         let path = "api/customer/order/add/"
         let url = baseURL?.appendingPathComponent(path)
         //print("___________________Create Order URL_______________________")
@@ -469,11 +453,8 @@ class APIManager {
                 "quantity": item.qty
             ]
         }
-        
         if JSONSerialization.isValidJSONObject(jsonArray) {
-
             do {
-
                 let data = try JSONSerialization.data(withJSONObject: jsonArray, options: [])
                 let dataString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)!
                 let params: [String: Any] = [
@@ -484,18 +465,14 @@ class APIManager {
                     "order_details": dataString,
                     "address": Cart.currentCart.address!
                 ]
-
 //                print(accessToken)
 //                print(stripeToken)
 //                print("\(Cart.currentCart.restaurant!.id!)")
 //                print(dataString)
 //                print(Cart.currentCart.address!)
-
                 //requestServer(.post, path, params, URLEncoding(), completionHandler)
-
                 //testing request
                 AF.request(url!, method: .post,  parameters: params, encoding: URLEncoding.default).responseJSON(completionHandler: { (response) in
-
                     switch response.result {
                     case .success(let value):
                         let jsonData = JSON(value)
@@ -503,17 +480,12 @@ class APIManager {
                         completionHandler(jsonData)
                         Cart.currentCart.reset()
                         break
-
                     case .failure:
-                        print("failure!")
+                        print("failure to create order")
                         break
                     }
                 })
-                // end of test request
-
                 //print("___________________CREATE ORDER_______________________")
-                //print("_______________________________________________________")
-
             }
             catch {
                 print("JSON serialization failed: \(error)")
@@ -521,8 +493,6 @@ class APIManager {
         }
 
     }
-//
-//
 
     //Getting latest Orders from Customer
     func getLatestOrder(completionHandler: @escaping (JSON) -> Void) {
@@ -548,7 +518,7 @@ class APIManager {
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)
-                print("____________________________________getLatestOrderSUCCESS____________________________")
+                //print("____________getLatestOrderSUCCESS_____________")
                 completionHandler(jsonData)
                 break
 
@@ -613,7 +583,7 @@ class APIManager {
         ]
         //print("__________PARAMS_______")
         //print(accessToken)
-        requestServer(.get, path, params, URLEncoding(), completionHandler)
+        //requestServer(.get, path, params, URLEncoding(), completionHandler)
         
         //testing request
         AF.request(url!, method: .get,  parameters: params, encoding: URLEncoding.default).responseJSON(completionHandler: { (response) in
@@ -621,6 +591,8 @@ class APIManager {
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)
+//                                        self.accessToken = jsonData["access_token"].string!
+                //                        self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
                 completionHandler(jsonData)
                 break
 
@@ -648,7 +620,7 @@ class APIManager {
             case .success(let value):
                 let jsonData = JSON(value)
                 completionHandler(jsonData)
-                //print("_____Updating Drivers Location Success_____")
+                print("_____Updating Drivers Location Success_____")
                 break
 
             case .failure:
@@ -666,30 +638,18 @@ class APIManager {
         let params: [String: Any] = [
             "access_token": self.accessToken
         ]
-        //print(params)
-        //requestServer(.get, path, params, URLEncoding(), completionHandler)
-        
-        //testing request
         AF.request(url!, method: .get,  parameters: params, encoding: URLEncoding.default).responseJSON(completionHandler: { (response) in
-            
-            //print(response)
-
             switch response.result {
             case .success(let value):
-                //print(value)
                 let jsonData = JSON(value)
                 completionHandler(jsonData)
                 break
-
             case .failure:
                 print("failure")
                 break
             }
         })
-        //print("______________________API Manager getDriverLocation end ________________")
     }
-    
-
     func compeleteOrder(orderId: Int, completionHandler: @escaping (JSON) -> Void) {
         let path = "api/driver/order/complete/"
         let url = baseURL?.appendingPathComponent(path)
