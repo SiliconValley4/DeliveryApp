@@ -155,6 +155,7 @@
 		10286BEC2734780C00E3FBE5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				10E2ACAC27359C45004DBD2B /* LoginViewController.swift */,
 				10286BF927347B8900E3FBE5 /* Driver */,
 				10286BF827347B7800E3FBE5 /* Customer */,
 			);
@@ -189,7 +190,6 @@
 				1028FAAC2735738D0038D72D /* PaymentViewController.swift */,
 				1028FAB22735894C0038D72D /* OrderViewController.swift */,
 				1028FAB627358B8E0038D72D /* ProfileViewController.swift */,
-				10E2ACAC27359C45004DBD2B /* LoginViewController.swift */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
