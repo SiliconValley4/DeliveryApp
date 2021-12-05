@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var backSplashUI: UIView!
     
     //Switching User
-    @IBOutlet weak var switch User: UISegmentedControl!
+    @IBOutlet weak var switchUser: UISegmentedControl!
     
     var fbLoginSuccess = false
     
