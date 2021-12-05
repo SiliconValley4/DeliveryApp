@@ -1378,9 +1378,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="imgAvatar" destination="Vei-Vs-LRQ" id="JyS-PZ-GSn"/>
+                        <outlet property="lbFirstName" destination="tdg-u5-R3d" id="K3t-Eq-iTj"/>
+                        <outlet property="lbLastName" destination="Uco-Tn-r59" id="gxo-e2-NEv"/>
                         <outlet property="signoutActionButton" destination="cCA-6C-RKa" id="6Ph-ZF-Yi1"/>
                         <outlet property="userEmailLabel" destination="K6f-MK-n0b" id="zzp-b1-8Dx"/>
-                        <outlet property="userNameLabel" destination="tdg-u5-R3d" id="HUb-Xm-7qW"/>
                         <segue destination="BYZ-38-t0r" kind="showDetail" identifier="CustomerLogout" id="0LQ-9U-FJ8"/>
                     </connections>
                 </viewController>
@@ -1541,7 +1542,7 @@
         <segue reference="wcU-TS-ALa"/>
         <segue reference="j8I-5e-oKy"/>
         <segue reference="Zp8-kZ-mcx"/>
-        <segue reference="tPs-We-3KK"/>
+        <segue reference="0LQ-9U-FJ8"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Take_Away" width="2000" height="2000"/>
