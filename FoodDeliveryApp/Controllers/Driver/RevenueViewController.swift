@@ -19,8 +19,6 @@ class RevenueViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-      
         self.initializeChart()
         self.loadDataToChart()
 
@@ -37,12 +35,12 @@ class RevenueViewController: UIViewController {
     
     @IBAction func onButton(_ sender: Any) {
         
-        let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "DriverTabBarController") as? UITabBarController
+//        let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "DriverTabBarController") as? UITabBarController
+//
+//        let destination = self.storyboar
 
-        //let destination = self.storyboar
-
-        homeViewController?.selectedIndex = 3
-        self.performSegue(withIdentifier: "test1", sender: "toProfile")
+//        homeViewController?.selectedIndex = 3
+//        self.performSegue(withIdentifier: "test1", sender: "toProfile")
 
     }
     
@@ -99,15 +97,5 @@ class RevenueViewController: UIViewController {
             }
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
    
 }

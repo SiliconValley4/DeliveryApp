@@ -56,9 +56,6 @@ class ProfileViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
-    
-    
 //    if segue.identifier == "CustomerLogout" {
 //        APIManager.shared.logout(completionHandler: {
 //            (error) in
