@@ -30,8 +30,11 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     var source: MKPlacemark?
     
     var locationManager: CLLocationManager!
-    var driverPin: MKPointAnnotation!
     
+    var driverPin: MKPointAnnotation!
+    var restaurantPin: MKPointAnnotation!
+    var customerPin: MKPointAnnotation!
+
     
     var driverLocation: CLLocationCoordinate2D!
     var restaurantLocation: CLLocationCoordinate2D!
@@ -71,14 +74,14 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         
         // MUST REMOVE PINS FROM CUSTOMER RESTAURANT VIEW CONTROLLER
         
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager = CLLocationManager()
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestAlwaysAuthorization()
-            locationManager.startUpdatingLocation()
-            self.map.showsUserLocation = false
-        }
+//        if CLLocationManager.locationServicesEnabled() {
+//            locationManager = CLLocationManager()
+//            locationManager.delegate = self
+//            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//            locationManager.requestAlwaysAuthorization()
+//            locationManager.startUpdatingLocation()
+//            self.map.showsUserLocation = false
+//        }
         
         if(!self.refreshTimer.isValid){
             self.setRefreshVCTimer()
@@ -87,8 +90,8 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
 
         if(self.driverLocation == nil){
             print("1")
-            print(self.driverLocation)
-            print(self.driverLocation)
+//            print(self.driverLocation)
+//            print(self.driverLocation)
         }
         
         //Update location
@@ -107,7 +110,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             if(!self.simulatorToRestaurantTimer.isValid && self.restaurantLocation != nil){
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
                     print("Moving to Restaurant now")
-                    print("Total distance to travel dx:\(abs(self.restaurantLocation.longitude-self.driverLocation.longitude)) dy:\(abs(self.driverLocation.latitude-self.restaurantLocation.latitude))")
+                    //print("Total distance to travel dx:\(abs(self.restaurantLocation.longitude-self.driverLocation.longitude)) dy:\(abs(self.driverLocation.latitude-self.restaurantLocation.latitude))")
                     self.simulatorToRestaurantTimer = Timer.scheduledTimer(
                         timeInterval: self.simulatorFrequency,
                         target: self,
@@ -140,9 +143,17 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     }
 
     @objc func sendDriverLocationToServer(_ sender: AnyObject) {
+        self.autoZoom()
         APIManager.shared.updateLocation(location: self.driverLocation) { (json) in
             //print(self.driverLocation)
-            //self.autoZoom()
+            if self.driverPin != nil {
+                self.driverPin.coordinate = self.driverLocation
+            } else {
+                self.driverPin = MKPointAnnotation()
+                self.driverPin.coordinate = self.driverLocation
+                self.driverPin.title = "Me"
+                self.map.addAnnotation(self.driverPin)
+            }
         }
     }
     
@@ -150,6 +161,9 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     override func viewDidAppear(_ animated: Bool) {
         loadData()
+        
+        autoZoom()
+
         //Maybe include what  happens if there are no current orders, turn of currentlocationtimer?
         //if(!timerDriverLocation.isValid &&
 
@@ -278,8 +292,11 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 self.simulatorToRestaurantTimer.invalidate()
                 self.moving = false
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                    let degreeKMToMiles = 111.111 * 0.621371
                     print("Moving to Customer now")
-                    print("Total distance to travel dx:\(abs(self.customerLocation.longitude-self.driverLocation.longitude)) dy:\(abs(self.driverLocation.latitude-self.customerLocation.latitude))")
+//                    let distanceX = abs(self.customerLocation.longitude-self.driverLocation.longitude) * degreeKMToMiles
+//                    let distanceY = abs(self.driverLocation.latitude-self.customerLocation.latitude) * degreeKMToMiles
+                    //print(String(format:"Total distance to travel dx: %.2f dy: %.2f",distanceX, distanceY))
                     self.simulatorToCustomerTimer = Timer.scheduledTimer(
                         timeInterval: self.simulatorFrequency,
                         target: self,
@@ -348,6 +365,32 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         
         self.map.setVisibleMapRect(insetRect, animated: true)
     }
+
+    @objc func loadMap(){
+        
+        if driverPin != nil {
+            driverPin.coordinate = self.driverLocation
+        } else {
+            driverPin = MKPointAnnotation()
+            driverPin.coordinate = self.driverLocation
+            self.map.addAnnotation(driverPin)
+        }
+        driverPin.title = "You"
+        //All 3 locations
+        var zoomRect = MKMapRect.null
+        for annotation in self.map.annotations {
+            let annotationPoint = MKMapPoint(annotation.coordinate)
+            let pointRect = MKMapRect(x: annotationPoint.x, y: annotationPoint.y, width: 10, height: 10)
+            zoomRect = zoomRect.union(pointRect)
+        }
+        
+        let insetWidth = -zoomRect.size.width //* 0.2
+        let insetHeight = -zoomRect.size.height //* 0.2
+        let insetRect = zoomRect.insetBy(dx: insetWidth, dy: insetHeight)
+        
+        self.map.setVisibleMapRect(insetRect, animated: true)
+
+    }
     
     //Complete Order Button Action
     @IBAction func completeOrder(_ sender: Any) {
@@ -415,12 +458,11 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         var newLocation = CLLocationCoordinate2D.init()
         newLocation.latitude = 40.6882
         newLocation.longitude = -73.9642
-        print("New Location set to: \(newLocation )")
+        print("New Current Location set to: \(newLocation)")
         self.driverLocation = newLocation
 //        let x = customerLocation.longitude
 //        let y = customerLocation.latitude
         //print("Destination x=\(x) y=\(y)")
     }
-
 }
 

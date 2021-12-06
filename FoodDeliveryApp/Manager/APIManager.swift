@@ -581,26 +581,18 @@ class APIManager {
         let params: [String: Any] = [
             "access_token": self.accessToken
         ]
-        //print("__________PARAMS_______")
-        //print(accessToken)
-        //requestServer(.get, path, params, URLEncoding(), completionHandler)
-        
-        //testing request
         AF.request(url!, method: .get,  parameters: params, encoding: URLEncoding.default).responseJSON(completionHandler: { (response) in
 
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)
-//                                        self.accessToken = jsonData["access_token"].string!
-                //                        self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
                 completionHandler(jsonData)
                 break
-
             case .failure:
+                print("Driver Current Order FAILURE")
                 break
             }
         })
-        print("______________________Driver Current Order Success______")
     }
     
     
