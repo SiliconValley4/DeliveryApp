@@ -146,6 +146,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         APIManager.shared.updateLocation(location: self.driverLocation) { (json) in
             //print(self.driverLocation)
             self.autoZoom()
+            self.map.removeAnnotation(self.driverPin)
             self.driverPin = MKPointAnnotation()
             self.driverPin.coordinate = CLLocation.init(latitude: self.driverLocation.latitude, longitude: self.driverLocation.longitude).coordinate
             self.map.addAnnotation(self.driverPin)
@@ -371,7 +372,6 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             self.map.addAnnotation(driverPin)
         }
         driverPin.title = "You"
-        
         //All 3 locations
         var zoomRect = MKMapRect.null
         for annotation in self.map.annotations {
