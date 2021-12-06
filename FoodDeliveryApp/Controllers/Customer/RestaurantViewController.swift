@@ -15,11 +15,13 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
     
     @IBOutlet weak var userWelcomeLabel: UILabel!
     
+    enum Section { case main }
     
     //Getting data Dictionaries
-    var restaurants = [Restaurant]()
+    var restaurants: [Restaurant] = []
     var filterRestaurants = [Restaurant]()
     
+    //var dataSource: UITableViewDiffableDataSource<Section, Restaurant>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +56,6 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
         })
         //print(restaurants)
     }
-    
     
     func loadImage(imageView: UIImageView, urlString: String) {
         let imgUrl:URL = URL(string: urlString)!

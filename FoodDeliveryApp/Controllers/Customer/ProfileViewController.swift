@@ -11,7 +11,9 @@ class ProfileViewController: UIViewController {
     
     
     @IBOutlet weak var imgAvatar: UIImageView!
-    @IBOutlet weak var userNameLabel: UILabel!
+    
+    @IBOutlet weak var lbFirstName: UILabel!
+    @IBOutlet weak var lbLastName: UILabel!
     @IBOutlet weak var userEmailLabel: UILabel!
     @IBOutlet weak var signoutActionButton: UIButton!
     
@@ -19,8 +21,13 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         
-        userNameLabel.text = User.currenUser.name
+        let fullName = User.currenUser.name!
         userEmailLabel.text = User.currenUser.email
+        
+        let components = fullName.components(separatedBy: " ")
+        
+        lbFirstName.text = components.first
+        lbLastName.text = components.last
         
         imgAvatar.image = try! UIImage(data: Data (contentsOf: URL(string: User.currenUser.pictureURL!)!))
         
@@ -48,9 +55,6 @@ class ProfileViewController: UIViewController {
         User.currenUser.resetInfo()
         self.dismiss(animated: true, completion: nil)
     }
-    
-    
-    
     
 //    if segue.identifier == "CustomerLogout" {
 //        APIManager.shared.logout(completionHandler: {

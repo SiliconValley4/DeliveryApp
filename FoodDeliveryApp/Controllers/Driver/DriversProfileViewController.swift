@@ -29,7 +29,11 @@ class DriversProfileViewController: UIViewController {
     }
     
     func configureUserProfile() {
-        let fullName = User.currenUser.name
+        let fullName = User.currenUser.name!
+        let components = fullName.components(separatedBy: " ")
+        
+        lbFirstName.text = components.first
+        lbLastName.text = components.last
         
         lbEmail.text = User.currenUser.email
         

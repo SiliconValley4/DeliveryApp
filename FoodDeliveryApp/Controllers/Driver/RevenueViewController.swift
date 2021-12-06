@@ -32,8 +32,6 @@ class RevenueViewController: UIViewController {
    }
     
     @IBAction func onButton(_ sender: Any) {
-        
-
 
     }
     
@@ -90,15 +88,5 @@ class RevenueViewController: UIViewController {
             }
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
    
 }
