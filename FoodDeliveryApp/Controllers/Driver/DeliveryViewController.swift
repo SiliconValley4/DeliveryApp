@@ -154,7 +154,6 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 self.driverPin.title = "Me"
                 self.map.addAnnotation(self.driverPin)
             }
-            
         }
     }
     
