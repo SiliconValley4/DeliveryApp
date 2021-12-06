@@ -143,13 +143,18 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     }
 
     @objc func sendDriverLocationToServer(_ sender: AnyObject) {
+        self.autoZoom()
         APIManager.shared.updateLocation(location: self.driverLocation) { (json) in
             //print(self.driverLocation)
-            self.autoZoom()
-            self.map.removeAnnotation(self.driverPin)
-            self.driverPin = MKPointAnnotation()
-            self.driverPin.coordinate = CLLocation.init(latitude: self.driverLocation.latitude, longitude: self.driverLocation.longitude).coordinate
-            self.map.addAnnotation(self.driverPin)
+            if self.driverPin != nil {
+                self.driverPin.coordinate = self.driverLocation
+            } else {
+                self.driverPin = MKPointAnnotation()
+                self.driverPin.coordinate = self.driverLocation
+                self.driverPin.title = "Me"
+                self.map.addAnnotation(self.driverPin)
+            }
+            
         }
     }
     
