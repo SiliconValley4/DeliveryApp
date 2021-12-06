@@ -300,11 +300,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wc6-H8-swf">
-<<<<<<< HEAD
-                                <rect key="frame" x="0.0" y="168" width="390" height="593"/>
-=======
                                 <rect key="frame" x="0.0" y="136" width="390" height="625"/>
->>>>>>> 04d411ca401261ee2675777181ac2419983a6f81
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DriversOrderCell" rowHeight="127" id="f10-5k-OXV" customClass="DriversOrderCell" customModule="FoodDeliveryApp" customModuleProvider="target">
@@ -1147,14 +1143,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YDG-BH-NXP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Restaurants" id="gHd-2c-MTZ">
-<<<<<<< HEAD
                         <imageReference key="image" image="house" catalog="system"/>
                         <imageReference key="selectedImage" image="house.fill" catalog="system" renderingMode="hierarchical-single"/>
-=======
-                        <imageReference key="image" image="house" catalog="system" symbolScale="default"/>
-                        <imageReference key="selectedImage" image="house" catalog="system" symbolScale="default"/>
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
->>>>>>> 04d411ca401261ee2675777181ac2419983a6f81
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cMa-bM-V5m">
@@ -1489,7 +1479,6 @@
         <scene sceneID="dJv-WN-Bjo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4TY-Dx-ocd" sceneMemberID="viewController">
-<<<<<<< HEAD
                     <tabBarItem key="tabBarItem" title="Delivery" image="mappin.circle" catalog="system" id="aZ1-3H-8iF">
                         <imageReference key="selectedImage" image="mappin.circle.fill" catalog="system" renderingMode="hierarchical-single">
                             <hierarchicalColors>
@@ -1499,9 +1488,6 @@
                             </hierarchicalColors>
                         </imageReference>
                     </tabBarItem>
-=======
-                    <tabBarItem key="tabBarItem" title="Delivery" image="mappin.circle" catalog="system" id="aZ1-3H-8iF"/>
->>>>>>> 04d411ca401261ee2675777181ac2419983a6f81
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="NYR-6B-jIV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6X0-9s-sQE">
@@ -1559,13 +1545,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
-        <segue reference="We6-bz-cnD"/>
-        <segue reference="zky-Z1-CeX"/>
-=======
         <segue reference="wcU-TS-ALa"/>
         <segue reference="Gis-Nt-yc2"/>
->>>>>>> 04d411ca401261ee2675777181ac2419983a6f81
         <segue reference="0LQ-9U-FJ8"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -1589,11 +1570,5 @@
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-<<<<<<< HEAD
-        <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-=======
->>>>>>> 04d411ca401261ee2675777181ac2419983a6f81
     </resources>
 </document>
