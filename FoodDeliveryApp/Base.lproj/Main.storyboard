@@ -301,10 +301,15 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wc6-H8-swf">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <rect key="frame" x="0.0" y="136" width="390" height="625"/>
 =======
                                 <rect key="frame" x="0.0" y="168" width="390" height="642"/>
 >>>>>>> af5b41b17334910bb70d60003ef7fcc5e9a4057c
+=======
+                                <rect key="frame" x="0.0" y="136" width="390" height="625"/>
+
+>>>>>>> 99edd817d4e406ce739da901f7b28f81398e8870
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DriversOrderCell" rowHeight="127" id="f10-5k-OXV" customClass="DriversOrderCell" customModule="FoodDeliveryApp" customModuleProvider="target">
@@ -1576,6 +1581,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <segue reference="wcU-TS-ALa"/>
         <segue reference="j8I-5e-oKy"/>
 =======
@@ -1584,6 +1590,10 @@
         <segue reference="j8I-5e-oKy"/>
         <segue reference="qdj-ui-HZe"/>
 >>>>>>> af5b41b17334910bb70d60003ef7fcc5e9a4057c
+=======
+        <segue reference="wcU-TS-ALa"/>
+        <segue reference="j8I-5e-oKy"/>
+>>>>>>> 99edd817d4e406ce739da901f7b28f81398e8870
         <segue reference="0LQ-9U-FJ8"/>
     </inferredMetricsTieBreakers>
     <resources>
