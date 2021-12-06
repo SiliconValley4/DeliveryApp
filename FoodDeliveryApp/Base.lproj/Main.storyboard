@@ -215,24 +215,24 @@
             <objects>
                 <viewController id="qJj-rX-Pd6" customClass="DriversProfileViewController" customModule="FoodDeliveryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z4W-Sa-l6R">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driver Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Fd-L8-x4p">
-                                <rect key="frame" x="36" y="320" width="318" height="28.666666666666686"/>
+                                <rect key="frame" x="36" y="288" width="318" height="28.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZIe-pP-bPF">
-                                <rect key="frame" x="105" y="132" width="180" height="180"/>
+                                <rect key="frame" x="105" y="100" width="180" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="PE0-dz-YrL"/>
                                     <constraint firstAttribute="height" constant="180" id="ftu-1m-qxd"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2W2-bO-ZcF">
-                                <rect key="frame" x="125" y="88" width="140" height="36"/>
+                                <rect key="frame" x="125" y="56" width="140" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="uSx-CG-M5v"/>
                                 </constraints>
@@ -241,13 +241,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlV-YG-tHs">
-                                <rect key="frame" x="36" y="352.66666666666669" width="318" height="29"/>
+                                <rect key="frame" x="36" y="320.66666666666669" width="318" height="29"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email: Driver@email.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfs-uY-9Xr">
-                                <rect key="frame" x="36" y="389.66666666666669" width="318" height="18"/>
+                                <rect key="frame" x="36" y="357.66666666666669" width="318" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -300,7 +300,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wc6-H8-swf">
+<<<<<<< HEAD
                                 <rect key="frame" x="0.0" y="168" width="390" height="593"/>
+=======
+                                <rect key="frame" x="0.0" y="136" width="390" height="625"/>
+>>>>>>> 04d411ca401261ee2675777181ac2419983a6f81
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DriversOrderCell" rowHeight="127" id="f10-5k-OXV" customClass="DriversOrderCell" customModule="FoodDeliveryApp" customModuleProvider="target">
@@ -360,7 +364,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PKA-7N-03c">
-                                <rect key="frame" x="0.0" y="88" width="390" height="72"/>
+                                <rect key="frame" x="0.0" y="56" width="390" height="72"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome," textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQA-Vv-b1A">
                                         <rect key="frame" x="20" y="8" width="105" height="25"/>
@@ -1122,7 +1126,7 @@
         <scene sceneID="H8r-ak-onC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DvQ-4B-DsO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Order" image="bag" catalog="system" selectedImage="bag.fill" id="nyD-RF-fTb"/>
+                    <tabBarItem key="tabBarItem" title="My Order" image="bag" catalog="system" id="nyD-RF-fTb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LSa-We-1LS">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
@@ -1143,8 +1147,14 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YDG-BH-NXP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Restaurants" id="gHd-2c-MTZ">
+<<<<<<< HEAD
                         <imageReference key="image" image="house" catalog="system"/>
                         <imageReference key="selectedImage" image="house.fill" catalog="system" renderingMode="hierarchical-single"/>
+=======
+                        <imageReference key="image" image="house" catalog="system" symbolScale="default"/>
+                        <imageReference key="selectedImage" image="house" catalog="system" symbolScale="default"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+>>>>>>> 04d411ca401261ee2675777181ac2419983a6f81
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cMa-bM-V5m">
@@ -1272,7 +1282,7 @@
         <scene sceneID="TYa-Vo-vFR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gNN-Dv-nHg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Status" image="map" catalog="system" selectedImage="map.fill" id="ryo-9M-Tb2"/>
+                    <tabBarItem key="tabBarItem" title="Status" image="map" catalog="system" id="ryo-9M-Tb2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uNi-B8-odb">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
@@ -1412,7 +1422,7 @@
             <objects>
                 <viewController id="EAz-fl-qHg" customClass="RevenueViewController" customModule="FoodDeliveryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0g7-dU-mzS">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2XV-df-N6z" customClass="BarChartView" customModule="Charts">
@@ -1459,18 +1469,10 @@
         <scene sceneID="4Yc-RS-9zn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T1F-Me-vdk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Orders" image="house" catalog="system" id="ytF-wS-Avb">
-                        <imageReference key="selectedImage" image="house.fill" catalog="system" renderingMode="hierarchical">
-                            <hierarchicalColors>
-                                <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color systemColor="secondaryLabelColor"/>
-                                <color systemColor="tertiaryLabelColor"/>
-                            </hierarchicalColors>
-                        </imageReference>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Orders" image="house" catalog="system" id="ytF-wS-Avb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OdH-Yc-jvB">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
@@ -1487,6 +1489,7 @@
         <scene sceneID="dJv-WN-Bjo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4TY-Dx-ocd" sceneMemberID="viewController">
+<<<<<<< HEAD
                     <tabBarItem key="tabBarItem" title="Delivery" image="mappin.circle" catalog="system" id="aZ1-3H-8iF">
                         <imageReference key="selectedImage" image="mappin.circle.fill" catalog="system" renderingMode="hierarchical-single">
                             <hierarchicalColors>
@@ -1496,10 +1499,13 @@
                             </hierarchicalColors>
                         </imageReference>
                     </tabBarItem>
+=======
+                    <tabBarItem key="tabBarItem" title="Delivery" image="mappin.circle" catalog="system" id="aZ1-3H-8iF"/>
+>>>>>>> 04d411ca401261ee2675777181ac2419983a6f81
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="NYR-6B-jIV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6X0-9s-sQE">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1515,18 +1521,10 @@
         <scene sceneID="Ugx-Qr-ang">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y6v-zL-uAf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Earnings" image="chart.bar" catalog="system" id="iOf-GC-RRA">
-                        <imageReference key="selectedImage" image="chart.bar.fill" catalog="system" renderingMode="hierarchical-single">
-                            <hierarchicalColors>
-                                <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color systemColor="secondaryLabelColor"/>
-                                <color systemColor="tertiaryLabelColor"/>
-                            </hierarchicalColors>
-                        </imageReference>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Earnings" image="chart.bar" catalog="system" id="iOf-GC-RRA"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sqO-rX-5fY">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
@@ -1543,19 +1541,11 @@
         <scene sceneID="Oof-9s-WQ8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PpB-o7-KJD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" id="Sw4-jh-aF4">
-                        <imageReference key="selectedImage" image="person.fill" catalog="system" renderingMode="hierarchical-single">
-                            <hierarchicalColors>
-                                <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color systemColor="secondaryLabelColor"/>
-                                <color systemColor="tertiaryLabelColor"/>
-                            </hierarchicalColors>
-                        </imageReference>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" id="Sw4-jh-aF4"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="kgp-MS-ObN"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZaB-45-LcT">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1569,30 +1559,26 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+<<<<<<< HEAD
         <segue reference="We6-bz-cnD"/>
         <segue reference="zky-Z1-CeX"/>
+=======
+        <segue reference="wcU-TS-ALa"/>
+        <segue reference="Gis-Nt-yc2"/>
+>>>>>>> 04d411ca401261ee2675777181ac2419983a6f81
         <segue reference="0LQ-9U-FJ8"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Take_Away" width="2000" height="2000"/>
         <image name="bag" catalog="system" width="128" height="128"/>
-        <image name="bag.fill" catalog="system" width="128" height="128"/>
         <image name="chart.bar" catalog="system" width="128" height="90"/>
-        <image name="chart.bar.fill" catalog="system" width="128" height="92"/>
         <image name="house" catalog="system" width="128" height="106"/>
-        <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="jennifer-burk" width="2205" height="3304"/>
         <image name="map" catalog="system" width="128" height="110"/>
-        <image name="map.fill" catalog="system" width="128" height="110"/>
         <image name="mappin.circle" catalog="system" width="128" height="121"/>
-        <image name="mappin.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person" catalog="system" width="128" height="117"/>
-        <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1603,8 +1589,11 @@
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+<<<<<<< HEAD
         <systemColor name="tertiaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+=======
+>>>>>>> 04d411ca401261ee2675777181ac2419983a6f81
     </resources>
 </document>
