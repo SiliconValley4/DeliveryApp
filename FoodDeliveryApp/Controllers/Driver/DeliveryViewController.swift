@@ -44,6 +44,13 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     var simulatorToCustomerTimer = Timer()
     var moving = false
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = sender as? String
+        if(destination == "AvailableOrders"){
+            tabBarController?.selectedIndex = 0
+        }
+    }
+    
     /*
      view did load
      first startRefreshTimer
@@ -134,7 +141,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
 
     @objc func sendDriverLocationToServer(_ sender: AnyObject) {
         APIManager.shared.updateLocation(location: self.driverLocation) { (json) in
-            print(self.driverLocation)
+            //print(self.driverLocation)
             //self.autoZoom()
         }
     }
@@ -150,35 +157,20 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     @objc func loadData() {
         APIManager.shared.getCurrentDriverOrder { (json) in
-        /*  customer
-                 name
-                 email
-                 picture url
-                 address
-             order
-             cart -> Order (order details 1-n) : orderID
-             mealID qty
-             total
-         */
-            
             let order = json["order"]
-
             if let id = order["id"].int, order["status"] == "On the way" {
-                
+                self.showHideMap(state: "show")
                 for annotation in self.map.annotations {
                     //print(annotation)
                 }
-                
                 self.orderId = id
                 //print("Order id retrieved: \(self.orderId)")
                 //print(order)
                 let to = order["address"].string!
                 let from = order["restaurant"]["address"].string!
-                
 //                let customerName = order["customer"]["name"].string!
                 self.customerName = order["customer"]["name"].string!
                 let customerAvatar = order["customer"]["avatar"].string!
-                
                 self.lbcustomerName.text = self.customerName
                 self.lbCustomerAddress.text = from
                 
@@ -198,9 +190,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                     })
                 })
             } else {
-                self.map.isHidden = true
-                self.viewInfo.isHidden = true
-                self.bcomplete.isHidden = true
+                self.showHideMap(state: "hide")
                 // Showing a message here
                 let lbMessage = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))
                 lbMessage.center = self.view.center
@@ -231,58 +221,30 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     // #1 - Delegate method of MKMapViewDelegate
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        
         let renderer = MKPolylineRenderer(overlay: overlay)
         renderer.strokeColor = UIColor.blue
         renderer.lineWidth = 5.0
-        
         return renderer
     }
     
     // #2 - Convert an address string to a location on the map
     func getLocation(_ address: String,_ title: String,_ completionHandler: @escaping (MKPlacemark) -> Void) {
-        
         let geocoder = CLGeocoder()
-        
         geocoder.geocodeAddressString(address) { (placemarks, error) in
-            
             if (error != nil) {
                 print("Error: ", error as Any)
                 print("error: \(error as Any)")
             }
-            
             if let placemark = placemarks?.first {
-                
                 let coordinates: CLLocationCoordinate2D = placemark.location!.coordinate
-                
                 // Create a pin
                 let dropPin = MKPointAnnotation()
                 dropPin.coordinate = coordinates
                 dropPin.title = title
-                
                 self.map.addAnnotation(dropPin)
                 completionHandler(MKPlacemark.init(placemark: placemark))
             }
         }
-    }
-    
-    func setDriverLocationTo(){
-        
-        //let newLocation: CLLocation?
-        
-        var newLocation = CLLocationCoordinate2D.init()
-        newLocation.latitude = 40.6882
-        newLocation.longitude = -73.9642
-        print("New Location set to: \(newLocation )")
-        self.driverLocation = newLocation
-        
-        
-//        let x = customerLocation.longitude
-//        let y = customerLocation.latitude
-        
-        //print("Destination x=\(x) y=\(y)")
-        
-        
     }
     
     @objc func moveToRestaurant(){
@@ -312,7 +274,6 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             dy = abs(self.driverLocation.latitude-destination.latitude)
         } else{
             print("___________Driver arrived to \(name)___________")
-            
             if(name == "Restaurant"){
                 self.simulatorToRestaurantTimer.invalidate()
                 self.moving = false
@@ -361,11 +322,9 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         print(locations)
         let location = locations.last! as CLLocation
         self.driverLocation = location.coordinate
-        
         print("Location Manager Called, current location: 4\(location.coordinate)")
 //        print("location")
 //        print(location.coordinate)
-        
         // Create pin annotation for Driver
         if driverPin != nil {
             driverPin.coordinate = self.driverLocation
@@ -375,7 +334,6 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             self.map.addAnnotation(driverPin)
         }
         driverPin.title = "You"
-        
         //All 3 locations
         var zoomRect = MKMapRect.null
         for annotation in self.map.annotations {
@@ -404,7 +362,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                         self.updateDriverLocationTimer.invalidate()
                         self.locationManager.stopUpdatingLocation()
                         // Redirect driver to the Ready Orders View
-                        self.performSegue(withIdentifier: "ViewOrders", sender: self)
+                        self.performSegue(withIdentifier: "ViewOrdersSegue", sender: "AvailableOrders")
                     }
                 })
             }
@@ -415,17 +373,13 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             self.present(alertView, animated: true, completion: nil)
         } else {
             print("Cannot complete order")
-            
             let cancelAction = UIAlertAction(title: "Okay", style: .cancel)
 //            let okAction = UIAlertAction(title: "Go to order", style: .default, handler: { (action) in
 //                self.performSegue(withIdentifier: "ViewOrder", sender: self)
 //            })
-            
             let alertView = UIAlertController(title: "You're not there yet", message: "Your location tells us you're not close enough to the customer's address", preferredStyle: .alert)
-            
             //alertView.addAction(okAction)
             alertView.addAction(cancelAction)
-            
             self.present(alertView, animated: true, completion: nil)
         }
     }
@@ -445,7 +399,27 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             return true
         }
         return false
-
+    }
+    func showHideMap(state: String){
+        if(state == "show"){
+            self.map.isHidden = false
+            self.viewInfo.isHidden = false
+            self.bcomplete.isHidden = false
+        } else if(state == "hide"){
+            self.map.isHidden = true
+            self.viewInfo.isHidden = true
+            self.bcomplete.isHidden = true
+        }
+    }
+    func setDriverLocationTo(){
+        var newLocation = CLLocationCoordinate2D.init()
+        newLocation.latitude = 40.6882
+        newLocation.longitude = -73.9642
+        print("New Location set to: \(newLocation )")
+        self.driverLocation = newLocation
+//        let x = customerLocation.longitude
+//        let y = customerLocation.latitude
+        //print("Destination x=\(x) y=\(y)")
     }
 
 }
