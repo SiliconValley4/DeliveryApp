@@ -794,7 +794,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="XMA-Ns-Aro">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="761"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="810"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" rowHeight="164" id="Hkt-Sf-wjI" customClass="MenuCell" customModule="FoodDeliveryApp" customModuleProvider="target">
@@ -898,7 +898,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ObA-qO-2r0">
-                                <rect key="frame" x="32" y="676" width="150" height="60"/>
+                                <rect key="frame" x="32" y="725" width="150" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="D9f-wk-rRu"/>
                                     <constraint firstAttribute="width" constant="150" id="Kzl-vz-aB6"/>
@@ -908,7 +908,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6H-qs-n2s">
-                                <rect key="frame" x="82" y="618" width="46" height="46"/>
+                                <rect key="frame" x="82" y="667" width="46" height="46"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="6QQ-0D-19S"/>
@@ -928,7 +928,7 @@
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2b-wH-2ny">
-                                <rect key="frame" x="32" y="618" width="46" height="46"/>
+                                <rect key="frame" x="32" y="667" width="46" height="46"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="OQ2-LD-jZh"/>
@@ -950,7 +950,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$12" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47X-iw-P8G">
-                                <rect key="frame" x="208" y="676" width="150" height="60"/>
+                                <rect key="frame" x="208" y="725" width="150" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="dsV-Li-cYe"/>
                                     <constraint firstAttribute="width" constant="150" id="wyF-TE-UTn"/>
@@ -960,7 +960,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQD-1p-55g">
-                                <rect key="frame" x="208" y="618" width="150" height="46"/>
+                                <rect key="frame" x="208" y="667" width="150" height="46"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="big-ll-Aw4"/>
@@ -977,7 +977,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RL6-c9-LfA">
-                                <rect key="frame" x="132" y="618" width="46" height="46"/>
+                                <rect key="frame" x="132" y="667" width="46" height="46"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="1FA-tH-JZe"/>
@@ -1145,8 +1145,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YDG-BH-NXP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Restaurants" id="gHd-2c-MTZ">
                         <imageReference key="image" image="house" catalog="system" symbolScale="default"/>
-                        <imageReference key="selectedImage" image="house.fill" catalog="system" symbolScale="default"/>
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <imageReference key="selectedImage" image="house.fill" catalog="system" symbolScale="default" renderingMode="hierarchical-single"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cMa-bM-V5m">
@@ -1461,7 +1461,15 @@
         <scene sceneID="4Yc-RS-9zn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T1F-Me-vdk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Orders" image="house" catalog="system" selectedImage="house.fill" id="ytF-wS-Avb"/>
+                    <tabBarItem key="tabBarItem" title="Orders" image="house" catalog="system" id="ytF-wS-Avb">
+                        <imageReference key="selectedImage" image="house.fill" catalog="system" renderingMode="hierarchical">
+                            <hierarchicalColors>
+                                <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color systemColor="secondaryLabelColor"/>
+                                <color systemColor="tertiaryLabelColor"/>
+                            </hierarchicalColors>
+                        </imageReference>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OdH-Yc-jvB">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
@@ -1481,7 +1489,15 @@
         <scene sceneID="dJv-WN-Bjo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4TY-Dx-ocd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Delivery" image="mappin.circle" catalog="system" selectedImage="mappin.circle.fill" id="aZ1-3H-8iF"/>
+                    <tabBarItem key="tabBarItem" title="Delivery" image="mappin.circle" catalog="system" id="aZ1-3H-8iF">
+                        <imageReference key="selectedImage" image="mappin.circle.fill" catalog="system" renderingMode="hierarchical-single">
+                            <hierarchicalColors>
+                                <color systemColor="tertiarySystemBackgroundColor"/>
+                                <color systemColor="secondaryLabelColor"/>
+                                <color systemColor="tertiaryLabelColor"/>
+                            </hierarchicalColors>
+                        </imageReference>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="NYR-6B-jIV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6X0-9s-sQE">
@@ -1501,7 +1517,15 @@
         <scene sceneID="Ugx-Qr-ang">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y6v-zL-uAf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Earnings" image="chart.bar" catalog="system" selectedImage="chart.bar.fill" id="iOf-GC-RRA"/>
+                    <tabBarItem key="tabBarItem" title="Earnings" image="chart.bar" catalog="system" id="iOf-GC-RRA">
+                        <imageReference key="selectedImage" image="chart.bar.fill" catalog="system" renderingMode="hierarchical-single">
+                            <hierarchicalColors>
+                                <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color systemColor="secondaryLabelColor"/>
+                                <color systemColor="tertiaryLabelColor"/>
+                            </hierarchicalColors>
+                        </imageReference>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sqO-rX-5fY">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
@@ -1521,7 +1545,15 @@
         <scene sceneID="Oof-9s-WQ8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PpB-o7-KJD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" selectedImage="person.fill" id="Sw4-jh-aF4"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" id="Sw4-jh-aF4">
+                        <imageReference key="selectedImage" image="person.fill" catalog="system" renderingMode="hierarchical-single">
+                            <hierarchicalColors>
+                                <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color systemColor="secondaryLabelColor"/>
+                                <color systemColor="tertiaryLabelColor"/>
+                            </hierarchicalColors>
+                        </imageReference>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="kgp-MS-ObN"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZaB-45-LcT">
@@ -1539,11 +1571,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="9K3-Va-eIb"/>
+        <segue reference="Lmh-22-JSp"/>
         <segue reference="wcU-TS-ALa"/>
         <segue reference="j8I-5e-oKy"/>
         <segue reference="qdj-ui-HZe"/>
-        <segue reference="tPs-We-3KK"/>
+        <segue reference="0LQ-9U-FJ8"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Take_Away" width="2000" height="2000"/>
@@ -1563,6 +1595,9 @@
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
@@ -1571,6 +1606,12 @@
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

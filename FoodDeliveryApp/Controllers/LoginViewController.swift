@@ -61,8 +61,6 @@ class LoginViewController: UIViewController {
             performSegue(withIdentifier: "\(userType)View", sender: self)
         }
     }
-    
-
 
     //Login Action
     
