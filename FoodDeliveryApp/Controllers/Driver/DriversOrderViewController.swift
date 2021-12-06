@@ -18,11 +18,10 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = sender as? String
-        if(destination == "CurrentDelivery"){
-            tabBarController?.selectedIndex = 1
+        if(destination == "AvailableOrders"){
+            tabBarController?.selectedIndex = 0
         }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tbvDriverOrder.dataSource = self
@@ -30,7 +29,6 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
         userWelcomeLabel.text = User.currenUser.name
 
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         LoadUnloadTimer(state: "setOn")
         
@@ -65,7 +63,7 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
                 self.orders = []
                 if let  readyOrders = json["orders"].array {
                     for item in readyOrders {
-                        print(item)
+                        //print(item)
                         let order = DriverOrder(json: item)
                         self.orders.append(order)
                     }

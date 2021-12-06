@@ -620,10 +620,11 @@ class APIManager {
             case .success(let value):
                 let jsonData = JSON(value)
                 completionHandler(jsonData)
-                print("_____Updating Drivers Location Success_____")
+                //print("_____Updating Drivers Location Success_____")
                 break
 
             case .failure:
+                print("Updating Drivers Location FAILURE")
                 break
             }
         })

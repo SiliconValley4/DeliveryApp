@@ -13,12 +13,10 @@ class RevenueViewController: UIViewController {
     @IBOutlet weak var viewChart: BarChartView!
         // week array
     var weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-    
     @IBOutlet var butt: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.initializeChart()
         self.loadDataToChart()
 
@@ -34,13 +32,6 @@ class RevenueViewController: UIViewController {
    }
     
     @IBAction func onButton(_ sender: Any) {
-        
-//        let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "DriverTabBarController") as? UITabBarController
-//
-//        let destination = self.storyboar
-
-//        homeViewController?.selectedIndex = 3
-//        self.performSegue(withIdentifier: "test1", sender: "toProfile")
 
     }
     
@@ -75,7 +66,7 @@ class RevenueViewController: UIViewController {
             
             if json != nil {
                 
-                print(json)
+                //print(json)
                 
                 let revenue = json["revenue"]
                 
