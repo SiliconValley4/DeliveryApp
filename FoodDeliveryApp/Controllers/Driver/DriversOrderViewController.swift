@@ -18,8 +18,8 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = sender as? String
-        if(destination == "AvailableOrders"){
-            tabBarController?.selectedIndex = 0
+        if(destination == "CurrentDelivery"){
+            tabBarController?.selectedIndex = 1
         }
     }
     override func viewDidLoad() {
