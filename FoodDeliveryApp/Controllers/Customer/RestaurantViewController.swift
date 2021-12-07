@@ -81,7 +81,7 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filterRestaurants = self.restaurants.filter({ (res: Restaurant) -> Bool in
             return res.name?.lowercased().range(of: searchText.lowercased()) != nil
-            //print(searchText)
+            print(searchText)
         })
         self.tbvRestaurant.reloadData()
     }
