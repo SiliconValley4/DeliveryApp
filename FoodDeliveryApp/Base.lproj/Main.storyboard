@@ -117,7 +117,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="rEK-uE-wpZ" customClass="DeliveryViewController" customModule="FoodDeliveryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qYi-nQ-oZH">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oli-Zo-Hbj">
@@ -297,7 +297,7 @@
             <objects>
                 <viewController id="trK-MH-QSy" customClass="DriversOrderViewController" customModule="FoodDeliveryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kGe-PU-9tT">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wc6-H8-swf">
@@ -777,6 +777,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="KbX-AX-y8i"/>
                     <connections>
+                        <outlet property="searchBar" destination="4E0-n1-v2R" id="e3X-1j-bmh"/>
                         <outlet property="searchRestaurant" destination="4E0-n1-v2R" id="mbY-XN-qIJ"/>
                         <outlet property="tbvRestaurant" destination="v1d-Sa-YNf" id="P6A-8c-BXh"/>
                         <outlet property="userWelcomeLabel" destination="PV7-sY-p9G" id="9dz-i9-hzD"/>
@@ -1053,7 +1054,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23p-SJ-Sc7">
-                                <rect key="frame" x="50" y="436" width="290" height="150"/>
+                                <rect key="frame" x="50" y="380" width="290" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="SCa-5t-jTk"/>
                                 </constraints>
@@ -1070,7 +1071,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UO2-JZ-cRK" customClass="STPPaymentCardTextField" customModule="Stripe">
-                                <rect key="frame" x="20" y="136" width="350" height="140"/>
+                                <rect key="frame" x="20" y="80" width="350" height="140"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="8gt-yA-YoK"/>
@@ -1185,8 +1186,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="1" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQK-Pr-F2G">
-                                                    <rect key="frame" x="40" y="71.333333333333329" width="7.6666666666666643" height="21.666666666666671"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <rect key="frame" x="40" y="72.333333333333329" width="7.6666666666666643" height="19.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1197,8 +1198,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="$12.00" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSf-dq-2wE">
-                                                    <rect key="frame" x="302" y="71.333333333333329" width="52" height="21.666666666666671"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <rect key="frame" x="318" y="72.333333333333329" width="50" height="19.333333333333329"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="dH4-g2-NKS"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1547,7 +1551,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wcU-TS-ALa"/>
+        <segue reference="yfK-Ib-Ahx"/>
+        <segue reference="hCR-YE-TdT"/>
         <segue reference="Gis-Nt-yc2"/>
         <segue reference="0LQ-9U-FJ8"/>
     </inferredMetricsTieBreakers>

@@ -47,14 +47,14 @@ class PaymentViewController: UIViewController {
                 //let card = self.cardTextField.cardParams
                 //let card: STPCardParams = STPCardParams()
                 let card: STPCardParams = STPCardParams()
-//                card.number = self.cardTextField!.cardNumber
-//                card.expMonth = UInt(self.cardTextField!.expirationMonth)
-//                card.expYear = UInt(self.cardTextField!.expirationYear)
-//                card.cvc = self.cardTextField!.cvc
-                card.number = "4242424242424242"
-                card.expMonth = 12
-                card.expYear = 22
-                card.cvc = "123"
+                card.number = self.cardTextField!.cardNumber
+                card.expMonth = UInt(self.cardTextField!.expirationMonth)
+                card.expYear = UInt(self.cardTextField!.expirationYear)
+                card.cvc = self.cardTextField!.cvc
+//                card.number = "4242424242424242"
+//                card.expMonth = 12
+//                card.expYear = 22
+//                card.cvc = "123"
                 STPAPIClient.shared.createToken(withCard: card, completion: { (token, error) in
                     //print("____________Card Token: \(token!)__________")
                     if let myError = error {
