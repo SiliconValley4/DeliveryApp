@@ -777,7 +777,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="KbX-AX-y8i"/>
                     <connections>
-                        <outlet property="searchBar" destination="4E0-n1-v2R" id="e3X-1j-bmh"/>
                         <outlet property="searchRestaurant" destination="4E0-n1-v2R" id="mbY-XN-qIJ"/>
                         <outlet property="tbvRestaurant" destination="v1d-Sa-YNf" id="P6A-8c-BXh"/>
                         <outlet property="userWelcomeLabel" destination="PV7-sY-p9G" id="9dz-i9-hzD"/>
