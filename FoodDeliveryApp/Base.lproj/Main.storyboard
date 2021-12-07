@@ -117,17 +117,17 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="rEK-uE-wpZ" customClass="DeliveryViewController" customModule="FoodDeliveryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qYi-nQ-oZH">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oli-Zo-Hbj">
-                                <rect key="frame" x="0.0" y="50" width="390" height="433"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oli-Zo-Hbj">
+                                <rect key="frame" x="0.0" y="17" width="390" height="430"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="430" id="juC-U0-fZL"/>
+                                    <constraint firstAttribute="height" constant="430" id="juC-U0-fZL"/>
                                 </constraints>
                             </mapView>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aMv-jE-KTP">
-                                <rect key="frame" x="20" y="503" width="350" height="138"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aMv-jE-KTP">
+                                <rect key="frame" x="20" y="462" width="350" height="138"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yE5-De-GXH">
                                         <rect key="frame" x="5" y="5" width="128" height="128"/>
@@ -143,8 +143,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gD-Ny-JwK">
-                                        <rect key="frame" x="145" y="54.666666666666679" width="185" height="20.333333333333336"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="145" y="54.666666666666629" width="185" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -162,8 +162,8 @@
                                     <constraint firstAttribute="trailing" secondItem="4gD-Ny-JwK" secondAttribute="trailing" constant="20" id="xwK-Pc-BHb"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNl-5n-Pid">
-                                <rect key="frame" x="75" y="609" width="240" height="85"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNl-5n-Pid">
+                                <rect key="frame" x="75" y="615" width="240" height="85"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="85" id="CwY-hQ-H4y"/>
                                 </constraints>
@@ -188,11 +188,12 @@
                             <constraint firstItem="Fbw-02-PIr" firstAttribute="trailing" secondItem="QNl-5n-Pid" secondAttribute="trailing" constant="75" id="AUp-td-TYN"/>
                             <constraint firstItem="aMv-jE-KTP" firstAttribute="leading" secondItem="Fbw-02-PIr" secondAttribute="leading" constant="20" id="Dj5-kN-0dW"/>
                             <constraint firstItem="QNl-5n-Pid" firstAttribute="leading" secondItem="Fbw-02-PIr" secondAttribute="leading" constant="75" id="LRI-4W-HCa"/>
-                            <constraint firstItem="oli-Zo-Hbj" firstAttribute="top" secondItem="qYi-nQ-oZH" secondAttribute="top" constant="50" id="OI4-Be-Lvp"/>
+                            <constraint firstItem="oli-Zo-Hbj" firstAttribute="top" relation="lessThanOrEqual" secondItem="qYi-nQ-oZH" secondAttribute="top" constant="50" id="OI4-Be-Lvp"/>
+                            <constraint firstAttribute="bottom" secondItem="QNl-5n-Pid" secondAttribute="bottom" constant="90" id="P0w-2d-0vH"/>
                             <constraint firstItem="oli-Zo-Hbj" firstAttribute="leading" secondItem="Fbw-02-PIr" secondAttribute="leading" id="VtH-IF-zw7"/>
                             <constraint firstItem="oli-Zo-Hbj" firstAttribute="trailing" secondItem="Fbw-02-PIr" secondAttribute="trailing" id="bf8-i6-qCt"/>
-                            <constraint firstItem="QNl-5n-Pid" firstAttribute="top" secondItem="aMv-jE-KTP" secondAttribute="bottom" constant="-32" id="cfO-CB-JTC"/>
-                            <constraint firstItem="aMv-jE-KTP" firstAttribute="top" secondItem="oli-Zo-Hbj" secondAttribute="bottom" constant="20" id="zeR-xR-cLR"/>
+                            <constraint firstItem="QNl-5n-Pid" firstAttribute="top" secondItem="aMv-jE-KTP" secondAttribute="bottom" constant="15" id="iRx-Od-NqK"/>
+                            <constraint firstItem="aMv-jE-KTP" firstAttribute="top" secondItem="oli-Zo-Hbj" secondAttribute="bottom" constant="15" id="zeR-xR-cLR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="48j-nV-ouR"/>
@@ -882,7 +883,7 @@
             <objects>
                 <viewController id="xaz-zd-jsO" customClass="MealDetailViewController" customModule="FoodDeliveryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ubq-kp-rQg">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meal Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4b-iN-du8">
@@ -1263,6 +1264,7 @@
                     <connections>
                         <outlet property="lbStatus" destination="VsC-n4-ciD" id="6LF-vo-1if"/>
                         <outlet property="map" destination="Ngl-Nk-de6" id="s8u-zf-aAr"/>
+                        <outlet property="statusLabel" destination="TgQ-Ie-PeI" id="M9Y-xS-05Y"/>
                         <outlet property="tbvOrder" destination="JGC-Fd-eNa" id="CTh-7Z-vzC"/>
                     </connections>
                 </viewController>

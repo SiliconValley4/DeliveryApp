@@ -19,12 +19,12 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     let maxd = 0.0001
     let delta = 0.00001
-    let simulatorFrequency = 0.02
+    let simulatorFrequency = 0.00001
     
     var orderId: Int?
     var driverHasOrder: Bool = false
     var customerName: String?
-    
+    var lbMessage = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 100))
     //map destination
     var destination: MKPlacemark?
     var source: MKPlacemark?
@@ -42,6 +42,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     //Update location every 3 sec
     var refreshTimer = Timer()
+    var zoomTimer = Timer()
     var updateDriverLocationTimer = Timer()
     var simulatorToRestaurantTimer = Timer()
     var simulatorToCustomerTimer = Timer()
@@ -82,34 +83,99 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
 //            locationManager.startUpdatingLocation()
 //            self.map.showsUserLocation = false
 //        }
-        
-        if(!self.refreshTimer.isValid){
-            self.setRefreshVCTimer()
-        }
+    
         
 
         if(self.driverLocation == nil){
-            print("1")
+            print("________Moving in 10 seconds___")
 //            print(self.driverLocation)
 //            print(self.driverLocation)
         }
         
         //Update location
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            print("2 ")
-            self.updateDriverLocationTimer = Timer.scheduledTimer(
-                timeInterval: 0.5,
-                target: self,
-                selector: #selector(self.sendDriverLocationToServer(_:)),
-                userInfo: nil,
-                repeats: true)
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+//            print("2 ")
+//            self.updateDriverLocationTimer = Timer.scheduledTimer(
+//                timeInterval: 0.5,
+//                target: self,
+//                selector: #selector(self.sendDriverLocationToServer(_:)),
+//                userInfo: nil,
+//                repeats: true)
+//        }
+        
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // Show current Driver's location
+        loadData()
+        LoadUnloadTimer(timer: &refreshTimer, phase: "setOn", name:"RefreshTimer", interval: 5.0, function: #selector(loadData))
+        if(orderId != -1){
+            autoZoom()
+            LoadUnloadTimer(timer: &zoomTimer, phase: "setOn", name:"ZoomTimer", interval: 3.0, function: #selector(autoZoom))
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            if(self.driverLocation == nil){
+                self.setDriverLocationTo()
+            }
         }
         
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        LoadUnloadTimer(timer: &refreshTimer, phase: "setOff", name:"RefreshTimer", interval: nil, function: nil)
+        LoadUnloadTimer(timer: &zoomTimer, phase: "setOff", name:"ZoomTimer", interval: nil, function: nil)
+    }
+    
+//    @objc func setRefreshVCTimer(){
+//        print("RefreshViewControllerTimer START")
+//        self.loadData()
+//        self.refreshTimer = Timer.scheduledTimer(
+//            timeInterval: 5.0,
+//            target: self,
+//            selector: #selector(loadData),
+//            userInfo: nil,
+//            repeats: true)
+//    }
+    
+    func LoadUnloadTimer(timer: inout Timer, phase: String, name: String, interval: Double? = nil, function: Selector? = nil){
+        if(!timer.isValid && phase == "setOn"){
+            print("Started \(name)")
+            timer = Timer.scheduledTimer(
+                timeInterval: interval!,
+                target: self,
+                selector: function!,
+                userInfo: nil,
+                repeats: true)
+        } else if(timer.isValid && phase == "setOff"){
+            timer.invalidate()
+            print("Stopped \(name)")
+        }
+    }
+
+    @objc func sendDriverLocationToServer(_ sender: AnyObject) {
+        //self.autoZoom()
+        APIManager.shared.updateLocation(location: self.driverLocation) { (json) in
+            //print(self.driverLocation)
+            if self.driverPin != nil {
+                self.driverPin.coordinate = self.driverLocation
+            } else {
+                self.driverPin = MKPointAnnotation()
+                self.driverPin.coordinate = self.driverLocation
+                self.driverPin.title = "You"
+                self.map.addAnnotation(self.driverPin)
+            }
+        }
+    }
+    
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
-            print("3")
-            if(!self.simulatorToRestaurantTimer.isValid && self.restaurantLocation != nil){
+            if(!self.simulatorToRestaurantTimer.isValid && self.restaurantLocation != nil && self.map.isHidden == false){
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                    print("Moving to Restaurant now")
+                    print("*******************Moving to Restaurant now*******************")
                     //print("Total distance to travel dx:\(abs(self.restaurantLocation.longitude-self.driverLocation.longitude)) dy:\(abs(self.driverLocation.latitude-self.restaurantLocation.latitude))")
                     self.simulatorToRestaurantTimer = Timer.scheduledTimer(
                         timeInterval: self.simulatorFrequency,
@@ -120,52 +186,6 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 }
             }
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        // Show current Driver's location
-        if(self.driverLocation == nil){
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                self.setDriverLocationTo()
-            }
-        }
-        loadData()
-    }
-    
-    @objc func setRefreshVCTimer(){
-        print("RefreshViewControllerTimer START")
-        self.refreshTimer = Timer.scheduledTimer(
-            timeInterval: 5.0,
-            target: self,
-            selector: #selector(loadData),
-            userInfo: nil,
-            repeats: true)
-    }
-
-    @objc func sendDriverLocationToServer(_ sender: AnyObject) {
-        self.autoZoom()
-        APIManager.shared.updateLocation(location: self.driverLocation) { (json) in
-            //print(self.driverLocation)
-            if self.driverPin != nil {
-                self.driverPin.coordinate = self.driverLocation
-            } else {
-                self.driverPin = MKPointAnnotation()
-                self.driverPin.coordinate = self.driverLocation
-                self.driverPin.title = "Me"
-                self.map.addAnnotation(self.driverPin)
-            }
-        }
-    }
-    
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        loadData()
-        
-        autoZoom()
-
-        //Maybe include what  happens if there are no current orders, turn of currentlocationtimer?
-        //if(!timerDriverLocation.isValid &&
 
     }
     
@@ -173,6 +193,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         APIManager.shared.getCurrentDriverOrder { (json) in
             let order = json["order"]
             if let id = order["id"].int, order["status"] == "On the way" {
+                self.lbMessage.text = ""
                 self.showHideMap(state: "show")
                 for annotation in self.map.annotations {
                     //print(annotation)
@@ -203,20 +224,25 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                         //print("From source: \(self.restaurantLocation) coordinates")
                     })
                 })
+                self.LoadUnloadTimer(timer: &self.updateDriverLocationTimer, phase: "setOn", name: "UpdateLocationTimer", interval: 3.0, function: #selector(self.sendDriverLocationToServer))
+                //self.LoadUnloadTimer(timer: &self.zoomTimer, phase: "setOn", name: "ZoomTimer", interval: 1.0, function: #selector(self.autoZoom))
+                
             } else {
+                self.LoadUnloadTimer(timer: &self.updateDriverLocationTimer, phase: "setOff", name: "UpdateLocationTimer", interval: nil, function: nil)
+                self.LoadUnloadTimer(timer: &self.zoomTimer, phase: "setOff", name: "ZoomTimer", interval: nil, function: nil)
                 self.showHideMap(state: "hide")
                 // Showing a message here
-                let lbMessage = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))
-                lbMessage.center = self.view.center
-                lbMessage.textAlignment = NSTextAlignment.center
-                lbMessage.text = "You don't have any orders for delivery."
-                self.view.addSubview(lbMessage)
+                self.lbMessage.center = self.view.center
+                self.lbMessage.textAlignment = NSTextAlignment.center
+                self.lbMessage.text = "You don't have any orders for delivery."
+                self.view.addSubview(self.lbMessage)
+                self.orderId = -1
             }
         }
     }
     
-    func autoZoom() {
-        print("AutoZoom called")
+    @objc func autoZoom() {
+        //print("AutoZoom called")
         var zoomRect = MKMapRect.null
         for annotation in self.map.annotations {
             let annotationPoint = MKMapPoint(annotation.coordinate)
@@ -226,7 +252,6 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         let insetWidth = -zoomRect.size.width * 0.2
         let insetHeight = -zoomRect.size.height * 0.2
         let insetRect = zoomRect.insetBy(dx: insetWidth, dy: insetHeight)
-        
         self.map.setVisibleMapRect(insetRect, animated: true)
     }
     
@@ -317,9 +342,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         if(dx > maxd){
             if(self.driverLocation.longitude > destination.longitude){
                 self.driverLocation.longitude -= delta * rx
-            } else{
-                self.driverLocation.longitude += delta * rx
-            }
+            } else { self.driverLocation.longitude += delta * rx }
         }
     }
     func moveY(_ destination: CLLocationCoordinate2D){
@@ -328,12 +351,9 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         if(dy > maxd){
             if(self.driverLocation.latitude > destination.latitude){
                 self.driverLocation.latitude -= delta * ry
-            } else{
-                self.driverLocation.latitude += delta * ry
-            }
+            } else { self.driverLocation.latitude += delta * ry }
         }
     }
-    
     //Location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print(locations)
@@ -365,35 +385,10 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         
         self.map.setVisibleMapRect(insetRect, animated: true)
     }
-
-    @objc func loadMap(){
-        
-        if driverPin != nil {
-            driverPin.coordinate = self.driverLocation
-        } else {
-            driverPin = MKPointAnnotation()
-            driverPin.coordinate = self.driverLocation
-            self.map.addAnnotation(driverPin)
-        }
-        driverPin.title = "You"
-        //All 3 locations
-        var zoomRect = MKMapRect.null
-        for annotation in self.map.annotations {
-            let annotationPoint = MKMapPoint(annotation.coordinate)
-            let pointRect = MKMapRect(x: annotationPoint.x, y: annotationPoint.y, width: 10, height: 10)
-            zoomRect = zoomRect.union(pointRect)
-        }
-        
-        let insetWidth = -zoomRect.size.width //* 0.2
-        let insetHeight = -zoomRect.size.height //* 0.2
-        let insetRect = zoomRect.insetBy(dx: insetWidth, dy: insetHeight)
-        
-        self.map.setVisibleMapRect(insetRect, animated: true)
-
-    }
     
     //Complete Order Button Action
     @IBAction func completeOrder(_ sender: Any) {
+        
         if(canProceedWithOrder("CompleteOrder")){
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
             let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -402,9 +397,11 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                     print(json)
                     if json != nil {
                         // Stop updating driver location
-                        self.updateDriverLocationTimer.invalidate()
-                        self.locationManager.stopUpdatingLocation()
+//                        self.updateDriverLocationTimer.invalidate()
+//                        self.locationManager.stopUpdatingLocation()
                         // Redirect driver to the Ready Orders View
+                        self.map.removeAnnotation(self.restaurantPin)
+                        self.map.removeAnnotation(self.customerPin)
                         self.performSegue(withIdentifier: "ViewOrdersSegue", sender: "AvailableOrders")
                     }
                 })
@@ -428,6 +425,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     }
     
     func canProceedWithOrder(_ phase: String)->Bool{
+        if(self.customerLocation == nil || self.restaurantLocation == nil || self.driverLocation == nil ){ return false }
         let location : CLLocationCoordinate2D
         if(phase == "CompleteOrder"){
             location = self.customerLocation

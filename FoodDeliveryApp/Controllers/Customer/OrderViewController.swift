@@ -13,6 +13,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
    
     @IBOutlet weak var tbvOrder: UITableView!
     
+    @IBOutlet var statusLabel: UILabel!
     
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var lbStatus: UILabel!
@@ -90,6 +91,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 if(orderStatus! == "Delivered"){
                     self.zoomTimer.invalidate()
                     self.updateDriverLocationTimer.invalidate()
+                    statusLabel.text = "Previous Order:"
                 }
                 if let orderDetails = order["order_details"].array {
                     self.lbStatus.text = order["status"].string!
@@ -107,6 +109,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     })
                 })
                 if orderStatus! == "On the way" {
+                    statusLabel.text = "Current order:"
                     //getDriverLocation(self)
                     if(!self.zoomTimer.isValid){
                         self.setZoomTimer()
