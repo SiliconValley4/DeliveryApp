@@ -24,7 +24,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     var orderId: Int?
     var driverHasOrder: Bool = false
     var customerName: String?
-    var lbMessage = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 100))
+    var lbMessage = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 200))
     //map destination
     var destination: MKPlacemark?
     var source: MKPlacemark?
@@ -215,11 +215,18 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 
                 self.getLocation(to, "CustomerPin", { (des) in
                     self.destination = des
+                    if(self.customerPin == nil) {
+                        self.customerPin = MKPointAnnotation()
+                        self.customerPin.coordinate = des.coordinate }
                     self.customerLocation = des.coordinate
                     //print("To destination: \(self.destinationLocation) coordinates")
                     
                     self.getLocation(from, "RestaurantPin", { (sou) in
                         self.source = sou
+                        if(self.restaurantPin == nil) {
+                            self.restaurantPin = MKPointAnnotation()
+                            self.restaurantPin.coordinate = sou.coordinate
+                        }
                         self.restaurantLocation = sou.coordinate
                         //print("From source: \(self.restaurantLocation) coordinates")
                     })
@@ -235,6 +242,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 self.lbMessage.center = self.view.center
                 self.lbMessage.textAlignment = NSTextAlignment.center
                 self.lbMessage.text = "You don't have any orders for delivery."
+                self.lbMessage.numberOfLines = 0
                 self.view.addSubview(self.lbMessage)
                 self.orderId = -1
             }
