@@ -156,7 +156,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         print("SetUpdateDriverLocationTimer START")
         //getDriverLocation(self)
         updateDriverLocationTimer = Timer.scheduledTimer(
-            timeInterval: 1.0,
+            timeInterval: 0.1,
             target: self,
             selector: #selector(getDriverLocation(_:)),
             userInfo: nil,

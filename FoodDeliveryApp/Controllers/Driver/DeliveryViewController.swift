@@ -156,15 +156,17 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
 
     @objc func sendDriverLocationToServer(_ sender: AnyObject) {
         //self.autoZoom()
-        APIManager.shared.updateLocation(location: self.driverLocation) { (json) in
-            //print(self.driverLocation)
-            if self.driverPin != nil {
-                self.driverPin.coordinate = self.driverLocation
-            } else {
-                self.driverPin = MKPointAnnotation()
-                self.driverPin.coordinate = self.driverLocation
-                self.driverPin.title = "You"
-                self.map.addAnnotation(self.driverPin)
+        if(self.driverLocation != nil){
+            APIManager.shared.updateLocation(location: self.driverLocation) { (json) in
+                //print(self.driverLocation)
+                if self.driverPin != nil {
+                    self.driverPin.coordinate = self.driverLocation
+                } else {
+                    self.driverPin = MKPointAnnotation()
+                    self.driverPin.coordinate = self.driverLocation
+                    self.driverPin.title = "You"
+                    self.map.addAnnotation(self.driverPin)
+                }
             }
         }
     }
@@ -231,7 +233,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                         //print("From source: \(self.restaurantLocation) coordinates")
                     })
                 })
-                self.LoadUnloadTimer(timer: &self.updateDriverLocationTimer, phase: "setOn", name: "UpdateLocationTimer", interval: 3.0, function: #selector(self.sendDriverLocationToServer))
+                self.LoadUnloadTimer(timer: &self.updateDriverLocationTimer, phase: "setOn", name: "UpdateLocationTimer", interval: 0.1, function: #selector(self.sendDriverLocationToServer))
                 //self.LoadUnloadTimer(timer: &self.zoomTimer, phase: "setOn", name: "ZoomTimer", interval: 1.0, function: #selector(self.autoZoom))
                 
             } else {
