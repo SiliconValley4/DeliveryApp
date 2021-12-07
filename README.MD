@@ -298,7 +298,7 @@ Delivery App's purpose is to allow customers to order food from any restaurant, 
 
 ### **Unit 13 - Final Build Sprint**
 ##### Example of the design website dashaboard, customer app, driver app v2
-<img src="https://github.com/SiliconValley4/DeliveryApp/blob/main/Submission/Unit%2013%20-%20Final%20Build%20Sprint.gif" width="500">
+<img src="https://github.com/SiliconValley4/DeliveryApp/blob/main/Submission/Unit%2013%20-%20Final%20Build%20Sprint.gif" width="1000">
 
 
 
