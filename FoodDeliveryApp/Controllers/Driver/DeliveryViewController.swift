@@ -19,7 +19,7 @@ class DeliveryViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     let maxd = 0.0001
     let delta = 0.00001
-    let simulatorFrequency = 0.00001
+    let simulatorFrequency = 0.001
     
     var orderId: Int?
     var driverHasOrder: Bool = false
