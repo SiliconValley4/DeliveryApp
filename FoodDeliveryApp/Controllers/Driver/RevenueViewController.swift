@@ -6,24 +6,26 @@
 //
 
 import UIKit
-//import Charts
+import Charts
 
-class RevenueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class RevenueViewController: UIViewController {
     
+    @IBOutlet weak var viewChart: BarChartView!
     
+//    var chart: BarChartView!
     
-    @IBOutlet weak var revenuetbv: UITableView!
-    
-    var rev = [DriverRevenue]()
-
-    
-//    var weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    var weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 //
-        self.loadRevenueData()
+      
+        // #1 Initialize chart
+        self.initializeChart()
+        
+        // #2 Load data to chart
+        self.loadDataToChart()
 
         // Do any additional setup after loading the view.
     }
@@ -36,59 +38,67 @@ class RevenueViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
    }
     
-    @IBAction func onButton(_ sender: Any) {
-
+    
+    
+    func initializeChart() {
+        
+        viewChart.noDataText = "No Data"
+        viewChart.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
+        viewChart.xAxis.labelPosition = .bottom
+        viewChart.chartDescription?.text = ""
+//        viewChart.descriptionText = ""
+//        viewChart.xAxis.setLabelsToSkip(0)
+        
+        viewChart.legend.enabled = false
+        viewChart.scaleYEnabled = false
+        viewChart.scaleXEnabled = false
+        viewChart.pinchZoomEnabled = false
+        viewChart.doubleTapToZoomEnabled = false
+        
+        viewChart.leftAxis.axisMinimum = 0.0
+//        viewChart.leftAxis.axisMaximum = 100.00
+        viewChart.highlighter = nil
+        viewChart.rightAxis.enabled = false
+        viewChart.xAxis.drawGridLinesEnabled = false
+        
     }
     
+    func loadDataToChart() {
     
-//    func loadRevenueData() {
-//        APIManager.shared.getDriverRevenue { (json) in
-//            if json != nil {
-//                //print(json)
-//                let revenue = json["revenue"]
-//                print(revenue)
-//
-//            }
-//        }
-//    }
-    
-    @objc func loadRevenueData() {
-        print("Revnue Loaded")
-        APIManager.shared.getDriverRevenue{(json) in
+        APIManager.shared.getDriverRevenue { (json) in
+            
             if json != nil {
-//                print(json)
-                self.rev = []
-                if let driverRev = json["revenue"].array {
-                    for item in driverRev {
-                        print(item)
-                        let revenue = DriverRevenue(json: item)
-                        print(revenue)
-                        self.rev.append(revenue)
-                    }
+                print(json)
+                let revenue = json["revenue"]
+                
+                var dataEntries: [BarChartDataEntry] = []
+                print("___DATA ENTRY_________")
+                print(dataEntries)
+                
+                for i in 0..<self.weekdays.count {
+                    let day = self.weekdays[i]
+                    print("___DAY _______________")
+                    print(day)
+//                    let dataEntry = "a"
+                    let dataEntry = BarChartDataEntry(x: Double(i) , y: revenue[day].rawValue as! Double)
+//                    let dataEntry = BarChartDataEntry(value: revenue[day].double! , xIndex: i)
+                    dataEntries.append(dataEntry)
+                    dataEntries.append(BarChartDataEntry.init())
                 }
-                self.revenuetbv.reloadData()
+                
+                let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Revenue by day")
+                chartDataSet.colors = ChartColorTemplates.material()
+                
+//                let chartData = BarChartData(xVals: self.weekdays, dataSet: chartDataSet)
+                let chartData = BarChartData(dataSet: chartDataSet)
+                
+                self.viewChart.data = chartData
+                
             }
         }
     }
     
-    
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DriverRevenueCell") as! DriverRevenueCell
-        
-//        let item = cart[indexPath.row]
-//        cell.orderItemQuantityLabel.text = String(item["quantity"].int!)
-//        cell.orderItemNameLabel.text = item["meal"]["name"].string
-//        //cell.orderItemPriceLabel.text = "$\(String(item["sub_total"].float!))"
-//        cell.orderItemPriceLabel.text = (String(format: "$%.2f", item["sub_total"].float!))
-//
-        return cell
-    }
+
     
 
     
