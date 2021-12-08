@@ -36,6 +36,8 @@
 		1028FABB27358D710038D72D /* DriversOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028FABA27358D710038D72D /* DriversOrderCell.swift */; };
 		1028FABD273592D50038D72D /* DeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028FABC273592D50038D72D /* DeliveryViewController.swift */; };
 		1028FABF273593580038D72D /* RevenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1028FABE273593580038D72D /* RevenueViewController.swift */; };
+		1050DF632760391E00625CEF /* Revenue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050DF622760391E00625CEF /* Revenue.swift */; };
+		1050DF6527603F9500625CEF /* DriverRevenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050DF6427603F9500625CEF /* DriverRevenueCell.swift */; };
 		10E2ACAD27359C45004DBD2B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E2ACAC27359C45004DBD2B /* LoginViewController.swift */; };
 		10E2ACAF27371649004DBD2B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10E2ACAE27371649004DBD2B /* CoreLocation.framework */; };
 		10E2ACB127381738004DBD2B /* DriversProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E2ACB027381738004DBD2B /* DriversProfileViewController.swift */; };
@@ -78,6 +80,8 @@
 		1028FABA27358D710038D72D /* DriversOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriversOrderCell.swift; sourceTree = "<group>"; };
 		1028FABC273592D50038D72D /* DeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewController.swift; sourceTree = "<group>"; };
 		1028FABE273593580038D72D /* RevenueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueViewController.swift; sourceTree = "<group>"; };
+		1050DF622760391E00625CEF /* Revenue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Revenue.swift; sourceTree = "<group>"; };
+		1050DF6427603F9500625CEF /* DriverRevenueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverRevenueCell.swift; sourceTree = "<group>"; };
 		10E2ACAC27359C45004DBD2B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		10E2ACAE27371649004DBD2B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		10E2ACB027381738004DBD2B /* DriversProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriversProfileViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				1028FABA27358D710038D72D /* DriversOrderCell.swift */,
+				1050DF6427603F9500625CEF /* DriverRevenueCell.swift */,
 			);
 			path = Driver;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				10286C0627347C6900E3FBE5 /* DriverOrder.swift */,
+				1050DF622760391E00625CEF /* Revenue.swift */,
 			);
 			path = Driver;
 			sourceTree = "<group>";
@@ -389,6 +395,7 @@
 				10286C0327347C3F00E3FBE5 /* Meal.swift in Sources */,
 				55F34C80273EE91200F9E373 /* StringConstants.swift in Sources */,
 				1028FABD273592D50038D72D /* DeliveryViewController.swift in Sources */,
+				1050DF6527603F9500625CEF /* DriverRevenueCell.swift in Sources */,
 				1028FAB927358C6E0038D72D /* DriversOrderViewController.swift in Sources */,
 				1028FAAD2735738D0038D72D /* PaymentViewController.swift in Sources */,
 				1028FABB27358D710038D72D /* DriversOrderCell.swift in Sources */,
@@ -402,6 +409,7 @@
 				10286C0F27348D3300E3FBE5 /* RestaurantCell.swift in Sources */,
 				10286C0D27348AD700E3FBE5 /* MealDetailViewController.swift in Sources */,
 				1028FAB1273576630038D72D /* CartCell.swift in Sources */,
+				1050DF632760391E00625CEF /* Revenue.swift in Sources */,
 				1028FAB5273589650038D72D /* OrderCell.swift in Sources */,
 				10286BD82734772E00E3FBE5 /* AppDelegate.swift in Sources */,
 				10286C0727347C6900E3FBE5 /* DriverOrder.swift in Sources */,

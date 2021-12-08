@@ -65,6 +65,7 @@ class MealDetailViewController: UIViewController {
         mealImage.layer.cornerRadius = 32
         mealImage.clipsToBounds = true
         view.backgroundColor = .systemGray5
+    
         
         labelIndividualCost.backgroundColor = .white
         lbTotal.backgroundColor = .white

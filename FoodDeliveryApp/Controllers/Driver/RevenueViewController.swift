@@ -6,19 +6,24 @@
 //
 
 import UIKit
-import Charts
+//import Charts
 
-class RevenueViewController: UIViewController {
+class RevenueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var viewChart: BarChartView!
-        // week array
-    var weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-    @IBOutlet var butt: UIButton!
+    
+    
+    @IBOutlet weak var revenuetbv: UITableView!
+    
+    var rev = [DriverRevenue]()
+
+    
+//    var weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initializeChart()
-        self.loadDataToChart()
+//
+        self.loadRevenueData()
 
         // Do any additional setup after loading the view.
     }
@@ -35,58 +40,58 @@ class RevenueViewController: UIViewController {
 
     }
     
-    func initializeChart() {
-        
-        viewChart.noDataText = "No Data"
-        viewChart.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
-        viewChart.xAxis.labelPosition = .bottom
-        //viewChart.descriptionText = ""
-        //viewChart.xAxis.setLabelsToSkip(0)
-        //viewChart.xAxis.setLabels("0")
-
-        viewChart.legend.enabled = false
-        viewChart.scaleYEnabled = false
-        viewChart.scaleXEnabled = false
-        viewChart.pinchZoomEnabled = false
-        viewChart.doubleTapToZoomEnabled = false
-        
-        viewChart.leftAxis.axisMinimum = 0.0
-        viewChart.leftAxis.axisMaximum = 100.00
-        viewChart.highlighter = nil
-        viewChart.rightAxis.enabled = false
-        viewChart.xAxis.drawGridLinesEnabled = false
-        
-    }
     
+//    func loadRevenueData() {
+//        APIManager.shared.getDriverRevenue { (json) in
+//            if json != nil {
+//                //print(json)
+//                let revenue = json["revenue"]
+//                print(revenue)
+//
+//            }
+//        }
+//    }
     
-    
-    func loadDataToChart() {
-    
-        APIManager.shared.getDriverRevenue { (json) in
-            
+    @objc func loadRevenueData() {
+        print("Revnue Loaded")
+        APIManager.shared.getDriverRevenue{(json) in
             if json != nil {
-                
-                //print(json)
-                
-                let revenue = json["revenue"]
-                
-                var dataEntries: [BarChartDataEntry] = []
-                
-                for i in 0..<self.weekdays.count {
-                    let day = self.weekdays[i]
-                    //let dataEntry = BarChartDataEntry(value: revenue[day].double!, xIndex: i)
-                    //dataEntries.append(dataEntry)
+//                print(json)
+                self.rev = []
+                if let driverRev = json["revenue"].array {
+                    for item in driverRev {
+                        print(item)
+                        let revenue = DriverRevenue(json: item)
+                        print(revenue)
+                        self.rev.append(revenue)
+                    }
                 }
-                
-                let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Revenue by day")
-                chartDataSet.colors = ChartColorTemplates.material()
-                
-                //let chartData = BarChartData(xVals: self.weekdays, dataSet: chartDataSet)
-                
-                //self.viewChart.data = chartData
-                
+                self.revenuetbv.reloadData()
             }
         }
     }
-   
+    
+    
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DriverRevenueCell") as! DriverRevenueCell
+        
+//        let item = cart[indexPath.row]
+//        cell.orderItemQuantityLabel.text = String(item["quantity"].int!)
+//        cell.orderItemNameLabel.text = item["meal"]["name"].string
+//        //cell.orderItemPriceLabel.text = "$\(String(item["sub_total"].float!))"
+//        cell.orderItemPriceLabel.text = (String(format: "$%.2f", item["sub_total"].float!))
+//
+        return cell
+    }
+    
+
+    
+
+//end
 }

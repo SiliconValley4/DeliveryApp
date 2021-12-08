@@ -31,6 +31,7 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
         
         
         userWelcomeLabel.text = User.currenUser.name
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -119,6 +120,7 @@ class RestaurantViewController: UIViewController , UITableViewDelegate, UITableV
         if let logoName = restaurant.logo {
             let url = "\(logoName)"
             loadImage(imageView: cell.imgRestaurantLogo, urlString: url)
+            
         }
         
         return cell
