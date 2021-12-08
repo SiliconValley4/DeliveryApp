@@ -605,18 +605,23 @@
                                 <rect key="frame" x="0.0" y="711" width="390" height="42"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v5f-2r-FN7">
-                                        <rect key="frame" x="105" y="2" width="180" height="38"/>
+                                        <rect key="frame" x="81" y="4" width="228" height="38"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="38" id="c6j-hw-EYF"/>
+                                            <constraint firstAttribute="height" constant="38" id="g4m-Qv-Tkj"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Pay" titleAlignment="center">
+                                        <buttonConfiguration key="configuration" style="plain" title="Procced to Pay" titleAlignment="center">
                                             <backgroundConfiguration key="background" cornerRadius="14">
                                                 <color key="backgroundColor" systemColor="labelColor"/>
                                             </backgroundConfiguration>
                                             <fontDescription key="titleFontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                                         </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusV">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="addPayment:" destination="bLA-Nk-fFz" eventType="touchUpInside" id="O9C-rq-oMO"/>
                                         </connections>
@@ -624,10 +629,10 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="v5f-2r-FN7" secondAttribute="bottom" constant="2" id="21F-z4-89e"/>
-                                    <constraint firstItem="v5f-2r-FN7" firstAttribute="leading" secondItem="4FJ-pS-flc" secondAttribute="leading" constant="105" id="IeC-YG-FeK"/>
-                                    <constraint firstAttribute="trailing" secondItem="v5f-2r-FN7" secondAttribute="trailing" constant="105" id="T6I-na-fET"/>
-                                    <constraint firstItem="v5f-2r-FN7" firstAttribute="top" secondItem="4FJ-pS-flc" secondAttribute="top" constant="2" id="Tf0-qo-aau"/>
+                                    <constraint firstAttribute="bottom" secondItem="v5f-2r-FN7" secondAttribute="bottom" id="E9b-jI-dRO"/>
+                                    <constraint firstItem="v5f-2r-FN7" firstAttribute="centerX" secondItem="4FJ-pS-flc" secondAttribute="centerX" id="acb-3Q-yF0"/>
+                                    <constraint firstItem="v5f-2r-FN7" firstAttribute="leading" secondItem="4FJ-pS-flc" secondAttribute="leading" constant="81" id="wze-TB-GDh"/>
+                                    <constraint firstItem="v5f-2r-FN7" firstAttribute="top" secondItem="4FJ-pS-flc" secondAttribute="top" constant="4" id="zxx-2F-ogV"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xb8-Cl-7yt">
@@ -1094,20 +1099,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UO2-JZ-cRK" customClass="STPPaymentCardTextField" customModule="Stripe">
-                                <rect key="frame" x="20" y="150" width="350" height="140"/>
+                                <rect key="frame" x="20" y="145" width="350" height="140"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="8gt-yA-YoK"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23p-SJ-Sc7">
-                                <rect key="frame" x="84" y="324" width="222" height="38"/>
+                                <rect key="frame" x="84" y="319" width="222" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="CrG-jm-Tmm"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Press to Pay">
+                                <buttonConfiguration key="configuration" style="plain" title="Place Order">
                                     <backgroundConfiguration key="background" cornerRadius="25">
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </backgroundConfiguration>
@@ -1688,7 +1693,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wcU-TS-ALa"/>
+        <segue reference="yfK-Ib-Ahx"/>
+        <segue reference="hCR-YE-TdT"/>
         <segue reference="Gis-Nt-yc2"/>
         <segue reference="0LQ-9U-FJ8"/>
     </inferredMetricsTieBreakers>
