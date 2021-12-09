@@ -16,6 +16,8 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
     var orders = [DriverOrder]()
     var loadOrdersTimer = Timer()
     
+
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = sender as? String
         if(destination == "CurrentDelivery"){
@@ -37,6 +39,8 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
         LoadUnloadTimer(state: "setOff")
 
     }
+    
+    
     func LoadUnloadTimer(state: String){
         if(self.loadOrdersTimer.isValid && state == "setOff"){
             loadOrdersTimer.invalidate()
@@ -116,6 +120,10 @@ class DriversOrderViewController: UIViewController, UITableViewDelegate, UITable
         let order = orders[indexPath.row]
         self.pickOrder(orderId: order.id!)
     }
+    
+    
 
 
 }
+
+
