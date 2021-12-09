@@ -43,7 +43,7 @@ class RevenueViewController: UIViewController {
     func initializeChart() {
         
         viewChart.noDataText = "No Data"
-        viewChart.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
+        viewChart.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInCubic)
         viewChart.xAxis.labelPosition = .bottom
         viewChart.chartDescription?.text = ""
 //        viewChart.descriptionText = ""
@@ -79,11 +79,16 @@ class RevenueViewController: UIViewController {
                     let day = self.weekdays[i]
                     print("___DAY _______________")
                     print(day)
-//                    let dataEntry = "a"
-                    let dataEntry = BarChartDataEntry(x: Double(i) , y: revenue[day].rawValue as! Double)
+//
+                    let dataEntry = BarChartDataEntry(x: Double(i) , y: revenue[day].double!)
 //                    let dataEntry = BarChartDataEntry(value: revenue[day].double! , xIndex: i)
+                    print("DataEntry _______________")
+                    print(dataEntry)
+                    
                     dataEntries.append(dataEntry)
-                    dataEntries.append(BarChartDataEntry.init())
+//                    print("DataEntries _______________")
+//                    print(dataEntries)
+//                    dataEntries.append(BarChartDataEntry.init())
                 }
                 
                 let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Revenue by day")
@@ -91,6 +96,8 @@ class RevenueViewController: UIViewController {
                 
 //                let chartData = BarChartData(xVals: self.weekdays, dataSet: chartDataSet)
                 let chartData = BarChartData(dataSet: chartDataSet)
+               
+                
                 
                 self.viewChart.data = chartData
                 

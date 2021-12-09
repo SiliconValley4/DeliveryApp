@@ -28,12 +28,15 @@ class LoginViewController: UIViewController {
                 
         configure()
         
+
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         if (switchUser.selectedSegmentIndex == 0){
             usertype == "Customer"
+        
         } else {
             usertype == "Driver"
         }
